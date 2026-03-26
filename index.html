@@ -108,17 +108,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 75px;
+      height: 85px;
     }
 
     /* Logo */
     .logo { display: flex; align-items: center; flex-shrink: 0; }
     .logo img {
-         padding-top: 4px;
-  padding-bottom: 4px;
+         padding-top: 10px;
+  padding-bottom: 10px;
       height: 100px;
       width: auto;
-      max-width: 180px;
+      max-width: 500px;
       object-fit: contain;
       filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff);
     }
@@ -179,8 +179,8 @@
 
     /* ── Mobile: hamburger menu ── */
     @media (max-width: 768px) {
-      .header-inner { height: 60px; }
-      .logo img { height: 60px; }
+      .header-inner { height: 50px; }
+      .logo img { height: 50px; width: 250px; }
       .hamburger { display: flex; }
 
       .nav-links {
@@ -202,13 +202,17 @@
       .nav-links a::after { display: none; }
     }
 
+    @media (max-width: 768px) {
+      .header-inner { height: 50px; }
+      .logo img { height: 200px; }}
+
     /* ============================================================
        4. HERO
     ============================================================ */
 .hero {
   background:
    linear-gradient(to bottom, rgba(207, 0, 0, 0.756) 0%, rgba(225, 225, 225, 0.65) 100%),
-    url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=75') center/cover no-repeat;
+    url('LOGO/BG IMAGE.jpg') center/cover no-repeat;
   padding: clamp(72px, 12vw, 140px) 0 clamp(90px, 14vw, 160px);
   color: var(--white);
   position: relative;
@@ -238,19 +242,7 @@
 
 
     .hero-inner { max-width: 600px; }
-    .hero-tag {
-      display: inline-block;
-      background: rgba(255, 149, 1, 0.825);
-      
-      color: var(--white);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 20px;
-      margin-bottom: 22px;
-    }
+.hero-tag { height: 100px; width:100px; display: inline-block;  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 6px #fff); }
     .hero h1 {
       font-size: clamp(30px, 5.5vw, 56px);
       font-weight: 800;
@@ -266,8 +258,12 @@
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
     @media (max-width: 480px) {
-      .hero { padding-bottom: 80px; }
+        .hero {
+    padding: 100px 0 130px;
+    min-height: 520px;
+  }
       .hero-actions .btn { width: 100%; justify-content: center; }
+      .hero-tag { height: 70px; width:70px;}
     }
 
     /* ============================================================
@@ -799,7 +795,7 @@
     <div class="container header-inner">
 
       <a href="#" class="logo" aria-label="Kovai Lakshmi Food Machinery Home">
-        <img src="LOGO/LOGO.png" alt="Kovai Lakshmi Food Machinery">
+        <img src="LOGO/KOVAI LAKHMI FULL LOGO.png" alt="Kovai Lakshmi Food Machinery">
       </a>
 
       <nav aria-label="Main navigation">
@@ -825,7 +821,7 @@
   <section class="hero" aria-label="Hero banner">
     <div class="container">
       <div class="hero-inner">
-        <span class="hero-tag">Trusted Since 1980</span>
+        <img class="hero-tag" src="LOGO/SINCE 1980.png">
         <h1>Enhance Your Kitchen With Our Equipment</h1>
         <p>We supply top-grade commercial kitchen machinery designed to elevate culinary performance for restaurants, hotels, and food businesses.</p>
         <div class="hero-actions">
