@@ -131,7 +131,7 @@
     }
     .nav-links a {
       font-weight: 500;
-      font-size: 15px;
+      font-size: 25px;
       color: var(--text);
       position: relative;
       padding-bottom: 4px;
@@ -204,16 +204,16 @@
 
     @media (max-width: 768px) {
       .header-inner { height: 85px; }
-      .logo img { height: 200px; }}
+      .logo img { height: 80px; }}
 
     /* ============================================================
        4. HERO
     ============================================================ */
 .hero {
   background:
-   linear-gradient(to bottom, rgba(207, 0, 0, 0.756) 0%, rgba(225, 225, 225, 0.65) 100%),
+    linear-gradient(to bottom, rgba(190, 43, 24, 0.87) 0%, rgba(225, 225, 225, 0.65) 100%),
     url('LOGO/BG IMAGE.jpg') center/cover no-repeat;
-  padding: clamp(72px, 12vw, 140px) 0 clamp(90px, 14vw, 160px);
+  padding: 40px 0 clamp(90px, 14vw, 160px);
   color: var(--white);
   position: relative;
   overflow: hidden;
@@ -222,7 +222,7 @@
 @media (max-width: 1024px) {
   .hero { overflow: visible; }
 }
-    
+
 .hero::after {
   content: '';
   position: absolute;
@@ -240,31 +240,96 @@
   }
 }
 
+.hero-inner {
+  max-width: none;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
 
-    .hero-inner { max-width: 600px; }
-.hero-tag { height: 100px; width:100px; display: inline-block;  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 6px #fff); }
-    .hero h1 {
-      font-size: clamp(30px, 5.5vw, 56px);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 20px;
-    }
-    .hero p {
-      font-size: clamp(15px, 2vw, 18px);
-      color: rgba(255,255,255,.88);
-      margin-bottom: 36px;
-      max-width: 460px;
-    }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-tag {
+  height: 100px;
+  width: 100px;
+  display: inline-block;
+  
+  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 6px #fff);
+}
 
-    @media (max-width: 480px) {
-        .hero {
-    padding: 100px 0 130px;
-    min-height: 520px;
+.hero h1 {
+  font-size: 56px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 800;
+  line-height: 1.15;
+  -webkit-text-stroke: 1.5px rgb(90, 2, 2);
+  margin-bottom: 20px;
+  white-space: nowrap;
+  
+}
+
+.hero p {
+  font-size: 20px;
+  color: rgba(255,255,255,.88);
+  margin-bottom: 36px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* Tablet */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 36px;
+    white-space: nowrap;
   }
-      .hero-actions .btn { width: 100%; justify-content: center; }
-      .hero-tag { height: 70px; width:70px;}
-    }
+  .hero-inner {
+    max-width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .hero {
+    padding: 80px 0 110px;
+    min-height: 480px;
+  }
+  .hero-inner {
+    max-width: 100%;
+  }
+  .hero h1 {
+    font-size: 28px;
+    white-space: nowrap;
+    letter-spacing: -0.5px;
+  }
+  .hero p {
+    font-size: 14px;
+    max-width: 100%;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-tag {
+    height: 60px;
+    width: 60px;
+  }
+}
+
+/* Very small phones (320px) */
+@media (max-width: 360px) {
+  .hero h1 {
+    font-size: 24px;
+    white-space: nowrap;
+    letter-spacing: -1px;
+  }
+}
 
     /* ============================================================
        5. CLIENT LOGO CAROUSEL 
@@ -817,16 +882,16 @@
     <div class="container header-inner">
 
       <a href="#" class="logo" aria-label="Kovai Lakshmi Food Machinery Home">
-        <img src="LOGO/KOVAI LAKHMI FULL LOGO.png" alt="Kovai Lakshmi Food Machinery">
+        <img src="LOGO/LOGO.png" alt="Kovai Lakshmi Food Machinery">
       </a>
 
       <nav aria-label="Main navigation">
         <ul class="nav-links" id="navLinks">
           <li><a href="#">Home</a></li>
-          <li><a href="#">About Us</a></li>
+          <li><a href="#">About us</a></li>
           <li><a href="#">Products</a></li>
           <li><a href="#">Gallery</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Contact us</a></li>
         </ul>
       </nav>
 
@@ -843,8 +908,8 @@
   <section class="hero" aria-label="Hero banner">
     <div class="container">
       <div class="hero-inner">
-        <img class="hero-tag" src="LOGO/SINCE 1980.png">
-        <h1>Enhance Your Kitchen With Our Equipment</h1>
+        
+        <h1>"Excellence in your Kitchen"</h1>
         <p>We supply top-grade commercial kitchen machinery designed to elevate culinary performance for restaurants, hotels, and food businesses.</p>
         <div class="hero-actions">
           <button class="btn">CONTACT US →</button>
@@ -881,7 +946,7 @@
         </div>
         <div class="about-content">
           <p class="about-eyebrow">Welcome to</p>
-          <h2>Kovai Lakshmi Food Machinery</h2>
+          <h2>Kovai Lakshmi Grinders</h2>
           <div class="about-badges">
             <div class="badge-item">
               <strong>20+ Years History</strong>
