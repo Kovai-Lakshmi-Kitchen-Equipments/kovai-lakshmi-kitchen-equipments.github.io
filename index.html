@@ -327,7 +327,29 @@
 }
 
 @media (max-width: 599px) {
-  .logo-strip { display: none; border-bottom: none; }
+  .logo-strip {
+    padding: 14px 0;
+  }
+  .logo-strip::before,
+  .logo-strip::after { width: 32px; }
+  .logo-track { gap: 24px; }
+  .logo-slot {
+    width: 56px;
+    height: 56px;
+  }
+  .logo-slot img {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+  .logo-strip { padding: 16px 0; }
+  .logo-strip::before,
+  .logo-strip::after { width: 44px; }
+  .logo-track { gap: 30px; }
+  .logo-slot { width: 72px; height: 72px; }
+  .logo-slot img { width: 72px; height: 72px; }
 }
 
 
@@ -1279,8 +1301,10 @@
   function init() {
     /* Clone original slots enough times to fill 3× viewport width */
     var original  = Array.from(track.children);
-    var slotW     = 70 + GAP;
-    var needed    = Math.ceil((window.innerWidth * 3) / slotW);
+var logoSize  = window.innerWidth <= 599 ? 56 : window.innerWidth <= 768 ? 72 : 100;
+var gapSize   = window.innerWidth <= 599 ? 24 : window.innerWidth <= 768 ? 30 : GAP;
+var slotW     = logoSize + gapSize;
+var needed    = Math.ceil((window.innerWidth * 3) / slotW);
     var copies    = Math.ceil(needed / original.length);
 
     for (var i = 0; i < copies; i++) {
