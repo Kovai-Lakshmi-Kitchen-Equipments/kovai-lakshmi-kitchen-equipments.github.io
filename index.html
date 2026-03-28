@@ -1288,80 +1288,74 @@
 
 
 /* ── LOGO CAROUSEL ── */
+/* ── LOGO CAROUSEL ── */
 (function () {
-  var track     = document.getElementById('logoTrack');
+  var track = document.getElementById('logoTrack');
   if (!track) return;
 
-  var GAP       = 48;   /* must match CSS gap */
-  var SPEED     = 0.6;  /* px per frame — lower = slower */
-  var pos       = 0;
-  var setWidth  = 0;
+  var SPEED = 0.6;
+  var pos = 0;
+  var setWidth = 0;
   var raf;
 
+  /* Save originals ONCE before any cloning */
+  var originals = Array.from(track.children).map(function (node) {
+    return node.cloneNode(true);
+  });
+
+  function getSlotW() {
+    var w = window.innerWidth;
+    if (w <= 599) return 56 + 24;   /* logo + gap — matches your CSS */
+    if (w <= 768) return 72 + 30;
+    return 100 + 48;
+  }
+
   function init() {
-    /* Clone original slots enough times to fill 3× viewport width */
-    var original  = Array.from(track.children);
-var logoSize  = window.innerWidth <= 599 ? 56 : window.innerWidth <= 768 ? 72 : 100;
-var gapSize   = window.innerWidth <= 599 ? 24 : window.innerWidth <= 768 ? 30 : GAP;
-var slotW     = logoSize + gapSize;
-var needed    = Math.ceil((window.innerWidth * 3) / slotW);
-    var copies    = Math.ceil(needed / original.length);
+    cancelAnimationFrame(raf);
+
+    /* Rebuild track from saved originals */
+    track.innerHTML = '';
+    originals.forEach(function (node) {
+      track.appendChild(node.cloneNode(true));
+    });
+
+    var slotW  = getSlotW();
+    var needed = Math.ceil((window.innerWidth * 3) / slotW);
+    var copies = Math.ceil(needed / originals.length);
 
     for (var i = 0; i < copies; i++) {
-      original.forEach(function (node) {
+      originals.forEach(function (node) {
         track.appendChild(node.cloneNode(true));
       });
     }
 
-    /* setWidth = width of exactly the original one set */
-    setWidth = original.length * slotW;
-
-    /* Start from position 0 (right side fills naturally) */
+    setWidth = originals.length * slotW;
     pos = 0;
     track.style.transform = 'translateX(0px)';
-
-    cancelAnimationFrame(raf);
     tick();
   }
 
   function tick() {
     pos -= SPEED;
-
-    /* When we've scrolled exactly one full original set, snap back silently */
-    if (Math.abs(pos) >= setWidth) {
-      pos += setWidth;
-    }
-
+    if (Math.abs(pos) >= setWidth) pos += setWidth;
     track.style.transform = 'translateX(' + pos + 'px)';
     raf = requestAnimationFrame(tick);
   }
 
-  /* Pause on hover */
-  track.closest('.logo-strip').addEventListener('mouseenter', function () {
-    cancelAnimationFrame(raf);
-  });
-  track.closest('.logo-strip').addEventListener('mouseleave', function () {
-    tick();
-  });
+  /* Pause on hover / touch */
+  var strip = track.closest('.logo-strip');
+  strip.addEventListener('mouseenter', function () { cancelAnimationFrame(raf); });
+  strip.addEventListener('mouseleave', function () { tick(); });
 
-  /* Re-init on resize */
+  /* Re-init on resize (debounced) */
   var resizeTimer;
   window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () {
-      track.innerHTML = '';
-      /* restore originals — reload page handles it, but we store them */
-    }, 200);
+    resizeTimer = setTimeout(init, 200);
   });
 
-  /* Wait for images then init */
-  if (document.readyState === 'complete') {
-    init();
-  } else {
-    window.addEventListener('load', init);
-  }
+  init();
 }());
-
 
   </script>
 
