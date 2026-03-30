@@ -48,7 +48,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--red);
+      background:  #ec3339;
       color: var(--white);
       padding: 12px 26px;
       border-radius: 6px;
@@ -97,118 +97,129 @@
     /* ============================================================
        3. MAIN HEADER / NAV
     ============================================================ */
-    .main-header {
-      background: white;
-      box-shadow: 0 2px 12px rgba(0,0,0,.09);
-      position: sticky;
-      top: 0;
-      z-index: 900;
-    }
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 85px;
-    }
 
-    /* Logo */
-    .logo { display: flex; align-items: center; flex-shrink: 0; }
-    .logo img {
-         padding-top: 10px;
+.main-header {
+  background: white;
+  box-shadow: 0 2px 12px rgba(0,0,0,.09);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 95px;
+}
+
+/* Logo */
+.logo { display: flex; align-items: center; flex-shrink: 0; }
+.logo img {
+  height: 112px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  padding-top: 10px;
   padding-bottom: 10px;
-      height: 100px;
-      width: auto;
-      max-width: 500px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff);
-    }
+  filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff);
+}
 
-    /* Nav links */
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-    .nav-links a {
-      font-weight: 500;
-      font-size: 25px;
-      color: var(--text);
-      position: relative;
-      padding-bottom: 4px;
-      transition: color .25s;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 0; height: 2px;
-      background: var(--red);
-      transition: width .25s;
-    }
-    .nav-links a:hover { color: #ff0000; }
-    .nav-links a:hover::after { background:#ff0000;  width: 100%; }
+/* Nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.nav-links a {
+  font-weight: 500;
+  font-size: 25px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  color: var(--text);
+  position: relative;
+  padding-bottom: 4px;
+  transition: color .25s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--red);
+  transition: width .25s;
+}
+.nav-links a:hover { color: #ff0000; }
+.nav-links a:hover::after { background: #ff0000; width: 100%; }
 
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      padding: 6px;
-      z-index: 910;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--primary);
-      border-radius: 2px;
-      transition: var(--trans);
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 6px;
+  z-index: 910;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+  transition: var(--trans);
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* ── Tablet: hide "Get Quote" button, shrink gaps ── */
-    @media (max-width: 1024px) {
-      .nav-links { gap: 18px; }
-      .nav-links a { font-size: 14px; }
-      .header-cta { display: none; }
-    }
+/* ── Tablet ── */
+@media (max-width: 1024px) {
+  .nav-links { gap: 18px; }
+  .nav-links a { font-size: 18px; }
+  .header-cta { display: none; }
+}
 
-    /* ── Mobile: hamburger menu ── */
-    @media (max-width: 768px) {
-      .header-inner { height: 70px; }
-      .logo img { height: 50px; width: 250px; }
-      .hamburger { display: flex; }
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .header-inner { height: 85px; }
+  .logo img { height: 100px; padding-top: 8px; padding-bottom: 8px; }
+  .hamburger { display: flex; }
 
-      .nav-links {
-        display: none;
-        position: fixed;
-        inset: 60px 0 0 0;
-        background: var(--white);
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 8px 0 24px;
-        box-shadow: 0 8px 24px rgba(0,0,0,.12);
-        overflow-y: auto;
-        z-index: 899;
-      }
-      .nav-links.open { display: flex; }
-      .nav-links li { border-bottom: 1px solid #f0f0f0; }
-      .nav-links a { display: block; padding: 15px 24px; font-size: 16px; }
-      .nav-links a::after { display: none; }
-    }
+  .nav-links {
+    display: none;
+    position: fixed;
+    inset: 85px 0 0 0;
+    background: var(--white);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 0 24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    overflow-y: auto;
+    z-index: 899;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { border-bottom: 1px solid #f0f0f0; }
+  .nav-links a { display: block; padding: 15px 24px; font-size: 20px; }
+  .nav-links a::after { display: none; }
+}
 
-    @media (max-width: 768px) {
-      .header-inner { height: 85px; }
-      .logo img { height: 80px; }}
+/* ── Small Mobile ── */
+@media (max-width: 480px) {
+  .header-inner { height: 80px; }
+  .logo img { height: 80px; padding-top: 6px; padding-bottom: 6px; }
+  .nav-links { inset: 70px 0 0 0; }
+}
+
+
+
+
 
     /* ============================================================
        4. HERO
     ============================================================ */
+
 .hero {
   background:
     linear-gradient(to bottom, rgba(190, 43, 24, 0.87) 0%, rgba(225, 225, 225, 0.65) 100%),
@@ -217,10 +228,6 @@
   color: var(--white);
   position: relative;
   overflow: hidden;
-}
-
-@media (max-width: 1024px) {
-  .hero { overflow: visible; }
 }
 
 .hero::after {
@@ -232,17 +239,9 @@
   clip-path: ellipse(55% 100% at 50% 100%);
 }
 
-@media (max-width: 1024px) {
-  .hero::after {
-    display: block;
-    height: 32px;
-    background: var(--white);
-  }
-}
-
 .hero-inner {
-  max-width: none;
   width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
 }
@@ -251,7 +250,6 @@
   height: 100px;
   width: 100px;
   display: inline-block;
-  
   filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 6px #fff);
 }
 
@@ -262,15 +260,16 @@
   line-height: 1.15;
   -webkit-text-stroke: 1.5px rgb(90, 2, 2);
   margin-bottom: 20px;
-  white-space: nowrap;
-  
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero p {
   font-size: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   color: rgba(255,255,255,.88);
   margin-bottom: 36px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
@@ -283,15 +282,17 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
 /* Tablet */
+@media (max-width: 1024px) {
+  .hero { overflow: visible; }
+  .hero::after { height: 32px; }
+}
+
+/* Small Tablet */
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 36px;
-    white-space: nowrap;
-  }
-  .hero-inner {
-    max-width: 100%;
-  }
+  .hero h1 { font-size: 36px; }
+  .hero p  { font-size: 16px; }
 }
 
 /* Mobile */
@@ -300,36 +301,15 @@
     padding: 80px 0 110px;
     min-height: 480px;
   }
-  .hero-inner {
-    max-width: 100%;
-  }
-  .hero h1 {
-    font-size: 28px;
-    white-space: nowrap;
-    letter-spacing: -0.5px;
-  }
-  .hero p {
-    font-size: 14px;
-    max-width: 100%;
-  }
-  .hero-actions .btn {
-    width: 100%;
-    justify-content: center;
-  }
-  .hero-tag {
-    height: 60px;
-    width: 60px;
-  }
+  .hero-tag { height: 60px; width: 60px; }
+  .hero h1  { font-size: clamp(17px, 5.5vw, 26px); letter-spacing: -0.5px; }
+  .hero p   { font-size: clamp(12px, 3.5vw, 14px); max-width: 100%; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
 }
 
-/* Very small phones (320px) */
-@media (max-width: 360px) {
-  .hero h1 {
-    font-size: 24px;
-    white-space: nowrap;
-    letter-spacing: -1px;
-  }
-}
+
+
+
 
     /* ============================================================
        5. CLIENT LOGO CAROUSEL 
@@ -437,11 +417,12 @@
     .about-content h2 {
       font-size: clamp(26px, 3.5vw, 36px);
       font-weight: 800;
-      color: var(--primary);
+      color: #ec3339;
       margin-bottom: 18px;
       line-height: 1.2;
+      font-family: Georgia, 'Times New Roman', Times, serif;
     }
-    .about-content p { color: var(--muted); font-size: 15px; margin-bottom: 18px; }
+    .about-content p {  font-size: 17px; margin-bottom: 18px; font-family: Georgia, 'Times New Roman', Times, serif; line-height: 2;}
     .about-badges {
       display: flex;
       gap: 14px;
@@ -456,8 +437,8 @@
       flex: 1;
       min-width: 140px;
     }
-    .badge-item strong { display: block; color: var(--primary); font-size: 14px; font-weight: 700; }
-    .badge-item small { color: var(--muted); font-size: 12px; }
+    .badge-item strong { font-family: Georgia, 'Times New Roman', Times, serif; display: block; color:  #ec3339; font-size: 14px; font-weight: 700; }
+    .badge-item small {  font-size: 12px; font-family: Georgia, 'Times New Roman', Times, serif; color:  #ec3339; }
     .check-list { margin-bottom: 28px; }
     .check-list li {
       display: flex;
@@ -465,6 +446,7 @@
       gap: 10px;
       font-size: 15px;
       margin-bottom: 10px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
     }
     .check-list li::before {
       content: "✓";
@@ -473,7 +455,7 @@
       justify-content: center;
       width: 20px; height: 20px;
       min-width: 20px;
-      background: var(--red);
+      background:  #ec3339;
       color: var(--white);
       border-radius: 50%;
       font-size: 11px;
@@ -484,7 +466,18 @@
     @media (max-width: 768px) {
       .about-grid { grid-template-columns: 1fr; }
       .about-img { order: -1; }
+      
     }
+
+   @media(max-width: 480px){
+
+.badge-item strong {font-size: 10px;}
+      .badge-item small {font-size: 8px;}
+
+   }
+
+
+
 
     /* ============================================================
        7. SERVICES STRIP
@@ -882,7 +875,7 @@
     <div class="container header-inner">
 
       <a href="#" class="logo" aria-label="Kovai Lakshmi Food Machinery Home">
-        <img src="LOGO/LOGO.png" alt="Kovai Lakshmi Food Machinery">
+        <img src="LOGO/KOVAI LAKSHMI GRINDERS LOGO.png" alt="Kovai Lakshmi Food Machinery">
       </a>
 
       <nav aria-label="Main navigation">
@@ -949,19 +942,19 @@
           <h2>Kovai Lakshmi Grinders</h2>
           <div class="about-badges">
             <div class="badge-item">
-              <strong>20+ Years History</strong>
-              <small>Serving quality since 2000</small>
+              <strong>40+ Years History</strong>
+              <small>Serving Quality Since 1980</small>
             </div>
             <div class="badge-item">
               <strong>Customized Solutions</strong>
-              <small>Built for your specific needs</small>
+              <small>Built for Your Specific Needs</small>
             </div>
           </div>
-          <p>We are one of the leading manufacturers and suppliers of Commercial Kitchen Equipment, Bakery Equipment, Processing Machines, Dining Tables, and much more — designed to meet industry standards for peak performance.</p>
+          <p>With over 40+ years of excellence, Kovai Lakshmi Grinders stands as a trusted name in delivering premium-quality, highly durable, and sustainable machinery. Engineered with precision and built to last, our machines reflect our commitment to superior craftsmanship, reliable performance, and long-term value. Backed by a legacy of trust and a dedication to on-time delivery, we provide solutions that empower businesses with confidence and efficiency.</p>
           <ul class="check-list">
-            <li>High quality raw materials used in all products</li>
-            <li>Expertise in full kitchen setup installation</li>
-            <li>After-sales service and maintenance support</li>
+            <li>Premium Quality Construction</li>
+            <li>Customized Commercial Solutions</li>
+            <li>Reliable Delivery & After-Sales Support</li>
           </ul>
           <button class="btn">KNOW MORE</button>
         </div>
