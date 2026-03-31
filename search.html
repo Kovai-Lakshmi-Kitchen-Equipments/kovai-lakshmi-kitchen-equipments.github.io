@@ -27,17 +27,7 @@
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; font-size: 16px; }
-    
-    body { 
-      font-family: 'Segoe UI', system-ui, sans-serif; 
-      color: var(--text); 
-      line-height: 1.65; 
-      overflow-x: hidden; 
-      display: flex; 
-      flex-direction: column; 
-      min-height: 100vh; 
-    }
-    
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); line-height: 1.65; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
     img { max-width: 100%; display: block; height: auto; }
@@ -76,75 +66,57 @@
 
     @media (max-width: 1024px) { .nav-links { gap: 18px; } .nav-links a { font-size: 18px; } }
     @media (max-width: 768px) {
-      .header-inner { height: 85px; }
-      .logo img { height: 100px; padding: 8px 0; }
-      .hamburger { display: flex; }
-      .site-search input { width: 90px; font-size: 14px; }
-      .site-search input:focus { width: 130px; }
-      .header-right { gap: 10px; }
+      .header-inner { height: 85px; } .logo img { height: 100px; padding: 8px 0; } .hamburger { display: flex; }
+      .site-search input { width: 90px; font-size: 14px; } .site-search input:focus { width: 130px; } .header-right { gap: 10px; }
       .nav-links { display: none; position: fixed; inset: 85px 0 0 0; background: var(--white); flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0 24px; box-shadow: 0 8px 24px rgba(0,0,0,.12); overflow-y: auto; z-index: 899; }
-      .nav-links.open { display: flex; }
-      .nav-links li { border-bottom: 1px solid #f0f0f0; }
-      .nav-links a { display: block; padding: 15px 24px; font-size: 20px; }
-      .nav-links a::after { display: none; }
+      .nav-links.open { display: flex; } .nav-links li { border-bottom: 1px solid #f0f0f0; } .nav-links a { display: block; padding: 15px 24px; font-size: 20px; } .nav-links a::after { display: none; }
     }
     @media (max-width: 480px) { .header-inner { height: 80px; } .logo img { height: 80px; padding: 6px 0; } .nav-links { inset: 70px 0 0 0; } }
 
     /* ============================================================
-       3. SEARCH AREA STYLES
+       3. SEARCH RESULTS STYLES
     ============================================================ */
-    .search-page-wrap {
-      flex: 1; 
-      background: var(--bg);
-      padding: 60px 0 100px;
-    }
+    .search-page-wrap { flex: 1; background: var(--bg); padding: 60px 0 100px; }
+    .search-container-box { max-width: 800px; margin: 0 auto; background: var(--white); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .search-container-box h1 { color: var(--primary); margin-bottom: 10px; font-size: 32px; font-family: Georgia, 'Times New Roman', Times, serif; }
+    #search-query-display { font-size: 18px; color: var(--muted); margin-bottom: 30px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
     
-    .search-container-box {
-      max-width: 800px;
-      margin: 0 auto;
-      background: var(--white);
-      padding: 40px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .search-container-box h1 {
-      color: var(--primary);
-      margin-bottom: 20px;
-      font-size: 32px;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-    }
-
-    /* Google Search Overrides to match your theme */
-    .gsc-control-cse { padding: 0 !important; border: none !important; background: transparent !important; }
-    .gsc-search-box { display: none !important; /* Hides Google's secondary search bar */ }
-    .gsc-result { padding: 15px 0 !important; border-bottom: 1px solid #eee !important; }
-    .gs-title { color: #ec3339 !important; text-decoration: none !important; font-size: 18px !important; font-weight: bold !important; }
-    .gs-title:hover { text-decoration: underline !important; color: var(--dark) !important; }
-    .gs-snippet { font-size: 15px !important; color: var(--text) !important; line-height: 1.6 !important; }
+    .search-result-card { padding: 20px 0; border-bottom: 1px solid #eee; transition: var(--trans); }
+    .search-result-card:last-child { border-bottom: none; }
+    .search-result-card h3 { font-size: 20px; margin-bottom: 8px; }
+    .search-result-card h3 a { color: #ec3339; text-decoration: none; transition: var(--trans); }
+    .search-result-card h3 a:hover { text-decoration: underline; color: var(--dark); }
+    .search-result-card p { font-size: 15px; color: var(--text); line-height: 1.6; }
+    
+    /* Highlighted search terms */
+    mark { background-color: var(--gold); color: var(--dark); font-weight: 600; padding: 0 3px; border-radius: 2px; }
 
     /* ============================================================
        4. FOOTER
     ============================================================ */
     .footer { background: var(--dark); color: #aab0c0; padding: clamp(44px, 7vw, 72px) 0 0; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 44px; }
-    .footer-logo img { height: 200px; width: auto; max-width: 400px; object-fit: contain; }
+    .footer-logo { margin-bottom: 18px; }
+    .footer-logo img { height: 200px; width: auto; max-width: 400px; object-fit: contain; filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff); }
     .footer h4 { color: var(--white); font-size: 15px; font-weight: 700; margin-bottom: 18px; }
-    .footer ul li { margin-bottom: 10px; font-size: 14px; }
+    .footer ul li { margin-bottom: 10px; font-size: 14px; line-height: 1.5; }
+    .footer ul li a { color: #aab0c0; transition: color .25s; }
+    .footer ul li a:hover { color: var(--red); }
     .copyright { text-align: center; padding: 18px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 13px; color: #666e82; }
     @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; } }
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; gap: 24px; } .footer-logo img { height: 120px; } }
+    .social-list { display: flex; flex-wrap: wrap; gap: 12px; padding: 0; margin: 10px 0 0; }
+    .social-icon { width: 50px; height: 50px; object-fit: contain; display: block; transition: opacity .25s, transform .25s; }
+    .social-icon:hover { opacity: .8; transform: scale(1.1); }
   </style>
 </head>
 <body>
 
   <header class="main-header">
     <div class="container header-inner">
-
       <a href="index.html" class="logo">
         <img src="LOGO/KOVAI LAKSHMI GRINDERS LOGO.png" alt="Kovai Lakshmi Food Machinery">
       </a>
-
       <nav>
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html">Home</a></li>
@@ -154,18 +126,15 @@
           <li><a href="contact.html">Contact us</a></li>
         </ul>
       </nav>
-
       <div class="header-right">
         <form action="search.html" method="GET" class="site-search">
           <input type="search" name="q" placeholder="Search..." required>
           <button type="submit">🔍</button>
         </form>
-
         <button class="hamburger" id="hamburger">
           <span></span><span></span><span></span>
         </button>
       </div>
-
     </div>
   </header>
 
@@ -173,10 +142,9 @@
     <div class="container">
       <div class="search-container-box">
         <h1>Search Results</h1>
-        
-        <script async src="https://cse.google.com/cse.js?cx=74341258d3558440d"></script>
-        <div class="gcse-searchresults-only"></div>
-
+        <div id="search-query-display">Initializing search engine...</div>
+        <div id="search-results-container">
+          </div>
       </div>
     </div>
   </main>
@@ -192,13 +160,17 @@
           <h4>Information</h4>
           <ul><li>📍 Chennai</li><li>📞 +91 080454 79330</li></ul>
         </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul><li><a href="index.html">Home</a></li><li><a href="contact.html">Contact Us</a></li></ul>
+        </div>
       </div>
       <div class="copyright"><p>&copy; 2026 Kovai Lakshmi Food Machinery.</p></div>
     </div>
   </footer>
 
   <script>
-    /* HAMBURGER MENU ONLY */
+    /* HAMBURGER MENU */
     (function () {
       var burger = document.getElementById('hamburger');
       var nav    = document.getElementById('navLinks');
@@ -207,6 +179,115 @@
         burger.classList.toggle('open', isOpen);
       });
     }());
+
+    /* ADVANCED FETCH-BASED SEARCH ENGINE */
+    document.addEventListener('DOMContentLoaded', async function() {
+      
+      // 1. THE URL LIST (Just list your page URLs here! No keywords needed anymore)
+      const pagesToScan = [
+        { url: 'index.html', title: 'Home & Catalog' },
+        { url: 'about.html', title: 'About Us' },
+        { url: 'contact.html', title: 'Contact Us' }
+        // When you make gallery.html, just add: { url: 'gallery.html', title: 'Gallery' }
+      ];
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get('q');
+      const displayObj = document.getElementById('search-query-display');
+      const resultsObj = document.getElementById('search-results-container');
+
+      if (!query || query.trim() === '') {
+        displayObj.textContent = "Awaiting your search...";
+        resultsObj.innerHTML = "<p>Please enter a keyword above to search the site.</p>";
+        return;
+      }
+
+      // Secure query for display
+      const safeQuery = query.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      displayObj.innerHTML = `Scanning website for: <strong>"${safeQuery}"</strong>...`;
+      resultsObj.innerHTML = `<div style="text-align:center; padding: 40px;"><p>Scraping pages for exact matches...</p></div>`;
+
+      const lowerQuery = query.toLowerCase().trim();
+      let matchesFound = [];
+
+      // 2. THE SCRAPER: Fetch all pages and read their HTML
+      try {
+        const fetchPromises = pagesToScan.map(async (page) => {
+          try {
+            const response = await fetch(page.url);
+            if (!response.ok) return; // Skip if page doesn't exist yet
+            
+            const htmlText = await response.text();
+            
+            // Convert HTML text into a virtual DOM we can read safely
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlText, 'text/html');
+            
+            // Strip out code (scripts, styles, nav menus) so we only search real text
+            const elementsToRemove = doc.querySelectorAll('script, style, header, footer, nav');
+            elementsToRemove.forEach(el => el.remove());
+
+            // Extract the pure, visible text
+            const cleanText = doc.body.innerText.replace(/\s+/g, ' '); 
+            const lowerText = cleanText.toLowerCase();
+
+            // 3. THE MATCHER
+            if (lowerText.includes(lowerQuery)) {
+              // We found the word! Let's grab a snippet of the sentence around it.
+              const matchIndex = lowerText.indexOf(lowerQuery);
+              
+              // Grab 60 characters before and 60 characters after the match
+              const start = Math.max(0, matchIndex - 60);
+              const end = Math.min(cleanText.length, matchIndex + query.length + 60);
+              let snippet = cleanText.substring(start, end);
+              
+              // Add "..." if we cut off the beginning or end of the text
+              if (start > 0) snippet = "..." + snippet;
+              if (end < cleanText.length) snippet = snippet + "...";
+
+              // Highlight the exact word in the snippet
+              const regex = new RegExp(`(${query})`, 'gi');
+              const highlightedSnippet = snippet.replace(regex, '<mark>$1</mark>');
+
+              matchesFound.push({
+                title: page.title,
+                url: page.url,
+                snippet: highlightedSnippet
+              });
+            }
+          } catch (e) {
+            console.warn(`Could not fetch ${page.url}`, e);
+          }
+        });
+
+        // Wait for all pages to finish scanning
+        await Promise.all(fetchPromises);
+
+        // 4. DISPLAY THE RESULTS
+        displayObj.innerHTML = `Showing results for: <strong>"${safeQuery}"</strong>`;
+
+        if (matchesFound.length > 0) {
+          let html = '';
+          matchesFound.forEach(match => {
+            html += `
+              <div class="search-result-card">
+                <h3><a href="${match.url}">${match.title}</a></h3>
+                <p><i>${match.snippet}</i></p>
+              </div>
+            `;
+          });
+          resultsObj.innerHTML = html;
+        } else {
+          resultsObj.innerHTML = `
+            <p style="font-size: 18px; color: #555;">Sorry, we couldn't find "<strong>${safeQuery}</strong>" anywhere on the site.</p>
+            <p style="color: var(--muted); margin-top: 10px;">Check your spelling or try searching for a different product.</p>
+          `;
+        }
+
+      } catch (err) {
+        resultsObj.innerHTML = `<p style="color: red;">An error occurred while searching. Please try again.</p>`;
+      }
+    });
   </script>
 
 </body>
