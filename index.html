@@ -185,8 +185,8 @@
 .site-search {
   display: flex;
   align-items: center;
-  background: var(--bg);
-  border: 1px solid #e0e0e0;
+  background: #ffffff;
+  border: 1px solid #ff0000;
   border-radius: 20px;
   padding: 4px 12px;
   transition: var(--trans);
@@ -220,12 +220,15 @@
       align-items: center; 
       justify-content: center;
       padding: 4px;
+      flex-shrink: 0; /* Prevents the button from being squeezed */
+      min-width: 32px; /* Gives the button a solid, un-shrinkable base size */
     }
     
-    .site-search button img {
+.site-search button img {
       width: 20px;
       height: 20px;
       object-fit: contain;
+      flex-shrink: 0; /* Double protection for the image itself */
       transition: opacity 0.3s ease;
     }
 
@@ -266,8 +269,8 @@
 
       /* 4. When the '.active' class is added via JS, expand it! */
       .site-search.active {
-        background: var(--bg);
-        border-color: #e0e0e0;
+        background: #ffffff;
+        border-color: #ffffff;
         padding: 4px 12px;
       }
       

@@ -36,13 +36,13 @@
     @media (max-width: 480px) { .container { padding: 0 16px; } }
 
     /* ============================================================
-       2. HEADER & SEARCH BAR
+       2. HEADER & SEARCH BAR (Synced with Index.html)
     ============================================================ */
     .main-header { background: white; box-shadow: 0 2px 12px rgba(0,0,0,.09); position: sticky; top: 0; z-index: 900; }
     .header-inner { display: flex; justify-content: space-between; align-items: center; height: 95px; }
 
     .logo { display: flex; align-items: center; flex-shrink: 0; }
-    .logo img { height: 112px; width: auto; max-width: 220px; object-fit: contain; padding: 10px 0; filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff); }
+    .logo img { height: 112px; width: auto; max-width: 220px; object-fit: contain; padding-top: 10px; padding-bottom: 10px; filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff); }
 
     .nav-links { display: flex; align-items: center; gap: 28px; }
     .nav-links a { font-weight: 500; font-size: 25px; font-family: Georgia, 'Times New Roman', Times, serif; color: var(--text); position: relative; padding-bottom: 4px; transition: color .25s; }
@@ -51,12 +51,49 @@
     .nav-links a:hover::after { background: #ff0000; width: 100%; }
 
     .header-right { display: flex; align-items: center; gap: 16px; }
-    .site-search { display: flex; align-items: center; background: var(--bg); border: 1px solid #e0e0e0; border-radius: 20px; padding: 4px 12px; transition: var(--trans); }
+    
+    .site-search {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid #ff0000;
+      border-radius: 20px;
+      padding: 4px 12px;
+      transition: var(--trans);
+    }
     .site-search:focus-within { border-color: var(--red); box-shadow: 0 0 0 3px var(--red-light); }
-    .site-search input { border: none; background: transparent; outline: none; padding: 6px; font-size: 15px; width: 140px; color: var(--text); transition: width 0.3s ease; }
+    
+    .site-search input {
+      border: none;
+      background: transparent;
+      outline: none;
+      padding: 6px;
+      font-size: 15px;
+      width: 140px;
+      color: var(--text);
+      transition: width 0.3s ease;
+    }
     .site-search input:focus { width: 200px; }
-    .site-search button { background: none; border: none; font-size: 16px; color: var(--muted); cursor: pointer; }
-    .site-search button:hover { color: var(--primary); }
+    
+    .site-search button { 
+      background: none; 
+      border: none; 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      padding: 4px;
+      flex-shrink: 0;
+      min-width: 32px; 
+    }
+    .site-search button img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      flex-shrink: 0;
+      transition: opacity 0.3s ease;
+    }
+    .site-search button:hover img { opacity: 0.6; }
 
     .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; z-index: 910; cursor: pointer; }
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--primary); border-radius: 2px; transition: var(--trans); }
@@ -64,60 +101,155 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    @media (max-width: 1024px) { .nav-links { gap: 18px; } .nav-links a { font-size: 18px; } }
+    /* Collapsible Search for Mobile/Tablet */
+    @media (max-width: 1024px) { 
+      .nav-links { gap: 18px; } 
+      .nav-links a { font-size: 18px; } 
+      
+      .site-search { background: transparent; border-color: transparent; padding: 0; }
+      .site-search input { width: 0; padding: 0; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+      .site-search button { padding: 6px; }
+      .site-search button img { width: 24px; height: 24px; }
+
+      .site-search.active { background: #ffffff; border-color: #ffffff; padding: 4px 12px; }
+      .site-search.active input { width: 140px; padding: 6px; opacity: 1; visibility: visible; }
+    }
+
     @media (max-width: 768px) {
       .header-inner { height: 85px; } .logo img { height: 100px; padding: 8px 0; } .hamburger { display: flex; }
-      .site-search input { width: 90px; font-size: 14px; } .site-search input:focus { width: 130px; } .header-right { gap: 10px; }
+      .header-right { gap: 8px; }
+      .site-search.active input { width: 120px; font-size: 14px; }
+      
       .nav-links { display: none; position: fixed; inset: 85px 0 0 0; background: var(--white); flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0 24px; box-shadow: 0 8px 24px rgba(0,0,0,.12); overflow-y: auto; z-index: 899; }
       .nav-links.open { display: flex; } .nav-links li { border-bottom: 1px solid #f0f0f0; } .nav-links a { display: block; padding: 15px 24px; font-size: 20px; } .nav-links a::after { display: none; }
     }
     @media (max-width: 480px) { .header-inner { height: 80px; } .logo img { height: 80px; padding: 6px 0; } .nav-links { inset: 70px 0 0 0; } }
 
     /* ============================================================
-       3. SEARCH RESULTS STYLES
+       3. SEARCH RESULTS STYLES (Responsive & Full Width)
     ============================================================ */
-    .search-page-wrap { flex: 1; background: var(--bg); padding: 60px 0 100px; }
-    .search-container-box { max-width: 800px; margin: 0 auto; background: var(--white); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); }
-    .search-container-box h1 { color: var(--primary); margin-bottom: 10px; font-size: 32px; font-family: Georgia, 'Times New Roman', Times, serif; }
-    #search-query-display { font-size: 18px; color: var(--muted); margin-bottom: 30px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+    .search-page-wrap { 
+      flex: 1; 
+      background: var(--white); 
+      padding: clamp(40px, 8vw, 80px) 0; /* Restored scalable padding */
+    }
+    
+    .search-container-box { 
+      width: 100%;
+      margin: 0 auto; 
+    }
+
+    /* Used clamp to scale font down on mobile to prevent overflow */
+    .search-container-box h1 { 
+      color: var(--primary); 
+      margin-bottom: 10px; 
+      font-size: clamp(32px, 6vw, 42px); 
+      font-family: Georgia, 'Times New Roman', Times, serif; 
+      word-wrap: break-word; /* Prevents long words from breaking the screen */
+      line-height: 1.2;
+    }
+    
+    #search-query-display { 
+      font-size: clamp(16px, 4vw, 18px); 
+      color: var(--muted); 
+      margin-bottom: 30px; 
+      padding-bottom: 15px; 
+      border-bottom: 1px solid #eee; 
+      word-wrap: break-word;
+    }
     
     .search-result-card { padding: 20px 0; border-bottom: 1px solid #eee; transition: var(--trans); }
     .search-result-card:last-child { border-bottom: none; }
-    .search-result-card h3 { font-size: 20px; margin-bottom: 8px; }
+    .search-result-card h3 { font-size: clamp(20px, 5vw, 24px); margin-bottom: 8px; line-height: 1.3; }
     .search-result-card h3 a { color: #ec3339; text-decoration: none; transition: var(--trans); }
     .search-result-card h3 a:hover { text-decoration: underline; color: var(--dark); }
-    .search-result-card p { font-size: 15px; color: var(--text); line-height: 1.6; }
+    .search-result-card p { font-size: 16px; color: var(--text); line-height: 1.6; }
     
-    /* Highlighted search terms */
     mark { background-color: var(--gold); color: var(--dark); font-weight: 600; padding: 0 3px; border-radius: 2px; }
 
     /* ============================================================
-       4. FOOTER
+       4. FOOTER (Exact copy from your index.html)
     ============================================================ */
-    .footer { background: var(--dark); color: #aab0c0; padding: clamp(44px, 7vw, 72px) 0 0; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 44px; }
-    .footer-logo { margin-bottom: 18px; }
-    .footer-logo img { height: 200px; width: auto; max-width: 400px; object-fit: contain; filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff); }
+    .footer {
+      background: var(--dark);
+      color: #aab0c0;
+      padding: clamp(44px, 7vw, 72px) 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 36px;
+      margin-bottom: 44px;
+    }
+    .footer-logo {
+      margin-bottom: 18px;
+    }
+    .footer-logo img {
+      height: 200px;
+      width: auto;
+      max-width: 400px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff);
+    }
+    .footer-about { font-size: 14px; line-height: 1.75; }
     .footer h4 { color: var(--white); font-size: 15px; font-weight: 700; margin-bottom: 18px; }
     .footer ul li { margin-bottom: 10px; font-size: 14px; line-height: 1.5; }
     .footer ul li a { color: #aab0c0; transition: color .25s; }
     .footer ul li a:hover { color: var(--red); }
-    .copyright { text-align: center; padding: 18px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 13px; color: #666e82; }
-    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; } }
-    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; gap: 24px; } .footer-logo img { height: 120px; } }
-    .social-list { display: flex; flex-wrap: wrap; gap: 12px; padding: 0; margin: 10px 0 0; }
-    .social-icon { width: 50px; height: 50px; object-fit: contain; display: block; transition: opacity .25s, transform .25s; }
-    .social-icon:hover { opacity: .8; transform: scale(1.1); }
+    .copyright {
+      text-align: center;
+      padding: 18px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+      font-size: 13px;
+      color: #666e82;
+    }
+
+    /* Footer tablet: 2 columns */
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    }
+    /* Footer mobile: single column */
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+      .footer-logo img { height: 120px; }
+    }
+
+    .social-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+
+    .social-list li {
+      list-style: none;
+    }
+
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      display: block;
+      transition: opacity .25s, transform .25s;
+    }
+
+    .social-icon:hover {
+      opacity: .8;
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
 
   <header class="main-header">
     <div class="container header-inner">
-      <a href="index.html" class="logo">
+
+      <a href="index.html" class="logo" aria-label="Kovai Lakshmi Food Machinery Home">
         <img src="LOGO/KOVAI LAKSHMI GRINDERS LOGO.png" alt="Kovai Lakshmi Food Machinery">
       </a>
-      <nav>
+
+      <nav aria-label="Main navigation">
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About us</a></li>
@@ -126,15 +258,20 @@
           <li><a href="contact.html">Contact us</a></li>
         </ul>
       </nav>
+
       <div class="header-right">
-        <form action="search.html" method="GET" class="site-search">
-          <input type="search" name="q" placeholder="Search..." required>
-          <button type="submit">🔍</button>
+        <form action="search.html" method="GET" class="site-search" id="mobileSearchForm">
+          <input type="search" name="q" placeholder="Search..." required id="mobileSearchInput">
+          <button type="submit" aria-label="Submit search" class="search-icon-btn">
+            <img src="LOGO/SEARCH ICON.png" alt="Search">
+          </button>
         </form>
-        <button class="hamburger" id="hamburger">
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
+
     </div>
   </header>
 
@@ -149,28 +286,66 @@
     </div>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer-grid">
+
         <div>
-          <div class="footer-logo"><img src="LOGO/LOGO.png" alt="Logo"></div>
-          <p style="font-size: 14px; line-height: 1.75;">Leading manufacturer of high-grade commercial kitchen equipment.</p>
+          <div class="footer-logo">
+            <img src="LOGO/LOGO.png" alt="Kovai Lakshmi Food Machinery">
+          </div>
+          <p class="footer-about">We are an industry-leading manufacturer of high-grade commercial kitchen equipment, providing customized solutions to food businesses across India.</p>
         </div>
+
         <div>
           <h4>Information</h4>
-          <ul><li>📍 Chennai</li><li>📞 +91 080454 79330</li></ul>
+          <ul>
+            <li>📍 123, Industrial Estate, Chennai</li>
+            <li>📞 +91 080454 79330</li>
+            <li>✉️ info@lakshmifoodmachinery.com</li>
+          </ul>
         </div>
+
+        <div>
+          <h4>Products</h4>
+          <ul>
+            <li><a href="#">Cooking Equipment</a></li>
+            <li><a href="#">Preparation Equipment</a></li>
+            <li><a href="#">Bakery Equipment</a></li>
+            </ul>
+        </div>
+
         <div>
           <h4>Quick Links</h4>
-          <ul><li><a href="index.html">Home</a></li><li><a href="contact.html">Contact Us</a></li></ul>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
         </div>
+
+        <div>
+          <h4>Connect With Us</h4>
+          <ul class="social-list">
+            <li><a href="#" aria-label="Instagram"><img class="social-icon" src="SOCIAL MEDIAS/INSTA.png"     alt="Instagram"></a></li>
+            <li><a href="#" aria-label="Facebook"> <img class="social-icon" src="SOCIAL MEDIAS/FACEBOOK.png"  alt="Facebook"> </a></li>
+            <li><a href="#" aria-label="Mail">     <img class="social-icon" src="SOCIAL MEDIAS/MAIL.png"      alt="Mail">     </a></li>
+            <li><a href="#" aria-label="Phone">    <img class="social-icon" src="SOCIAL MEDIAS/PHONE.png"     alt="Phone">    </a></li>
+            <li><a href="#" aria-label="WhatsApp"> <img class="social-icon" src="SOCIAL MEDIAS/WA.png"        alt="WhatsApp"> </a></li>
+            <li><a href="#" aria-label="YouTube">  <img class="social-icon" src="SOCIAL MEDIAS/YOUTUBE.png"   alt="YouTube">  </a></li>
+          </ul>
+        </div>
+
       </div>
-      <div class="copyright"><p>&copy; 2026 Kovai Lakshmi Food Machinery.</p></div>
+      <div class="copyright">
+        <p>&copy; 2026 Kovai Lakshmi Food Machinery. All Rights Reserved.</p>
+      </div>
     </div>
   </footer>
 
 
-<script>
+  <script>
     /* HAMBURGER MENU */
     (function () {
       var burger = document.getElementById('hamburger');
@@ -181,10 +356,34 @@
       });
     }());
 
-    /* ADVANCED FETCH-BASED SEARCH ENGINE (UPGRADED FOR MULTIPLE MATCHES) */
+    /* COLLAPSIBLE SEARCH BAR LOGIC */
+    (function () {
+      var searchForm = document.getElementById('mobileSearchForm');
+      var searchInput = document.getElementById('mobileSearchInput');
+      var searchBtn = searchForm ? searchForm.querySelector('button') : null;
+
+      if (searchForm && searchInput && searchBtn) {
+        searchBtn.addEventListener('click', function (e) {
+          if (window.innerWidth <= 1024 && !searchForm.classList.contains('active')) {
+            e.preventDefault(); 
+            searchForm.classList.add('active'); 
+            searchInput.focus(); 
+          }
+        });
+
+        document.addEventListener('click', function(e) {
+          if (window.innerWidth <= 1024 && searchForm.classList.contains('active')) {
+            if (!searchForm.contains(e.target)) {
+              searchForm.classList.remove('active');
+            }
+          }
+        });
+      }
+    }());
+
+    /* ADVANCED FETCH-BASED SEARCH ENGINE */
     document.addEventListener('DOMContentLoaded', async function() {
       
-      // 1. THE URL LIST (Add your new pages here)
       const pagesToScan = [
         { url: 'index.html', title: 'Home & Catalog' },
         { url: 'about.html', title: 'About Us' },
@@ -202,14 +401,12 @@
         return;
       }
 
-      // Secure query for display
       const safeQuery = query.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      displayObj.innerHTML = `Scanning website for: <strong>"${safeQuery}"</strong>...`;
-      resultsObj.innerHTML = `<div style="text-align:center; padding: 40px;"><p>Scraping pages for all exact matches...</p></div>`;
+      displayObj.innerHTML = `Showing results for: <strong>"${safeQuery}"</strong>`;
+      resultsObj.innerHTML = `<div style="text-align:left; padding: 40px 0;"><p>Scraping pages for all exact matches...</p></div>`;
 
       let matchesFound = [];
 
-      // 2. THE SCRAPER
       try {
         const fetchPromises = pagesToScan.map(async (page) => {
           try {
@@ -218,53 +415,42 @@
             
             const htmlText = await response.text();
             
-            // Convert HTML to text
             const parser = new DOMParser();
             const doc = parser.parseFromString(htmlText, 'text/html');
             
-            // Strip code, nav, and footers so we only search main content
             const elementsToRemove = doc.querySelectorAll('script, style, header, footer, nav');
             elementsToRemove.forEach(el => el.remove());
 
-            // Extract pure text
             const cleanText = doc.body.innerText.replace(/\s+/g, ' '); 
 
-            // 3. THE MULTI-MATCHER (The Regex Upgrade)
-            // 'g' stands for Global (don't stop at the first match), 'i' stands for case-Insensitive
             const searchRegex = new RegExp(query, 'gi');
             let match;
             let pageSnippets = [];
             let lastIndex = -1;
 
-            // Loop through the text and find EVERY match
             while ((match = searchRegex.exec(cleanText)) !== null) {
               const matchIndex = match.index;
               
-              // Prevent capturing overlapping snippets if the same word is typed twice in a row
               if (matchIndex - lastIndex < 40 && lastIndex !== -1) {
                   continue; 
               }
               lastIndex = matchIndex;
 
-              // Grab 50 characters before and after the match
-              const start = Math.max(0, matchIndex - 50);
-              const end = Math.min(cleanText.length, matchIndex + query.length + 50);
+              const start = Math.max(0, matchIndex - 60);
+              const end = Math.min(cleanText.length, matchIndex + query.length + 60);
               let snippet = cleanText.substring(start, end);
               
               if (start > 0) snippet = "..." + snippet;
               if (end < cleanText.length) snippet = snippet + "...";
 
-              // Highlight the exact word
               const highlightRegex = new RegExp(`(${query})`, 'gi');
               snippet = snippet.replace(highlightRegex, '<mark>$1</mark>');
 
               pageSnippets.push(snippet);
               
-              // Cap at 15 matches per page to prevent massive walls of text
               if (pageSnippets.length >= 15) break;
             }
 
-            // If we found at least one snippet on this page, save it to the results
             if (pageSnippets.length > 0) {
               matchesFound.push({
                 title: page.title,
@@ -277,24 +463,19 @@
           }
         });
 
-        // Wait for all pages to finish scanning
         await Promise.all(fetchPromises);
-
-        // 4. DISPLAY THE RESULTS
-        displayObj.innerHTML = `Showing results for: <strong>"${safeQuery}"</strong>`;
 
         if (matchesFound.length > 0) {
           let html = '';
           matchesFound.forEach(match => {
             
-            // Format all the snippets for this specific page into a bulleted list
             let snippetsHtml = match.snippets.map(s => 
-              `<li style="margin-bottom: 12px; color: var(--muted); font-size: 15px; line-height: 1.5;"><i>${s}</i></li>`
+              `<li style="margin-bottom: 12px; color: var(--muted); font-size: 16px; line-height: 1.6;"><i>${s}</i></li>`
             ).join('');
             
             html += `
-              <div class="search-result-card" style="padding: 24px 0; border-bottom: 1px solid #eee;">
-                <h3 style="font-size: 22px; margin-bottom: 12px;"><a href="${match.url}" style="color: #ec3339; text-decoration: none;">${match.title}</a></h3>
+              <div class="search-result-card">
+                <h3 style="font-size: clamp(20px, 5vw, 24px); margin-bottom: 14px;"><a href="${match.url}">${match.title}</a></h3>
                 <ul style="list-style-type: none; padding-left: 0; margin-top: 10px; border-left: 3px solid var(--red-light); padding-left: 18px;">
                   ${snippetsHtml}
                 </ul>
@@ -304,7 +485,7 @@
           resultsObj.innerHTML = html;
         } else {
           resultsObj.innerHTML = `
-            <p style="font-size: 18px; color: #555;">Sorry, we couldn't find "<strong>${safeQuery}</strong>" anywhere on the site.</p>
+            <p style="font-size: 18px; color: #555; margin-top: 20px;">Sorry, we couldn't find "<strong>${safeQuery}</strong>" anywhere on the site.</p>
             <p style="color: var(--muted); margin-top: 10px;">Check your spelling or try searching for a different product.</p>
           `;
         }
@@ -314,9 +495,6 @@
       }
     });
   </script>
-
-
-
 
 </body>
 </html>
