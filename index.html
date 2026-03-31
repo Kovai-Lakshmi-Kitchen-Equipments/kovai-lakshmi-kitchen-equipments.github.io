@@ -173,18 +173,75 @@
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+
+
+/* Header Right & Search Bar */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.site-search {
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  padding: 4px 12px;
+  transition: var(--trans);
+}
+
+.site-search:focus-within {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px var(--red-light);
+}
+
+.site-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 6px;
+  font-size: 15px;
+  width: 140px;
+  color: var(--text);
+  transition: width 0.3s ease;
+}
+
+.site-search input:focus {
+  width: 200px;
+}
+
+.site-search button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-search button:hover {
+  color: var(--primary);
+}
+
 /* ── Tablet ── */
 @media (max-width: 1024px) {
   .nav-links { gap: 18px; }
   .nav-links a { font-size: 18px; }
-  .header-cta { display: none; }
 }
+
+
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
   .header-inner { height: 85px; }
   .logo img { height: 100px; padding-top: 8px; padding-bottom: 8px; }
   .hamburger { display: flex; }
+  .site-search input { width: 90px; font-size: 14px; }
+  .site-search input:focus { width: 130px; }
+  .header-right { gap: 10px; }
 
   .nav-links {
     display: none;
@@ -888,11 +945,20 @@
         </ul>
       </nav>
 
-      <button class="btn header-cta" style="padding:10px 20px; background:#ff0000;">GET QUOTE</button>
 
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+
+<div class="header-right">
+        <form action="search.html" method="GET" class="site-search">
+          <input type="search" name="q" placeholder="Search..." aria-label="Search website" required>
+          <button type="submit" aria-label="Submit search">🔍</button>
+        </form>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+
 
     </div>
   </header>
