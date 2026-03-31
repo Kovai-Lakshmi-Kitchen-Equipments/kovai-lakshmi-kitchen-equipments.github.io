@@ -485,8 +485,8 @@
 
 
 
-    /* ============================================================
-       6. ABOUT SECTION
+ /* ============================================================
+       6. ABOUT SECTION & CAROUSEL
     ============================================================ */
     .about-section { padding: clamp(52px, 8vw, 96px) 0; background: var(--white); }
     .about-grid {
@@ -495,7 +495,66 @@
       gap: clamp(28px, 5vw, 64px);
       align-items: center;
     }
-    .about-img img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+    
+    /* ── ABOUT CAROUSEL STYLES ── */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden; 
+    }
+
+    .carousel-slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0; 
+      transition: opacity 0.8s ease-in-out; 
+      z-index: 1;
+    }
+
+    .carousel-slide.active {
+      position: relative;
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .carousel-slide img { 
+      width: 100%; 
+      height: 100%;
+      aspect-ratio: 4 / 3; /* Desktop: Taller box to match the text height */
+      object-fit: contain; 
+      display: block; 
+    }
+
+    /* ── CAROUSEL DOTS ── */
+    .carousel-dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 3;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.6); 
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4); 
+    }
+
+    .dot.active {
+      background: var(--primary); 
+      transform: scale(1.3); 
+    }
+
+    /* ── ABOUT CONTENT (Text & Badges) ── */
     .about-eyebrow { color: var(--red); font-weight: 600; font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 10px; }
     .about-content h2 {
       font-size: clamp(26px, 3.5vw, 36px);
@@ -505,13 +564,8 @@
       line-height: 1.2;
       font-family: Georgia, 'Times New Roman', Times, serif;
     }
-    .about-content p {  font-size: 17px; margin-bottom: 18px; font-family: Georgia, 'Times New Roman', Times, serif; line-height: 2;}
-    .about-badges {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-    }
+    .about-content p { font-size: 17px; margin-bottom: 18px; font-family: Georgia, 'Times New Roman', Times, serif; line-height: 2;}
+    .about-badges { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
     .badge-item {
       background: var(--red-light);
       border-left: 3px solid var(--red);
@@ -520,52 +574,43 @@
       flex: 1;
       min-width: 140px;
     }
-    .badge-item strong { font-family: Georgia, 'Times New Roman', Times, serif; display: block; color:  #ec3339; font-size: 14px; font-weight: 700; }
-    .badge-item small {  font-size: 12px; font-family: Georgia, 'Times New Roman', Times, serif; color:  #ec3339; }
+    .badge-item strong { font-family: Georgia, 'Times New Roman', Times, serif; display: block; color: #ec3339; font-size: 14px; font-weight: 700; }
+    .badge-item small { font-size: 12px; font-family: Georgia, 'Times New Roman', Times, serif; color: #ec3339; }
     .check-list { margin-bottom: 28px; }
     .check-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 17px;
-      margin-bottom: 10px;
-      font-family: Georgia, 'Times New Roman', Times, serif;
+      display: flex; align-items: flex-start; gap: 10px; font-size: 17px; margin-bottom: 10px; font-family: Georgia, 'Times New Roman', Times, serif;
     }
     .check-list li::before {
-      content: "✓";
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px; height: 20px;
-      min-width: 20px;
-      background:  #ec3339;
-      color: var(--white);
-      border-radius: 50%;
-      font-size: 11px;
-      font-weight: 700;
-      margin-top: 2px;
+      content: "✓"; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; min-width: 20px; background: #ec3339; color: var(--white); border-radius: 50%; font-size: 11px; font-weight: 700; margin-top: 2px;
     }
 
+    /* ── MOBILE & TABLET RESPONSIVE RULES ── */
     @media (max-width: 768px) {
       .about-grid { grid-template-columns: 1fr; }
-      .about-img { order: -1; }
+      .carousel-container { order: -1; margin-bottom: 20px; } /* Ensures the image carousel stays on top of the text */
       
+      /* Switch to a wider aspect ratio so the image isn't too tall on mobile */
+      .carousel-slide img { aspect-ratio: 16 / 9; object-fit: contain; } 
+      
+      /* Make dots slightly smaller and tighter for mobile */
+      .carousel-dots { bottom: 12px; gap: 8px; }
+      .dot { width: 8px; height: 8px; }
     }
 
-   @media(max-width: 480px){
-
-.badge-item strong {font-size: 10px;}
-      .badge-item small {font-size: 8px;}
-
+   @media (max-width: 480px){
+      /* Keeps your badge text readable on tiny screens */
+      .badge-item strong { font-size: 11px; }
+      .badge-item small { font-size: 9px; }
+      /* Final image tweak for very small phone screens */
+      .carousel-slide img { aspect-ratio: 3 / 2; } 
    }
-
 
 
 
     /* ============================================================
        7. SERVICES STRIP
     ============================================================ */
-    .services-strip { background: var(--bg); padding: clamp(40px, 6vw, 60px) 0; }
+    .services-strip { background: #ffffff; padding: clamp(40px, 6vw, 60px) 0; }
     .services-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -576,16 +621,42 @@
       border-radius: var(--radius);
       padding: 28px 20px;
       text-align: center;
-      box-shadow: var(--shadow);
+      box-shadow: 0 4px 20px rgba(240, 164, 0, 0.537);
       transition: var(--trans);
     }
-    .service-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
-    .service-item .svc-icon { font-size: 34px; margin-bottom: 12px; }
-    .service-item h4 { color: var(--primary); font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-    .service-item p { color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .service-item:hover { transform: translateY(-5px); box-shadow: 0 8px 32px rgba(255, 0, 0, 0.603); }
+    .service-item .svc-icon { 
+      margin-bottom: 16px; 
+      display: flex; 
+      justify-content: center; /* Centers the image perfectly */
+    }
+    
+    .service-item .svc-icon img { 
+      width: 180px; /* Adjust this to make your icons bigger or smaller */
+      height: 180px; 
+      object-fit: contain; 
+      transition: transform var(--trans); /* Prepares the hover effect */
+    }
+    
+    /* Pro-Touch: Makes the custom icon pop up slightly when hovering over the card */
+    .service-item:hover .svc-icon img {
+      transform: scale(1.08);
+    }
+    .service-item h4 { color: var(--primary); font-size: 20px; font-family: Georgia, 'Times New Roman', Times, serif; font-weight: 700; margin-bottom: 6px; }
+    .service-item p { color: var(--muted); font-size: 17px; font-family: Georgia, 'Times New Roman', Times, serif; line-height: 1.55; }
 
-    @media (max-width: 992px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 480px)  { .services-grid { grid-template-columns: 1fr; } }
+/* Tablet View: 2 Columns, slightly smaller icons */
+    @media (max-width: 992px) { 
+      .services-grid { grid-template-columns: repeat(2, 1fr); } 
+      .service-item .svc-icon img { width: 150px; height: 150px; }
+    }
+    
+    /* Mobile View: 1 Column, compact icons to save vertical space */
+    @media (max-width: 480px) { 
+      .services-grid { grid-template-columns: 1fr; } 
+      .service-item .svc-icon { margin-bottom: 12px; } /* Tighter spacing */
+      .service-item .svc-icon img { width: 150px; height: 150px; }
+    }
 
     /* ============================================================
        8. PRODUCTS TABS
@@ -671,7 +742,7 @@
     /* ============================================================
        9. POPULAR PRODUCTS
     ============================================================ */
-    .popular-section { padding: clamp(52px, 8vw, 96px) 0; background: var(--bg); }
+    .popular-section { padding: clamp(52px, 8vw, 96px) 0; background: #ffffff; }
     .product-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -723,7 +794,7 @@
     /* ============================================================
        11. CERTIFICATES
     ============================================================ */
-    .certs-section { padding: clamp(48px, 7vw, 72px) 0; background: var(--bg); text-align: center; }
+    .certs-section { padding: clamp(48px, 7vw, 72px) 0; background: #ffffff; text-align: center; }
     .cert-grid {
       display: flex;
       justify-content: center;
@@ -749,7 +820,7 @@
 
 /* ── OUR CLIENTS SHOWCASE ── */
 .showcase-section {
-  background: var(--bg);
+  background: #ffffff;
   padding: clamp(52px, 8vw, 96px) 0;
 }
 
@@ -1045,8 +1116,24 @@
   <section class="about-section" aria-label="About us">
     <div class="container">
       <div class="about-grid">
-        <div class="about-img">
-          <img src="LOGO/SHOP.jpg" alt="Kovai Lakshmi Food Machinery showroom" loading="lazy">
+        <div class="about-img carousel-container" id="aboutCarousel">
+          <div class="carousel-slides">
+            <div class="carousel-slide active">
+              <img src="LOGO/SHOP.jpg" alt="Kovai Lakshmi Showroom 1" loading="lazy">
+            </div>
+            <div class="carousel-slide">
+              <img src="LOGO/LOGO.png" alt="Kovai Lakshmi Showroom 2" loading="lazy">
+            </div>
+            <div class="carousel-slide">
+              <img src="LOGO/KOVAI LAKHMI FULL LOGO.png" alt="Kovai Lakshmi Showroom 3" loading="lazy">
+            </div>
+          </div>
+          
+          <div class="carousel-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+          </div>
         </div>
         <div class="about-content">
           <p class="about-eyebrow">Welcome to</p>
@@ -1077,25 +1164,33 @@
   <section class="services-strip" aria-label="Our services">
     <div class="container">
       <div class="services-grid">
-        <div class="service-item">
-          <div class="svc-icon">🔍</div>
+<div class="service-item">
+          <div class="svc-icon">
+            <img src="LOGO/Range.png" alt="Explore">
+          </div>
           <h4>Explore Our Range</h4>
-          <p>Browse a wide variety of kitchen equipment.</p>
+          <p>Discover our extensive range of high-quality machines built to meet diverse business demands. Each product is engineered to deliver efficiency, long-term reliability, and exceptional results.</p>
         </div>
         <div class="service-item">
-          <div class="svc-icon">🤝</div>
+          <div class="svc-icon">
+            <img src="LOGO/Specialists.png" alt="Consult">
+          </div>
           <h4>Consult Specialists</h4>
-          <p>Get expert advice tailored for your space.</p>
+          <p>With decades of expertise, we specialize in delivering precision-engineered food processing machinery. Our deep industry knowledge ensures reliable solutions tailored to every business need. </p>
         </div>
         <div class="service-item">
-          <div class="svc-icon">📐</div>
+          <div class="svc-icon">
+            <img src="LOGO/Layout.png" alt="Layout">
+          </div>
           <h4>Custom Layout</h4>
-          <p>We plan your kitchen layout efficiently.</p>
+          <p>Get custom-designed layouts that perfectly fit your production space and machine requirements. We focus on smart planning, better workflow, and efficient use of every inch.</p>
         </div>
         <div class="service-item">
-          <div class="svc-icon">🛠️</div>
+          <div class="svc-icon">
+            <img src="LOGO/Delivery.png" alt="Install">
+          </div>
           <h4>Schedule Installation</h4>
-          <p>Professional installation services.</p>
+          <p>Schedule your installation with our expert team for a smooth and hassle-free setup experience. We ensure precise installation, proper alignment, and ready-to-perform machinery at your location.</p>
         </div>
       </div>
     </div>
@@ -1417,7 +1512,7 @@
   var track = document.getElementById('logoTrack');
   if (!track) return;
 
-  var SPEED = 0.6;
+  var SPEED = 0.5;
   var pos = 0;
   var setWidth = 0;
   var raf;
@@ -1480,6 +1575,61 @@
 
   init();
 }());
+
+
+
+
+/* ── ABOUT IMAGE CAROUSEL LOGIC ── */
+    (function() {
+      var carousel = document.getElementById('aboutCarousel');
+      if (!carousel) return;
+      
+      var slides = carousel.querySelectorAll('.carousel-slide');
+      var dots = carousel.querySelectorAll('.dot');
+      var currentIndex = 0;
+      var timer;
+      
+      // Function to switch to a specific slide
+      function showSlide(index) {
+        // Remove active class from all slides and dots
+        slides.forEach(function(slide) { slide.classList.remove('active'); });
+        dots.forEach(function(dot) { dot.classList.remove('active'); });
+        
+        // Add active class to the current target
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentIndex = index;
+      }
+      
+      // Function to go to the next slide
+      function nextSlide() {
+        var next = (currentIndex + 1) % slides.length;
+        showSlide(next);
+      }
+      
+      // Start the 5-second (5000ms) timer
+      function startTimer() {
+        timer = setInterval(nextSlide, 5000);
+      }
+      
+      // Reset timer if the user clicks a dot manually
+      function resetTimer() {
+        clearInterval(timer);
+        startTimer();
+      }
+      
+      // Add click events to the dots
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          var index = parseInt(this.getAttribute('data-index'));
+          showSlide(index);
+          resetTimer(); // Restarts the 5-second countdown
+        });
+      });
+      
+      // Kick it off!
+      startTimer();
+    })();
 
   </script>
 
