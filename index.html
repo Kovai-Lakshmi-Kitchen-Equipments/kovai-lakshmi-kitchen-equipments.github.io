@@ -212,63 +212,86 @@
   width: 200px;
 }
 
+.site-search button { 
+      background: none; 
+      border: none; 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      padding: 4px;
+    }
+    
+    .site-search button img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Gives the image a nice fade effect when hovered */
+    .site-search button:hover img { 
+      opacity: 0.6; 
+    }
+
+/* ── Tablet & Mobile Collapsible Search ── */
+    @media (max-width: 1024px) { 
+      .nav-links { gap: 18px; } 
+      .nav-links a { font-size: 18px; } 
+      
+      /* 1. Hide the background and borders by default */
+      .site-search {
+        background: transparent;
+        border-color: transparent;
+        padding: 0;
+      }
+      
+      /* 2. Shrink the input box to zero width and hide it */
+      .site-search input { 
+        width: 0; 
+        padding: 0; 
+        opacity: 0; 
+        visibility: hidden; 
+        transition: all 0.3s ease; 
+      }
+      
+      /* 3. Make the icon slightly larger for touch targets */
 .site-search button {
-  background: none;
-  border: none;
-  font-size: 16px;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+        padding: 6px;
+      }
+      .site-search button img {
+        width: 24px;
+        height: 24px;
+      }
 
-.site-search button:hover {
-  color: var(--primary);
-}
+      /* 4. When the '.active' class is added via JS, expand it! */
+      .site-search.active {
+        background: var(--bg);
+        border-color: #e0e0e0;
+        padding: 4px 12px;
+      }
+      
+      .site-search.active input { 
+        width: 140px; 
+        padding: 6px; 
+        opacity: 1; 
+        visibility: visible; 
+      }
+    }
 
-/* ── Tablet ── */
-@media (max-width: 1024px) {
-  .nav-links { gap: 18px; }
-  .nav-links a { font-size: 18px; }
-}
-
-
-
-/* ── Mobile ── */
-@media (max-width: 768px) {
-  .header-inner { height: 85px; }
-  .logo img { height: 100px; padding-top: 8px; padding-bottom: 8px; }
-  .hamburger { display: flex; }
-  .site-search input { width: 90px; font-size: 14px; }
-  .site-search input:focus { width: 130px; }
-  .header-right { gap: 10px; }
-
-  .nav-links {
-    display: none;
-    position: fixed;
-    inset: 85px 0 0 0;
-    background: var(--white);
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 8px 0 24px;
-    box-shadow: 0 8px 24px rgba(0,0,0,.12);
-    overflow-y: auto;
-    z-index: 899;
-  }
-  .nav-links.open { display: flex; }
-  .nav-links li { border-bottom: 1px solid #f0f0f0; }
-  .nav-links a { display: block; padding: 15px 24px; font-size: 20px; }
-  .nav-links a::after { display: none; }
-}
-
-/* ── Small Mobile ── */
-@media (max-width: 480px) {
-  .header-inner { height: 80px; }
-  .logo img { height: 80px; padding-top: 6px; padding-bottom: 6px; }
-  .nav-links { inset: 70px 0 0 0; }
-}
-
+    /* ── Mobile specific tweaks ── */
+    @media (max-width: 768px) {
+      .header-inner { height: 85px; } 
+      .logo img { height: 100px; padding: 8px 0; } 
+      .hamburger { display: flex; }
+      .header-right { gap: 8px; }
+      
+      .site-search.active input { width: 120px; font-size: 14px; } /* Slightly smaller expanded width for phones */
+      
+      .nav-links { display: none; position: fixed; inset: 85px 0 0 0; background: var(--white); flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0 24px; box-shadow: 0 8px 24px rgba(0,0,0,.12); overflow-y: auto; z-index: 899; }
+      .nav-links.open { display: flex; } .nav-links li { border-bottom: 1px solid #f0f0f0; } .nav-links a { display: block; padding: 15px 24px; font-size: 20px; } .nav-links a::after { display: none; }
+    }
+    @media (max-width: 480px) { .header-inner { height: 80px; } .logo img { height: 80px; padding: 6px 0; } .nav-links { inset: 70px 0 0 0; } }
 
 
 
@@ -948,9 +971,11 @@
 
 
 <div class="header-right">
-        <form action="search.html" method="GET" class="site-search">
-          <input type="search" name="q" placeholder="Search..." aria-label="Search website" required>
-          <button type="submit" aria-label="Submit search">🔍</button>
+       <form action="search.html" method="GET" class="site-search" id="mobileSearchForm">
+          <input type="search" name="q" placeholder="Search..." required id="mobileSearchInput">
+          <button type="submit" aria-label="Submit search" class="search-icon-btn">
+            <img src="LOGO/SEARCH ICON.png" alt="Search">
+          </button>
         </form>
 
         <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
