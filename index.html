@@ -557,14 +557,14 @@
     /* ── ABOUT CONTENT (Text & Badges) ── */
     .about-eyebrow { color: var(--red); font-weight: 600; font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 10px; }
     .about-content h2 {
-      font-size: clamp(26px, 3.5vw, 36px);
+      font-size: 35px;
       font-weight: 800;
       color: #ec3339;
       margin-bottom: 18px;
       line-height: 1.2;
       font-family: Georgia, 'Times New Roman', Times, serif;
     }
-    .about-content p { font-size: 17px; margin-bottom: 18px; font-family: Georgia, 'Times New Roman', Times, serif; line-height: 2;}
+    .about-content p { font-size: 18px; margin-bottom: 18px; text-align: justify; font-family: Georgia, 'Times New Roman', Times, serif; line-height: 2;}
     .about-badges { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
     .badge-item {
       background: var(--red-light);
@@ -574,11 +574,11 @@
       flex: 1;
       min-width: 140px;
     }
-    .badge-item strong { font-family: Georgia, 'Times New Roman', Times, serif; display: block; color: #ec3339; font-size: 14px; font-weight: 700; }
-    .badge-item small { font-size: 12px; font-family: Georgia, 'Times New Roman', Times, serif; color: #ec3339; }
+    .badge-item strong { font-size: 16px; font-family: Georgia, 'Times New Roman', Times, serif; display: block; color: #ec3339; ; font-weight: 700; }
+    .badge-item small { font-size: 14px; font-family: Georgia, 'Times New Roman', Times, serif; color: #ec3339; }
     .check-list { margin-bottom: 28px; }
     .check-list li {
-      display: flex; align-items: flex-start; gap: 10px; font-size: 17px; margin-bottom: 10px; font-family: Georgia, 'Times New Roman', Times, serif;
+      display: flex; align-items: flex-start; gap: 10px; font-size: 18px; margin-bottom: 10px; font-family: Georgia, 'Times New Roman', Times, serif;
     }
     .check-list li::before {
       content: "✓"; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; min-width: 20px; background: #ec3339; color: var(--white); border-radius: 50%; font-size: 11px; font-weight: 700; margin-top: 2px;
@@ -588,7 +588,7 @@
     @media (max-width: 768px) {
       .about-grid { grid-template-columns: 1fr; }
       .carousel-container { order: -1; margin-bottom: 20px; } /* Ensures the image carousel stays on top of the text */
-      
+    
       /* Switch to a wider aspect ratio so the image isn't too tall on mobile */
       .carousel-slide img { aspect-ratio: 16 / 9; object-fit: contain; } 
       
@@ -599,8 +599,11 @@
 
    @media (max-width: 480px){
       /* Keeps your badge text readable on tiny screens */
+      .about-content h2 {font-size:22px ;}
+      .about-content p {font-size:15px ;}
       .badge-item strong { font-size: 11px; }
       .badge-item small { font-size: 9px; }
+      .check-list li {font-size: 15px;}
       /* Final image tweak for very small phone screens */
       .carousel-slide img { aspect-ratio: 3 / 2; } 
    }
@@ -643,7 +646,7 @@
       transform: scale(1.08);
     }
     .service-item h4 { color: var(--primary); font-size: 20px; font-family: Georgia, 'Times New Roman', Times, serif; font-weight: 700; margin-bottom: 6px; }
-    .service-item p { color: var(--muted); font-size: 17px; font-family: Georgia, 'Times New Roman', Times, serif; line-height: 1.55; }
+    .service-item p { color: var(--muted);  font-size: 17px; font-family: Georgia, 'Times New Roman', Times, serif; line-height: 1.55; }
 
 /* Tablet View: 2 Columns, slightly smaller icons */
     @media (max-width: 992px) { 
@@ -656,6 +659,8 @@
       .services-grid { grid-template-columns: 1fr; } 
       .service-item .svc-icon { margin-bottom: 12px; } /* Tighter spacing */
       .service-item .svc-icon img { width: 150px; height: 150px; }
+      .service-item h4 { font-size:20px ; }
+    .service-item p { font-size:15px ; }
     }
 
     /* ============================================================
@@ -1148,7 +1153,7 @@
               <small>Built for Your Specific Needs</small>
             </div>
           </div>
-          <p>With over 40+ years of excellence, Kovai Lakshmi Grinders stands as a trusted name in delivering premium-quality, highly durable, and sustainable machinery. Engineered with precision and built to last, our machines reflect our commitment to superior craftsmanship, reliable performance, and long-term value. Backed by a legacy of trust and a dedication to on-time delivery, we provide solutions that empower businesses with confidence and efficiency.</p>
+          <p>&nbsp; &nbsp; &nbsp; With over 40+ years of excellence, Kovai Lakshmi Grinders stands as a trusted name in delivering premium-quality, highly durable, and sustainable machinery. Engineered with precision and built to last, our machines reflect our commitment to superior craftsmanship, reliable performance, and long-term value. Backed by a legacy of trust and a dedication to on-time delivery, we provide solutions that empower businesses with confidence and efficiency.</p>
           <ul class="check-list">
             <li>Premium Quality Construction</li>
             <li>Customized Commercial Solutions</li>
