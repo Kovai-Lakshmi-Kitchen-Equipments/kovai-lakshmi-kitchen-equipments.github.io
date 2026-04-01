@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Lakshmi Food Machinery – Leading manufacturer and supplier of commercial kitchen equipment, bakery machinery, and refrigeration solutions in India.">
-  <title>Lakshmi Food Machinery</title>
+  <meta name="description" content="Kovai Lakshmi Grinders – Leading manufacturer and supplier of commercial kitchen equipment, bakery machinery, and refrigeration solutions in India.">
+  <title>Kovai Lakshmi Grinders</title>
 
   <style>
     /* ============================================================
@@ -292,7 +292,7 @@
       .site-search.active input { width: 120px; font-size: 14px; } /* Slightly smaller expanded width for phones */
       
       .nav-links { display: none; position: fixed; inset: 85px 0 0 0; background: var(--white); flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0 24px; box-shadow: 0 8px 24px rgba(0,0,0,.12); overflow-y: auto; z-index: 899; }
-      .nav-links.open { display: flex; } .nav-links li { border-bottom: 1px solid #f0f0f0; } .nav-links a { display: block; padding: 15px 24px; font-size: 20px; } .nav-links a::after { display: none; }
+      .nav-links.open { display: flex; } .nav-links li { border-bottom: 1px solid #f0f0f0; } .nav-links a { display: block; padding: 15px 24px; font-size: 14px; } .nav-links a::after { display: none; }
     }
     @media (max-width: 480px) { .header-inner { height: 80px; } .logo img { height: 80px; padding: 6px 0; } .nav-links { inset: 70px 0 0 0; } }
 
@@ -405,6 +405,8 @@
   overflow: hidden;
   position: relative;
   width: 100%;
+  margin-top: -2px; /* FIX: Pulls the strip up to cover the grey sub-pixel gap */
+  z-index: 5;       /* FIX: Ensures the white backgrounds overlap perfectly */
 }
 
 .logo-strip::before,
@@ -428,16 +430,16 @@
 }
 
 .logo-slot {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .logo-slot img {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   object-fit: contain;
   opacity: .55;
   transition: opacity .3s, filter .3s;
@@ -462,12 +464,12 @@
   .logo-strip::after { width: 32px; }
   .logo-track { gap: 24px; }
   .logo-slot {
-    width: 56px;
-    height: 56px;
+    width: 80px;
+    height: 80px;
   }
   .logo-slot img {
-    width: 56px;
-    height: 56px;
+    width: 80px;
+    height: 80px;
   }
 }
 
@@ -476,8 +478,8 @@
   .logo-strip::before,
   .logo-strip::after { width: 44px; }
   .logo-track { gap: 30px; }
-  .logo-slot { width: 72px; height: 72px; }
-  .logo-slot img { width: 72px; height: 72px; }
+  .logo-slot { width: 80px; height: 80px; }
+  .logo-slot img { width: 80px; height: 80px; }
 }
 
 
@@ -585,7 +587,7 @@
     }
 
     /* ── MOBILE & TABLET RESPONSIVE RULES ── */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .about-grid { grid-template-columns: 1fr; }
       .carousel-container { order: -1; margin-bottom: 20px; } /* Ensures the image carousel stays on top of the text */
     
@@ -809,7 +811,7 @@
     }
     .cert-grid img {
       width: 300px;
-      height: 300px;
+      height: 400px;
       border: 1px solid #d0d8e4;
       border-radius: 8px;
       box-shadow: var(--shadow);
@@ -956,7 +958,7 @@
        15. FOOTER
     ============================================================ */
     .footer {
-      background: var(--dark);
+      background: #ffffff;
       color: #aab0c0;
       padding: clamp(44px, 7vw, 72px) 0 0;
     }
@@ -976,10 +978,10 @@
       object-fit: contain;
       filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff);
     }
-    .footer-about { font-size: 14px; line-height: 1.75; }
-    .footer h4 { color: var(--white); font-size: 15px; font-weight: 700; margin-bottom: 18px; }
-    .footer ul li { margin-bottom: 10px; font-size: 14px; line-height: 1.5; }
-    .footer ul li a { color: #aab0c0; transition: color .25s; }
+    .footer-about { font-size: 14px; line-height: 1.75; color: #000000; }
+    .footer h4 { color: #000000; font-size: 15px; font-weight: 700; margin-bottom: 18px; }
+    .footer ul li { margin-bottom: 10px; font-size: 14px; line-height: 1.5; color: #000000;}
+    .footer ul li a { color: #000000; transition: color .25s; }
     .footer ul li a:hover { color: var(--red); }
     .copyright {
       text-align: center;
@@ -991,7 +993,7 @@
 
     /* Footer tablet: 2 columns */
     @media (max-width: 900px) {
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .footer-grid { grid-template-columns: 1fr ; gap: 28px; }
     }
     /* Footer mobile: single column */
     @media (max-width: 480px) {
@@ -1020,9 +1022,58 @@
 }
 
 .social-icon:hover {
-  opacity: .8;
+  
   transform: scale(1.1);
 }
+
+
+
+
+
+/* ============================================================
+       16. FLOATING WHATSAPP BUTTON
+    ============================================================ */
+    .float-wa {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      background-color: #ffffff; /* Official WhatsApp Green */
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: rgba(0, 0, 0, 0.2);
+      z-index: 9999; /* Guarantees it stays on top of everything */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .float-wa img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+          }
+
+    .float-wa:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 22px rgba(0, 255, 76, 0.5); /* Glowing green shadow on hover */
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 900px) {
+      .float-wa {
+        bottom: 20px;
+        right: 20px;
+        width: 70px;
+        height: 70px;
+        box-shadow:0 4px 12px rgba(255, 255, 0, 0.776);
+      }
+      .float-wa img {
+        width: 70px;
+        height: 70px;
+      }
+    }
 
   </style>
 </head>
@@ -1043,6 +1094,7 @@
           <li><a href="#">About us</a></li>
           <li><a href="#">Products</a></li>
           <li><a href="#">Gallery</a></li>
+          <li><a href="#">Resources</a></li>
           <li><a href="#">Contact us</a></li>
         </ul>
       </nav>
@@ -1268,8 +1320,7 @@
     <div class="container">
       <h2 class="section-title">Certificates</h2>
       <div class="cert-grid">
-        <img src="CERTIFICATES/FSSAI.png" alt="ISO Certificate" loading="lazy">
-        <img src="CERTIFICATES/CERT2.jpg" alt="Quality Certificate" loading="lazy">
+            <img src="CERTIFICATES/CERTIFICATE.jpeg" alt="Quality Certificate" loading="lazy">
       </div>
       <button class="btn">VIEW CERTIFICATES →</button>
     </div>
@@ -1380,16 +1431,16 @@
         </div>
 
         <div>
-          <h4>Information</h4>
+          <h4>Address</Address></h4>
           <ul>
-            <li>📍 123, Industrial Estate, Chennai</li>
-            <li>📞 +91 080454 79330</li>
-            <li>✉️ info@lakshmifoodmachinery.com</li>
+            <li>📍<b>Kovai Lakshmi Grinders</b>, <br>Bharathiyar Rd, P N Palayam, <br>Coimbatore - 641037 </li>
+            <li>📞 +91 97897 31317</li>
+            <li>📧 info.kovailakshmi@gmail.com</li>
           </ul>
         </div>
 
         <div>
-          <h4>Products</h4>
+          <h4>Product Categories</h4>
           <ul>
             <li><a href="#">Cooking Equipment</a></li>
             <li><a href="#">Preparation Equipment</a></li>
@@ -1403,6 +1454,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Gallery</a></li>
+            <li><a href="#">Resources</a></li>
             <li><a href="#">Contact Us</a></li>
           </ul>
         </div>
@@ -1414,14 +1466,13 @@
     <li><a href="#" aria-label="Facebook"> <img class="social-icon" src="SOCIAL MEDIAS/FACEBOOK.png"  alt="Facebook"> </a></li>
     <li><a href="#" aria-label="Mail">     <img class="social-icon" src="SOCIAL MEDIAS/MAIL.png"      alt="Mail">     </a></li>
     <li><a href="#" aria-label="Phone">    <img class="social-icon" src="SOCIAL MEDIAS/PHONE.png"     alt="Phone">    </a></li>
-    <li><a href="#" aria-label="WhatsApp"> <img class="social-icon" src="SOCIAL MEDIAS/WA.png"        alt="WhatsApp"> </a></li>
     <li><a href="#" aria-label="YouTube">  <img class="social-icon" src="SOCIAL MEDIAS/YOUTUBE.png"   alt="YouTube">  </a></li>
   </ul>
 </div>
 
       </div>
       <div class="copyright">
-        <p>&copy; 2026 Kovai Lakshmi Food Machinery. All Rights Reserved.</p>
+        <p>&copy; 2026 Kovai Lakshmi Grinders. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
@@ -1637,6 +1688,15 @@
     })();
 
   </script>
+
+
+
+<a href="https://wa.me/9108045479330?text=Hello%20Kovai%20Lakshmi%20Grinders,%20I%20would%20like%20to%20know%20more%20about%20your%20products." 
+     class="float-wa" 
+     target="_blank" 
+     aria-label="Chat with us on WhatsApp">
+    <img src="SOCIAL MEDIAS/WA.png" alt="WhatsApp Chat">
+  </a>
 
 </body>
 </html>
