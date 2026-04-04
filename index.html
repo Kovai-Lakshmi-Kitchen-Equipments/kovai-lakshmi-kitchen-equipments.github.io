@@ -48,11 +48,12 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background:  #ec3339;
+      background:  #000000;
       color: var(--white);
       padding: 12px 26px;
+      
       border-radius: 6px;
-      border: none;
+      border: 2px solid rgba(255,255,255,.75);
       font-weight: 600;
       font-size: 14px;
       letter-spacing: .4px;
@@ -66,8 +67,8 @@
       color: var(--white);
     }
     .btn-outline:hover { background: rgba(255,255,255,.15); box-shadow: none; }
-    .btn-gold { background: var(--gold); color: var(--primary); }
-    .btn-gold:hover { background: #d99400; box-shadow: 0 6px 18px rgba(240,165,0,.4); }
+    .btn-gold { background: #000000; color: #ffffff; }
+    .btn-gold:hover { background: #ff0000; box-shadow: 0 6px 18px rgba(240,165,0,.4); color: #ffffff;}
 
     /* ── Section Title ── */
     .section-title {
@@ -305,7 +306,7 @@
 
 .hero {
   background:
-    linear-gradient(to bottom, rgba(190, 43, 24, 0.87) 0%, rgba(225, 225, 225, 0.65) 100%),
+    linear-gradient(to bottom, rgba(44, 42, 41, 0.87) 0%, rgba(51, 51, 51, 0.65) 100%),
     url('LOGO/BG IMAGE.jpg') center/cover no-repeat;
   padding: 40px 0 clamp(90px, 14vw, 160px);
   color: var(--white);
@@ -339,9 +340,9 @@
 .hero h1 {
   font-size: 56px;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.15;
-  -webkit-text-stroke: 1.5px rgb(90, 2, 2);
+  
   margin-bottom: 20px;
   white-space: normal;
   word-break: break-word;
@@ -353,8 +354,10 @@
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: rgba(255,255,255,.88);
   margin-bottom: 36px;
-  max-width: 500px;
+ 
+  
   margin-left: auto;
+
   margin-right: auto;
   text-align: center;
 }
@@ -902,7 +905,7 @@
        13. CTA BANNER
     ============================================================ */
     .cta-banner {
-      background: linear-gradient(135deg, var(--primary) 0%, #f45252 50%, var(--red) 100%);
+      background: linear-gradient(135deg, #1d1d1d 0%, #5e5e5e 50%, #7a7a7a 100%);
       padding: clamp(52px, 8vw, 96px) 0;
       text-align: center;
       color: var(--white);
@@ -918,7 +921,7 @@
     /* ============================================================
        14. CONTACT / REQUEST CALL
     ============================================================ */
-    .contact-section { background: var(--primary); padding: clamp(44px, 6vw, 68px) 0; }
+    .contact-section { background: #7a7a7a; padding: clamp(44px, 6vw, 68px) 0; }
     .contact-inner {
       display: flex;
       justify-content: space-between;
@@ -978,14 +981,15 @@
       object-fit: contain;
       filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff);
     }
-    .footer-about { font-size: 14px; line-height: 1.75; color: #000000; }
-    .footer h4 { color: #000000; font-size: 15px; font-weight: 700; margin-bottom: 18px; }
-    .footer ul li { margin-bottom: 10px; font-size: 14px; line-height: 1.5; color: #000000;}
+    .footer-about { font-size: 14px; line-height: 1.75; color: #000000; font-family: Georgia, 'Times New Roman', Times, serif;}
+    .footer h4 { color: #000000; font-size: 15px; font-weight: 700; margin-bottom: 18px; font-family: Georgia, 'Times New Roman', Times, serif;}
+    .footer ul li { margin-bottom: 10px; font-size: 14px; line-height: 1.5; color: #000000; font-family: Georgia, 'Times New Roman', Times, serif;}
     .footer ul li a { color: #000000; transition: color .25s; }
     .footer ul li a:hover { color: var(--red); }
     .copyright {
       text-align: center;
       padding: 18px 0;
+      font-family: Georgia, 'Times New Roman', Times, serif;
       border-top: 1px solid rgba(255,255,255,.08);
       font-size: 13px;
       color: #666e82;
@@ -1036,9 +1040,9 @@
     .float-wa {
       position: fixed;
       bottom: 10px;
-      right: 20px;
-      width: 70px;
-      height: 70px;
+      right: 10px;
+      width: 65px;
+      height: 65px;
       background-color: #ffffff; /* Official WhatsApp Green */
       border-radius: 50%;
       display: flex;
@@ -1074,6 +1078,87 @@
         height: 45px;
       }
     }
+
+
+
+
+
+
+
+/* ============================================================
+       TRUST STATS SECTION (With Icons & 2x2 Mobile Grid)
+    ============================================================ */
+    .trust-stats-section {
+      background: var(--white);
+      padding: clamp(40px, 6vw, 60px) 0;
+      border-top: 1px solid #f0f0f0; 
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .trust-stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 parallel columns on desktop */
+      gap: 30px;
+      text-align: center;
+      align-items: start;
+    }
+
+    .trust-stat-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centers the image, number, and text perfectly */
+      gap: 6px;
+    }
+
+    /* ── Icon Styling ── */
+    .trust-stat-icon {
+      width: 100px; /* Change this to make your icons bigger or smaller */
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 8px; /* Adds breathing room before the number */
+    }
+
+    .trust-stat-number {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .trust-stat-label {
+      font-size: clamp(15px, 2vw, 18px);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    /* ── Responsive Rules ── */
+    
+    /* Tablet & Mobile: 2x2 Grid */
+    @media (max-width: 992px) {
+      .trust-stats-row {
+        grid-template-columns: repeat(2, 1fr); /* Forces exactly 2 columns */
+        gap: 40px 20px; /* 40px gap vertically, 20px gap horizontally */
+      }
+    }
+
+    /* Very Small Phones: Scaled down text and icons to fit the 2x2 grid */
+    @media (max-width: 480px) {
+      .trust-stat-icon {
+        width: 38px;
+        height: 38px;
+      }
+      .trust-stat-number {
+        font-size: 28px;
+      }
+      .trust-stat-label {
+        font-size: 14px;
+      }
+    }
+
+
 
 
 
@@ -1128,7 +1213,7 @@
       <div class="hero-inner">
         
         <h1>"Excellence in your Kitchen"</h1>
-        <p>We supply top-grade commercial kitchen machinery designed to elevate culinary performance for restaurants, hotels, and food businesses.</p>
+        <p>Bringing Quality, Performances, Reliability into Every Kitchen with Our Expertly Crafted Machinery.</p>
         <div class="hero-actions">
           <button class="btn">CONTACT US →</button>
           <button class="btn btn-outline">EXPLORE PRODUCTS</button>
@@ -1169,6 +1254,46 @@
     
   </div>
 </section>
+
+
+
+
+  <!-- ── STATS ── -->
+<section class="trust-stats-section" aria-label="Company Milestones">
+    <div class="container">
+      <div class="trust-stats-row">
+        
+        <div class="trust-stat-block">
+          <img src="LOGO/CUSTOMERS.png" alt="Customers" class="trust-stat-icon" loading="lazy">
+          <span class="trust-stat-number">100+</span>
+          <span class="trust-stat-label">Customers</span>
+        </div>
+        
+        <div class="trust-stat-block">
+          <img src="LOGO/YEARS.png" alt="Years of Trust" class="trust-stat-icon" loading="lazy">
+          <span class="trust-stat-number">40+</span>
+          <span class="trust-stat-label">Years of Trust</span>
+        </div>
+        
+        <div class="trust-stat-block">
+          <img src="LOGO/EXPERTS.png" alt="Experts" class="trust-stat-icon" loading="lazy">
+          <span class="trust-stat-number">20+</span>
+          <span class="trust-stat-label">Experts in the Team</span>
+        </div>
+        
+        <div class="trust-stat-block">
+          <img src="LOGO/MACHINE.png" alt="Machines Delivered" class="trust-stat-icon" loading="lazy">
+          <span class="trust-stat-number">1 Lakh</span>
+          <span class="trust-stat-label">Machines Delivered</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+
 
 
   <!-- ── ABOUT ── -->
@@ -1293,29 +1418,8 @@
     </div>
   </section>
 
-  <!-- ── STATS ── -->
-  <section class="stats-section" aria-label="Company statistics">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <h2>🏆 10,000+</h2>
-          <p>Satisfied Clients</p>
-        </div>
-        <div class="stat-item">
-          <h2>📦 92K</h2>
-          <p>Machines Delivered</p>
-        </div>
-        <div class="stat-item">
-          <h2>⚙️ 19+</h2>
-          <p>Years in the Industry</p>
-        </div>
-        <div class="stat-item">
-          <h2>👥 20+</h2>
-          <p>Team of Experts</p>
-        </div>
-      </div>
-    </div>
-  </section>
+
+
 
   <!-- ── CERTIFICATES ── -->
   <section class="certs-section" aria-label="Certificates">
@@ -1399,7 +1503,7 @@
   <section class="cta-banner" aria-label="Call to action">
     <div class="container">
       <h2>Offering The Best Experience Of<br>Commercial Kitchen Solutions</h2>
-      <p class="cta-phone">📞 +91 080454 79330</p>
+      <p class="cta-phone">📞 +91 70944 64175</p>
       <button class="btn btn-gold">REQUEST A CALL →</button>
     </div>
   </section>
@@ -1435,9 +1539,9 @@
         <div>
           <h4>Address</Address></h4>
           <ul>
-            <li>📍<b>Kovai Lakshmi Grinders</b>, <br>Bharathiyar Rd, P N Palayam, <br>Coimbatore - 641037 </li>
-            <li>📞 +91 97897 31317</li>
-            <li>📧 info.kovailakshmi@gmail.com</li>
+            <li><b>Kovai Lakshmi Grinders</b>, <br>Bharathiyar Rd, P N Palayam, <br>Coimbatore - 641037 </li>
+            <li> +91 97897 31317</li>
+            <li> info.kovailakshmi@gmail.com</li>
           </ul>
         </div>
 
