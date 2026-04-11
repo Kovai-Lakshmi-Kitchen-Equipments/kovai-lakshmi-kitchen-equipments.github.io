@@ -149,8 +149,78 @@
   background: var(--red);
   transition: width .25s;
 }
-.nav-links a:hover { color: #ff0000; }
-.nav-links a:hover::after { background: #ff0000; width: 100%; }
+
+
+
+/* ── DROPDOWN MENU ── */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--white);
+  min-width: 280px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border-radius: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown Link Styles */
+.nav-links .dropdown-content a {
+  font-size: 18px; /* Smaller font than the main nav items */
+  padding: 12px 24px;
+  display: block;
+  color: var(--text);
+}
+
+/* Remove the red underline animation specifically for dropdown items */
+.nav-links .dropdown-content a::after {
+  display: none;
+}
+
+.nav-links .dropdown-content a:hover {
+  background-color: var(--bg);
+  color: var(--primary);
+}
+
+/* Mobile Dropdown Fixes */
+@media (max-width: 768px) {
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: none; 
+    padding: 0 0 0 20px; /* Indents the dropdown items under 'Products' */
+    background: transparent;
+  }
+  
+  /* Expands the menu when tapped on mobile */
+  .dropdown:hover .dropdown-content,
+  .dropdown:focus-within .dropdown-content {
+    display: flex; 
+  }
+}
+
+
 
 /* Hamburger */
 .hamburger {
@@ -901,11 +971,21 @@
     @media (max-width: 900px) { .testi-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 560px)  { .testi-grid { grid-template-columns: 1fr; } }
 
-    /* ============================================================
-       13. CTA BANNER
+
+/* ============================================================
+       13 & 14. SHARED CTA & CONTACT SECTION
     ============================================================ */
+    
+    /* This creates the shared background behind both sections */
+    .cta-contact-wrapper {
+      background:
+        linear-gradient(to bottom, rgba(44, 42, 41, 0.87) 0%, rgba(51, 51, 51, 0.85) 100%),
+        url('LOGO/BG IMAGE.jpg') center/cover no-repeat;
+    }
+
+    /* ── CTA Banner ── */
     .cta-banner {
-      background: linear-gradient(135deg, #1d1d1d 0%, #5e5e5e 50%, #7a7a7a 100%);
+      background: transparent; 
       padding: clamp(52px, 8vw, 96px) 0;
       text-align: center;
       color: var(--white);
@@ -918,10 +998,12 @@
     }
     .cta-phone { font-size: clamp(20px, 3vw, 28px); font-weight: 700; margin: 18px 0 26px; letter-spacing: .5px; }
 
-    /* ============================================================
-       14. CONTACT / REQUEST CALL
-    ============================================================ */
-    .contact-section { background: #7a7a7a; padding: clamp(44px, 6vw, 68px) 0; }
+    /* ── Contact Form ── */
+    .contact-section { 
+      background: transparent; 
+      padding: clamp(44px, 6vw, 68px) 0; 
+      border-top: 1px solid rgba(255, 255, 255, 0.15); 
+    }
     .contact-inner {
       display: flex;
       justify-content: space-between;
@@ -932,6 +1014,7 @@
     .contact-info { flex-shrink: 0; min-width: 200px; color: var(--white); }
     .contact-info h3 { font-size: clamp(20px, 3vw, 26px); font-weight: 700; margin-bottom: 10px; }
     .contact-info p { color: rgba(255,255,255,.72); font-size: 14px; }
+    
     .contact-form {
       display: flex;
       gap: 12px;
@@ -957,6 +1040,14 @@
       .contact-form input { flex: none; }
     }
 
+
+
+
+
+
+
+
+
     /* ============================================================
        15. FOOTER
     ============================================================ */
@@ -981,7 +1072,7 @@
       object-fit: contain;
       filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff);
     }
-    .footer-about { font-size: 14px; line-height: 1.75; color: #000000; font-family: Georgia, 'Times New Roman', Times, serif;}
+    .footer-about { font-size: 18px; line-height: 1.75; color: #000000; font-family: Georgia, 'Times New Roman', Times, serif;}
     .footer h4 { color: #000000; font-size: 15px; font-weight: 700; margin-bottom: 18px; font-family: Georgia, 'Times New Roman', Times, serif;}
     .footer ul li { margin-bottom: 10px; font-size: 14px; line-height: 1.5; color: #000000; font-family: Georgia, 'Times New Roman', Times, serif;}
     .footer ul li a { color: #000000; transition: color .25s; }
@@ -998,11 +1089,13 @@
     /* Footer tablet: 2 columns */
     @media (max-width: 900px) {
       .footer-grid { grid-template-columns: 1fr ; gap: 28px; }
+    .footer-about { font-size: 14px;}
     }
     /* Footer mobile: single column */
     @media (max-width: 480px) {
       .footer-grid { grid-template-columns: 1fr; gap: 24px; }
       .footer-logo img { height: 120px; }
+      .footer-about { font-size: 14px;}
     }
 
   .social-list {
@@ -1180,7 +1273,14 @@
         <ul class="nav-links" id="navLinks">
           <li><a href="#">Home</a></li>
           <li><a href="#">About us</a></li>
-          <li><a href="#">Products</a></li>
+          <li class="dropdown">
+            <a href="#" aria-haspopup="true">Products ▾</a>
+            <ul class="dropdown-content">
+              <li><a href="#">Cooking Equipment</a></li>
+              <li><a href="#">Preparation Equipment</a></li>
+              <li><a href="#">Bakery Equipment</a></li>
+            </ul>
+          </li>
           <li><a href="#">Gallery</a></li>
           <li><a href="#">Resources</a></li>
           <li><a href="#">Contact us</a></li>
@@ -1265,7 +1365,7 @@
         
         <div class="trust-stat-block">
           <img src="LOGO/CUSTOMERS.png" alt="Customers" class="trust-stat-icon" loading="lazy">
-          <span class="trust-stat-number">100+</span>
+          <span class="trust-stat-number">1,00,000+</span>
           <span class="trust-stat-label">Customers</span>
         </div>
         
@@ -1283,7 +1383,7 @@
         
         <div class="trust-stat-block">
           <img src="LOGO/MACHINE.png" alt="Machines Delivered" class="trust-stat-icon" loading="lazy">
-          <span class="trust-stat-number">1 Lakh</span>
+          <span class="trust-stat-number">2 Lakhs</span>
           <span class="trust-stat-label">Machines Delivered</span>
         </div>
 
@@ -1303,13 +1403,13 @@
         <div class="about-img carousel-container" id="aboutCarousel">
           <div class="carousel-slides">
             <div class="carousel-slide active">
-              <img src="LOGO/SHOP.jpg" alt="Kovai Lakshmi Showroom 1" loading="lazy">
+              <img src="SLIDES/SLIDE1.jpeg" alt="Kovai Lakshmi Showroom 1" loading="lazy">
             </div>
             <div class="carousel-slide">
-              <img src="LOGO/LOGO.png" alt="Kovai Lakshmi Showroom 2" loading="lazy">
+              <img src="SLIDES/SLIDE2.jpeg" alt="Kovai Lakshmi Showroom 2" loading="lazy">
             </div>
             <div class="carousel-slide">
-              <img src="LOGO/KOVAI LAKHMI FULL LOGO.png" alt="Kovai Lakshmi Showroom 3" loading="lazy">
+              <img src="SLIDES/SLIDE3.jpeg" alt="Kovai Lakshmi Showroom 3" loading="lazy">
             </div>
           </div>
           
@@ -1388,6 +1488,30 @@
       <h2 class="section-title">Popular Products</h2>
       <div class="product-grid">
         <div class="product-card">
+          <img src="KITCHENPRODUCTS/chapathi machine small.jpg" alt="Water Cooler" loading="lazy">
+          <h4>WATER COOLER (LKM-WC100)</h4>
+        </div>
+        <div class="product-card">
+          <img src="KITCHENPRODUCTS/Bread slicer.jpeg" alt="Tandoor Oven" loading="lazy">
+          <h4>TANDOOR OVEN</h4>
+        </div>
+        <div class="product-card">
+          <img src="KITCHENPRODUCTS/conventional grinder.jpg" alt="Sweet Display" loading="lazy">
+          <h4>SWEET DISPLAY (LKM-SD25)</h4>
+        </div>
+        <div class="product-card">
+          <img src="KITCHENPRODUCTS/deep fryer.webp" alt="Sandwich Griller" loading="lazy">
+          <h4>SINGLE SANDWICH GRILLER</h4>
+        </div>
+        <div class="product-card">
+          <img src="KITCHENPRODUCTS/Maravalli big machine.jpeg" alt="Visi Cooler" loading="lazy">
+          <h4>VISI COOLER (LKM-VC400)</h4>
+        </div>
+        <div class="product-card">
+          <img src="KITCHENPRODUCTS/Idiyappam machine.jpeg" alt="Ice Cube Machine" loading="lazy">
+          <h4>ICE CUBE MACHINE</h4>
+        </div>
+         <div class="product-card">
           <img src="KITCHENPRODUCTS/chapathi machine small.jpg" alt="Water Cooler" loading="lazy">
           <h4>WATER COOLER (LKM-WC100)</h4>
         </div>
@@ -1499,30 +1623,41 @@
     </div>
   </section>
 
-  <!-- ── CTA BANNER ── -->
-  <section class="cta-banner" aria-label="Call to action">
-    <div class="container">
-      <h2>Offering The Best Experience Of<br>Commercial Kitchen Solutions</h2>
-      <p class="cta-phone">📞 +91 70944 64175</p>
-      <button class="btn btn-gold">REQUEST A CALL →</button>
-    </div>
-  </section>
+  
+  
 
-  <!-- ── CONTACT ── -->
-  <section class="contact-section" aria-label="Request a call">
-    <div class="container contact-inner">
-      <div class="contact-info">
-        <h3>Request A Call</h3>
-        <p>Enter your details and our expert team will contact you shortly.</p>
+<div class="cta-contact-wrapper">
+
+    <section class="cta-banner" aria-label="Call to action">
+      <div class="container">
+        <h2>Offering The Best Experience Of<br>Commercial Kitchen Solutions</h2>
+        <p class="cta-phone">📞 +91 70944 64175</p>
+        <button class="btn btn-gold">REQUEST A CALL →</button>
       </div>
-      <div class="contact-form">
-        <input type="text"   placeholder="Your Name"     aria-label="Your name">
-        <input type="email"  placeholder="Email Address" aria-label="Email address">
-        <input type="tel"    placeholder="Phone Number"  aria-label="Phone number">
-        <button class="btn">SEND NOW</button>
+    </section>
+
+    <section class="contact-section" aria-label="Request a call">
+      <div class="container contact-inner">
+        <div class="contact-info">
+          <h3>Request A Call</h3>
+          <p>Enter your details and our expert team will contact you shortly.</p>
+        </div>
+        <div class="contact-form">
+          <input type="text"   placeholder="Your Name"     aria-label="Your name">
+          <input type="email"  placeholder="Email Address" aria-label="Email address">
+          <input type="tel"    placeholder="Phone Number"  aria-label="Phone number">
+          <button class="btn">SEND NOW</button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+  </div>
+
+
+
+
+
+
 
   <!-- ── FOOTER ── -->
   <footer class="footer" aria-label="Site footer">
@@ -1533,7 +1668,7 @@
           <div class="footer-logo">
             <img src="LOGO/LOGO.png" alt="Kovai Lakshmi Food Machinery">
           </div>
-          <p class="footer-about">We are an industry-leading manufacturer of high-grade commercial kitchen equipment, providing customized solutions to food businesses across India.</p>
+          <p class="footer-about"><b>" Built with strength, designed for performance. Trusted quality for every kitchen "</b></p>
         </div>
 
         <div>
