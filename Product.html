@@ -35,7 +35,11 @@
     button { cursor: pointer; font-family: inherit; }
 
     .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    @media (max-width: 480px) { .container { padding: 0 16px; } }
+   
+    @media (max-width: 480px) 
+    { 
+      .container { padding: 0 16px; } 
+    }
 
     /* ============================================================
        2. HEADER & NAV (Exact from Index)
@@ -77,16 +81,23 @@
     .site-search button img { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; transition: opacity 0.3s ease; }
     .site-search button:hover img { opacity: 0.6; }
 
-    @media (max-width: 1024px) { 
-      .nav-links { gap: 18px; } .nav-links a { font-size: 18px; } 
+    @media (max-width: 1024px) 
+    { 
+      .nav-links { gap: 18px; } 
+      .nav-links a { font-size: 18px; } 
       .site-search { background: transparent; border-color: transparent; padding: 0; }
       .site-search input { width: 0; padding: 0; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-      .site-search button { padding: 6px; } .site-search button img { width: 24px; height: 24px; }
+      .site-search button { padding: 6px; } 
+      .site-search button img { width: 24px; height: 24px; }
       .site-search.active { background: #ffffff; border-color: #ffffff; padding: 4px 12px; }
       .site-search.active input { width: 140px; padding: 6px; opacity: 1; visibility: visible; }
     }
-    @media (max-width: 768px) {
-      .header-inner { height: 85px; } .logo img { height: 100px; padding: 8px 0; } .hamburger { display: flex; } .header-right { gap: 8px; }
+    @media (max-width: 768px) 
+    {
+      .header-inner { height: 85px; } 
+      .logo img { height: 100px; padding: 8px 0; } 
+      .hamburger { display: flex; } 
+      .header-right { gap: 8px; }
       .site-search.active input { width: 120px; font-size: 14px; } 
       .nav-links { display: none; position: fixed; inset: 85px 0 0 0; background: var(--white); flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0 24px; box-shadow: 0 8px 24px rgba(0,0,0,.12); overflow-y: auto; z-index: 899; }
       .nav-links.open { display: flex; } .nav-links li { border-bottom: 1px solid #f0f0f0; } .nav-links a { display: block; padding: 15px 24px; font-size: 14px; }
@@ -94,216 +105,86 @@
       .dropdown.open .dropdown-content { display: flex; }
       .nav-links .dropdown-content a { font-size: 12px; }
     }
-    @media (max-width: 480px) { .header-inner { height: 80px; } .logo img { height: 80px; padding: 6px 0; } .nav-links { inset: 70px 0 0 0; } }
+
+    @media (max-width: 480px) 
+    { 
+      .header-inner { height: 80px; } 
+      .logo img { height: 80px; padding: 6px 0; } 
+      .nav-links { inset: 70px 0 0 0; } 
+    }
 
     /* ============================================================
        3. PRODUCT PAGE LAYOUT (NEW)
     ============================================================ */
     .product-page-wrap { padding: 60px 0 100px; }
     
-    .product-title {
-      font-size: 35px;
-      font-weight: 800;
-      color: var(--dark);
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      margin-bottom: 30px;
-      text-align: left;
-      border-bottom: 3px solid var(--red);
-      display: inline-block;
-      padding-bottom: 8px;
-    }
+    .product-title { font-size: 35px; font-weight: 800; color: var(--dark); font-family: Georgia, 'Times New Roman', Times, serif; margin-bottom: 30px; text-align: left; border-bottom: 3px solid var(--red); display: inline-block; padding-bottom: 8px;}
 
     /* Top Grid: Image + Specs */
-    .product-top-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
-      align-items: stretch;
-    }
-
-    .product-image-box {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 30px;
-      box-shadow: var(--shadow);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #eee;
-    }
-    .product-image-box img {
-      width: 100%;
-      max-height: 450px;
-      object-fit: contain;
-      transition: transform var(--trans);
-    }
+    .product-top-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; align-items: stretch;}
+    .product-image-box { background: var(--white); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); display: flex; justify-content: center; align-items: center; border: 1px solid #eee;}
+    .product-image-box img { width: 100%; max-height: 450px; object-fit: contain; transition: transform var(--trans);}
     .product-image-box:hover img { transform: scale(1.05); }
-
-    .product-specs-box {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 30px;
-      box-shadow: var(--shadow);
-      border: 1px solid #eee;
-      display: flex;
-      flex-direction: column;
-    }
-    .product-specs-box h3 {
-      font-size: 24px;
-      color: #000000;
-      margin-bottom: 20px;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-    }
+    .product-specs-box { background: var(--white); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); border: 1px solid #eee; display: flex;  flex-direction: column;}
+    .product-specs-box h3 { font-size: 24px; color: #000000; margin-bottom: 20px; font-family: Georgia, 'Times New Roman', Times, serif;}
 
     /* Pro Table Styling */
-    .specs-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 16px;
-    }
-    .specs-table th, .specs-table td {
-      padding: 14px 18px;
-      border-bottom: 1px solid #e0e0e0;
-      text-align: left;
-    }
-    .specs-table tr:last-child th,
-    .specs-table tr:last-child td { border-bottom: none; }
-    
-    .specs-table th {
-      background-color: var(--red-light);
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-      color: var(--dark);
-      font-weight: 700;
-      width: 40%;
-      border-right: 1px solid #fff;
-    }
-    .specs-table td {
-      background-color: #fafafa;
-      color: var(--muted);
-      font-weight: 500;
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    }
+    .specs-table { width: 100%; border-collapse: collapse; font-size: 16px;}
+    .specs-table th, .specs-table td { padding: 14px 18px; border-bottom: 1px solid #e0e0e0; text-align: left;}
+    .specs-table tr:last-child th, .specs-table tr:last-child td { border-bottom: none; }
+    .specs-table th { background-color: var(--red-light); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: var(--dark); font-weight: 700; width: 40%; border-right: 1px solid #fff;}
+    .specs-table td { background-color: #fafafa; color: var(--muted); font-weight: 500; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
 
 /* Video Section */
-    .video-wrapper {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      max-height: 450px; /* FIX: Caps the height to match the product image height */
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      margin-bottom: 40px;
-      background: #000;
+.video-wrapper { width: 100%; max-width: 900px; aspect-ratio: 16 / 9;  margin: 0 auto 40px;  border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); background: #000; position: relative;}
+
+    /* Portrait Switcher for Shorts/Vertical Videos */
+    .video-wrapper.portrait { max-width: 380px;  aspect-ratio: 9 / 16;}
+
+    /* Force the iframe to fill the container regardless of YouTube's default size */
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; border: 0 !important;}
+
+    /* TABLET: 768px */
+    @media (max-width: 768px) 
+    {
+      .video-wrapper { max-width: 100%; }
+      .video-wrapper.portrait { max-width: 80%; } 
     }
 
-    .video-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+    /* MOBILE: 480px (The requested fix) */
+    @media (max-width: 480px) 
+    {
+      .video-wrapper {  margin-bottom: 25px;  border-radius: 6px; }
+      .video-wrapper.portrait {  max-width: 100%;}
     }
 
     /* Content Sections (How to use / Benefits) */
-    .content-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 60px;
-    }
-    .content-section {
-      background: var(--white);
-      padding: 36px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border-top: 4px solid var(--red);
-    }
-    .content-section h3 {
-      font-size: 24px;
-      color: var(--primary);
-      margin-bottom: 20px;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-    }
-    .content-section p, .content-section ul {
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.8;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-    }
-    .content-section ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .content-section li {
-      position: relative;
-      padding-left: 30px;
-      margin-bottom: 12px;
-    }
-    .content-section li::before {
-      content: "✓";
-      position: absolute;
-      left: 0; top: 2px;
-      display: flex; align-items: center; justify-content: center;
-      width: 20px; height: 20px;
-      background: var(--red); color: var(--white);
-      border-radius: 50%; font-size: 11px; font-weight: 700;
-    }
+    .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px;}
+    .content-section { background: var(--white); padding: 36px; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 4px solid var(--red);}
+    .content-section h3 { font-size: 24px; color: var(--primary); margin-bottom: 20px; font-family: Georgia, 'Times New Roman', Times, serif;}
+    .content-section p, .content-section ul { color: var(--text); font-size: 16px; line-height: 1.8; font-family: Georgia, 'Times New Roman', Times, serif;}
+    .content-section ul { list-style: none; padding-left: 0;}
+    .content-section li { position: relative; padding-left: 30px; margin-bottom: 12px;}
+    .content-section li::before { content: "✓"; position: absolute; left: 0; top: 2px; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: var(--red); color: var(--white); border-radius: 50%; font-size: 11px; font-weight: 700;}
 
     /* Related Products */
-    .related-section {
-      margin-top: 60px;
-      padding-top: 40px;
-      border-top: 2px solid #e0e0e0;
-    }
-    .related-section h2 {
-      text-align: center;
-      font-size: 32px;
-      color: var(--primary);
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      margin-bottom: 40px;
-    }
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-    }
-    .related-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 24px;
-      text-align: center;
-      box-shadow: var(--shadow);
-      border: 1px solid transparent;
-      transition: var(--trans);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .related-card:hover { 
-      transform: translateY(-5px); 
-      box-shadow: var(--shadow-lg); 
-      border-color: var(--red-light); 
-    }
-    .related-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: contain;
-      margin-bottom: 20px;
-    }
-    .related-card h4 {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--red); /* Coral Red */
-      line-height: 1.4;
-      text-transform: uppercase;
-    }
+    .related-section { margin-top: 60px; padding-top: 40px; border-top: 2px solid #e0e0e0;}
+    .related-section h2 { text-align: center; font-size: 32px; color: var(--primary); font-family: Georgia, 'Times New Roman', Times, serif; margin-bottom: 40px;}
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;}
+    .related-card { background: var(--white); border-radius: var(--radius); padding: 24px; text-align: center; box-shadow: var(--shadow); border: 1px solid transparent; transition: var(--trans); display: flex; flex-direction: column; align-items: center;}
+    .related-card:hover {  transform: translateY(-5px);  box-shadow: var(--shadow-lg);  border-color: var(--red-light); }
+    .related-card img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 20px;}
+    .related-card h4 { font-size: 16px; font-weight: 700; color: var(--red); /* Coral Red */ line-height: 1.4; text-transform: uppercase;}
 
     /* Product Page Responsive Rules */
-    @media (max-width: 992px) {
+    @media (max-width: 992px) 
+    {
       .product-top-grid, .content-grid { grid-template-columns: 1fr; gap: 30px; }
       .related-grid { grid-template-columns: repeat(2, 1fr); }
       .product-image-box img { max-height: 350px; }
     }
-    @media (max-width: 560px) {
+    @media (max-width: 560px) 
+    {
       .related-grid { grid-template-columns: 1fr; }
       .content-section { padding: 24px; }
     }
@@ -312,10 +193,7 @@
        4. FOOTER & WHATSAPP (Exact from Index)
     ============================================================ */
     .footer { background: #ffffff; color: #aab0c0; padding: clamp(44px, 7vw, 72px) 0 0; }
-    .footer .container {
-      max-width: none;
-      padding: 0 clamp(20px, 5vw, 60px); /* Gives a nice breathing room on the extreme left and right edges */
-    }
+    .footer .container { max-width: none; padding: 0 clamp(20px, 5vw, 60px); /* Gives a nice breathing room on the extreme left and right edges */}
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 44px; }
     .footer-logo { margin-bottom: 18px; }
     .footer-logo img { height: 200px; width: auto; max-width: 400px; object-fit: contain; filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff); }
@@ -326,8 +204,19 @@
     .footer ul li a:hover { color: var(--red); }
     .copyright { text-align: center; padding: 18px 0; font-family: Georgia, 'Times New Roman', Times, serif; border-top: 1px solid rgba(0,0,0,.08); font-size: 13px; color: #666e82; }
     
-    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr ; gap: 28px; } .footer-about { font-size: 14px;} }
-    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; gap: 24px; } .footer-logo img { height: 120px; } .footer-about { font-size: 14px;} }
+    @media (max-width: 900px) 
+    { 
+      .footer-grid { grid-template-columns: 1fr ; gap: 28px; } 
+      .footer-about { font-size: 14px;} 
+    }
+   
+   
+    @media (max-width: 480px) 
+    { 
+      .footer-grid { grid-template-columns: 1fr; gap: 24px; } 
+      .footer-logo img { height: 120px; } 
+      .footer-about { font-size: 14px;} 
+    }
 
     .social-list { display: flex; flex-wrap: wrap; gap: 12px; padding: 0; margin: 10px 0 0; }
     .social-list li { list-style: none; }
@@ -337,7 +226,30 @@
     .float-wa { position: fixed; bottom: 10px; right: 10px; width: 65px; height: 65px; background-color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2); z-index: 9999; transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .float-wa img { width: 55px; height: 55px; object-fit: contain; }
     .float-wa:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 8px 22px rgba(37, 211, 102, 0.5); }
-    @media (max-width: 768px) { .float-wa { bottom: 20px; right: 20px; width: 60px; height: 60px; } .float-wa img { width: 45px; height: 45px; } }
+    
+    @media (max-width: 768px) 
+    { 
+      .float-wa { bottom: 20px; right: 20px; width: 60px; height: 60px; } 
+      .float-wa img { width: 45px; height: 45px; } 
+    }
+  
+  
+  
+  /* --- Product Info Full-Width Section --- */
+    .product-description-card { background: var(--white); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 4px solid var(--red); margin-bottom: 40px; /* Maintains consistent spacing with the video block */}
+    .product-description-card h3 { font-size: 28px; color: var(--primary); margin-bottom: 22px; font-family: Georgia, 'Times New Roman', Times, serif; position: relative;}
+    .product-description-card p { color: var(--text); font-size: 17px; line-height: 1.9; font-family: Georgia, 'Times New Roman', Times, serif;}
+
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) 
+    {
+      .product-description-card {  padding: 25px;}
+      .product-description-card h3 { font-size: 24px;}
+      .product-description-card p { font-size: 16px;}
+    }
+  
+  
+  
   </style>
 </head>
 <body>
@@ -354,7 +266,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" aria-haspopup="true">Products ▾</a>
             <ul class="dropdown-content">
-              <li><a href="#">Hotel Equipments</a></li>
+              <li><a href="#">Cooking Equipments</a></li>
               <li><a href="#">Bakery Equipments</a></li>
               <li><a href="#">Preparation Equipments</a></li>
             </ul>
@@ -381,12 +293,12 @@
   <main class="product-page-wrap">
     <div class="container">
       
-      <h1 class="product-title">Adhirasam Making Machine</h1>
+      <h1 class="product-title">Chapathi Making Machine</h1>
 
       <div class="product-top-grid">
         
         <div class="product-image-box">
-          <img src="c:\Users\admin\Desktop\DHANUSREE\KITCHENPRODUCTS\Adhirasam Machine.png" alt="Adhirasam Making Machine" loading="lazy">
+          <img src="KITCHENPRODUCTS/chapathi machine small.jpg" alt="Chapathi Making Machine" loading="lazy">
         </div>
 
         <div class="product-specs-box">
@@ -395,39 +307,23 @@
             <tbody>
               <tr>
                 <th>Capacity</th>
-                <td>80–100 pieces per hour (approx.)</td>
+                <td>1000 - 1200 Pieces / Hour</td>
               </tr>
               <tr>
                 <th>Motor Power</th>
-                <td>1 HP Single / Three Phase</td>
-              </tr>
-              <tr>
-                <th>Design</th>
-                <td>Compact, hygienic, and easy to operate</td>
-              </tr>
-              <tr>
-                <th>Applications</th>
-                <td>Thattavadai, and similar traditional sweet or snack preparations</td>
+                <td>1.5 HP Single / Three Phase</td>
               </tr>
               <tr>
                 <th>Material</th>
                 <td>High Grade Food Safe Stainless Steel</td>
               </tr>
               <tr>
-                <th>Material</th>
-                <td>High Grade Food Safe Stainless Steel</td>
-              </tr>
-              <tr>
-                <th>Material</th>
-                <td>High Grade Food Safe Stainless Steel</td>
-              </tr>
-              <tr>
-                <th>Operation Type</th>
-                <td>Semi-Automatic / Automatic (as per requirement)</td>
+                <th>Thickness Control</th>
+                <td>Adjustable (1mm to 4mm)</td>
               </tr>
               <tr>
                 <th>Weight</th>
-                <td>Approx. 200 Kg</td>
+                <td>Approx. 180 Kg</td>
               </tr>
             </tbody>
           </table>
@@ -436,8 +332,28 @@
       </div>
 
       <div class="video-wrapper">
-        <iframe src="https://youtu.be/lceuFxWp-LI" title="Product Demonstration Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <iframe width="315" height="576" src="https://www.youtube.com/embed/4g0HMrixRXI" title="ONION SLICER |97897 31317 ; 70944 64175 |KOVAI LAKSHMI GRINDERS|#foodbusiness#onionslicer#coimbatore" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
+
+
+<section class="product-description-card">
+        <h3>Product Information</h3>
+        <p>
+          Our <strong>Chapathi Making Machine</strong> is engineered for high-performance commercial environments, 
+          combining heavy-duty durability with precision engineering. Designed specifically for hotels, 
+          industrial canteens, and large-scale catering services, this machine ensures that every chapathi 
+          is perfectly circular and uniform in texture. By automating the flattening process, it eliminates 
+          the inconsistencies of manual rolling while significantly reducing production time and labor costs.
+        </p>
+        <br>
+        <p>
+          Constructed with food-grade stainless steel and equipped with high-torque motors, this machine is 
+          capable of continuous operation even during peak hours. Whether you are running a busy hospital 
+          kitchen or a premium bakery, this equipment provides the reliable output needed to scale your 
+          business efficiently.
+        </p>
+      </section>
+
 
       <div class="content-grid">
         
