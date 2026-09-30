@@ -32,7 +32,7 @@
 
 
 
-<!-- ========== SCHEMA.ORG LOCAL BUSINESS ========== -->
+<!-- ========== SCHEMA.ORG LOCAL BUSINESS (same on every page) ========== -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -63,7 +63,14 @@
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
       "opens": "[INSERT OPEN TIME - e.g., 09:00]",
       "closes": "[INSERT CLOSE TIME - e.g., 20:00]"
     }
@@ -84,24 +91,77 @@
     "Commercial Kitchen Equipment",
     "Bakery Equipment",
     "Food Preparation Machinery",
+    "Domestic Kitchen Equipment",
     "Commercial Wet Grinders",
     "Custom Commercial Kitchen Layout",
     "Kitchen Equipment Installation"
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Commercial Kitchen Equipment",
+    "name": "Kitchen Equipment",
     "itemListElement": [
-      { "@type": "OfferCatalog", "name": "Hotel Equipments" },
-      { "@type": "OfferCatalog", "name": "Bakery Equipments" },
-      { "@type": "OfferCatalog", "name": "Preparation Equipments" }
+      {
+        "@type": "OfferCatalog",
+        "name": "Hotel Equipment",
+        "url": "https://kovai-lakshmi-kitchen-equipments.github.io/hotel-equipment.html"
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Bakery Equipment",
+        "url": "https://kovai-lakshmi-kitchen-equipments.github.io/bakery-equipment.html"
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Preparation Equipment",
+        "url": "https://kovai-lakshmi-kitchen-equipments.github.io/preparation-equipment.html"
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Domestic Equipment",
+        "url": "https://kovai-lakshmi-kitchen-equipments.github.io/domestic-equipment.html"
+      }
     ]
   },
   "sameAs": [
     "https://www.instagram.com/lakshmi.grinders/",
     "https://www.facebook.com/p/kovai-Lakshmi-Grinders-100088313569360/",
-    "https://www.youtube.com/@kovailakshmigrinders"
+    "https://www.youtube.com/@kovailakshmigrinders",
+    "https://www.linkedin.com/company/kovai-lakshmi-grinders-cbe"
   ]
+}
+</script>
+
+<!-- ========== SCHEMA.ORG WEBSITE ========== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://kovai-lakshmi-kitchen-equipments.github.io/#website",
+  "url": "https://kovai-lakshmi-kitchen-equipments.github.io/",
+  "name": "Kovai Lakshmi Grinders",
+  "inLanguage": "en",
+  "publisher": {
+    "@id": "https://kovai-lakshmi-kitchen-equipments.github.io/#business"
+  }
+}
+</script>
+
+<!-- ========== SCHEMA.ORG WEBPAGE ========== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://kovai-lakshmi-kitchen-equipments.github.io/#webpage",
+  "url": "https://kovai-lakshmi-kitchen-equipments.github.io/",
+  "name": "Kovai Lakshmi Grinders | Commercial Kitchen Equipment Coimbatore",
+  "description": "Kovai Lakshmi Grinders, Coimbatore – manufacturer of commercial wet grinders, kitchen, bakery and food preparation machines. Trusted quality since 1980.",
+  "inLanguage": "en",
+  "isPartOf": {
+    "@id": "https://kovai-lakshmi-kitchen-equipments.github.io/#website"
+  },
+  "about": {
+    "@id": "https://kovai-lakshmi-kitchen-equipments.github.io/#business"
+  }
 }
 </script>
 
@@ -132,7 +192,7 @@
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 100px; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); line-height: 1.65; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
@@ -1143,11 +1203,17 @@
     }
     .contact-form input::placeholder { color: rgba(255,255,255,.55); }
     .contact-form input:focus { outline: none; border-color: var(--red); background: rgba(255,255,255,.15); }
+    .contact-form input.is-invalid { border-color: #ff6b6b; background: rgba(255,107,107,.12); }
+    .form-status { flex: 1 1 100%; margin: 0; min-height: 20px; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,.85); }
+    .form-status:empty { display: none; }
+    .form-status.error { color: #ffb3b3; }
+    .form-status.success { color: #9be7b0; }
 
     @media (max-width: 768px) {
       .contact-inner { flex-direction: column; align-items: stretch; }
       .contact-form { flex-direction: column; }
       .contact-form input { flex: none; }
+      .contact-form .btn { justify-content: center; }
     }
 
 
@@ -1366,55 +1432,65 @@
 
 
 
+
+    /* ── Developer credit (tiny & faded, below copyright) ── */
+    .site-credit { text-align: center; margin-top: 8px; opacity: .45; transition: opacity .3s ease; }
+    .site-credit:hover, .site-credit:focus-within { opacity: .8; }
+    .copyright .site-credit-name { font-family: Arial, sans-serif; font-size: 9px; line-height: 1.4; letter-spacing: .3px; color: #666e82; margin: 0 0 4px; }
+    .site-credit-links { display: flex; justify-content: center; align-items: center; gap: 10px; }
+    .site-credit-links a { line-height: 0; color: #666e82; padding: 3px; margin: -3px; transition: color .25s ease, transform .25s ease; }
+    .site-credit-links a:hover, .site-credit-links a:focus-visible { color: var(--primary); transform: translateY(-1px); }
+    .site-credit-links svg { width: 12px; height: 12px; display: block; }
+    @media (max-width: 768px) {
+      .copyright { padding-bottom: 88px; } /* keeps the credit clear of the floating WhatsApp button */
+      .site-credit { opacity: .55; } /* no hover on touch screens, so a touch more visible */
+      .site-credit-links { gap: 14px; }
+      .site-credit-links a { padding: 6px; margin: -6px; } /* bigger tap area, same icon size */
+    }
+    @media (max-width: 480px) {
+      .copyright .site-credit-name { font-size: 8.5px; }
+      .site-credit-links svg { width: 13px; height: 13px; }
+    }
   </style>
 </head>
 <body>
 
   
-  <!-- ── MAIN HEADER ── -->
+  <!-- ── MAIN HEADER (identical on every page) ── -->
   <header class="main-header">
     <div class="container header-inner">
-
-      <a href="#" class="logo" aria-label="Kovai Lakshmi Food Machinery Home">
-        <img src="https://kovai-lakshmi-kitchen-equipments.github.io/LOGO/KOVAI LAKSHMI GRINDERS LOGO.png" alt="Kovai Lakshmi Food Machinery">
+      <a href="https://kovai-lakshmi-kitchen-equipments.github.io/index.html" class="logo" aria-label="Kovai Lakshmi Grinders Home">
+        <img src="https://kovai-lakshmi-kitchen-equipments.github.io/LOGO/KOVAI LAKSHMI GRINDERS LOGO.png" alt="Kovai Lakshmi Grinders">
       </a>
-
       <nav aria-label="Main navigation">
         <ul class="nav-links" id="navLinks">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About Us</a></li>
+          <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/index.html">Home</a></li>
+          <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/about-us.html">About Us</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" aria-haspopup="true">Products ▾</a>
             <ul class="dropdown-content">
-              <li><a href="#">Hotel Equipments</a></li>
-              <li><a href="#">Bakery Equipments</a></li>
-              <li><a href="#">Preparation Equipments</a></li>
+              <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/hotel-equipment.html">Hotel Equipment</a></li>
+              <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/bakery-equipment.html">Bakery Equipment</a></li>
+              <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/preparation-equipment.html">Preparation Equipment</a></li>
+              <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/domestic-equipment.html">Domestic Equipment</a></li>
             </ul>
           </li>
-          </li>
-          <li><a href="#">Gallery</a></li>
-          <li><a href="#">Resources</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/gallery.html">Gallery</a></li>
+          <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/resources.html">Resources</a></li>
+          <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/contact-us.html">Contact Us</a></li>
         </ul>
       </nav>
-
-
-
-<div class="header-right">
-       <form action="search.html" method="GET" class="site-search" id="mobileSearchForm">
+      <div class="header-right">
+        <form action="https://kovai-lakshmi-kitchen-equipments.github.io/search.html" method="GET" class="site-search" id="mobileSearchForm">
           <input type="search" name="q" placeholder="Search..." required id="mobileSearchInput">
           <button type="submit" aria-label="Submit search" class="search-icon-btn">
             <img src="https://kovai-lakshmi-kitchen-equipments.github.io/LOGO/SEARCH ICON.png" alt="Search">
           </button>
         </form>
-
         <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
-
-
-
     </div>
   </header>
 
@@ -1426,8 +1502,8 @@
         <h1>"Excellence in your Kitchen"</h1>
         <p>Bringing Quality, Performances, Reliability into Every Kitchen with Our Expertly Crafted Machinery.</p>
         <div class="hero-actions">
-          <button class="btn">CONTACT US →</button>
-          <button class="btn btn-outline">EXPLORE PRODUCTS</button>
+          <a href="https://kovai-lakshmi-kitchen-equipments.github.io/contact-us.html" class="btn">CONTACT US →</a>
+          <a href="#popular-products" class="btn btn-outline">EXPLORE PRODUCTS</a>
         </div>
       </div>
     </div>
@@ -1514,13 +1590,13 @@
         <div class="about-img carousel-container" id="aboutCarousel">
           <div class="carousel-slides">
             <div class="carousel-slide active">
-              <img src="SLIDES/SLIDE1.jpeg" alt="Kovai Lakshmi Showroom 1" loading="lazy">
+              <img src="https://kovai-lakshmi-kitchen-equipments.github.io/SLIDES/SLIDE1.jpeg" alt="Kovai Lakshmi Showroom 1" loading="lazy">
             </div>
             <div class="carousel-slide">
-              <img src="SLIDES/SLIDE2.jpeg" alt="Kovai Lakshmi Showroom 2" loading="lazy">
+              <img src="https://kovai-lakshmi-kitchen-equipments.github.io/SLIDES/SLIDE2.jpeg" alt="Kovai Lakshmi Showroom 2" loading="lazy">
             </div>
             <div class="carousel-slide">
-              <img src="SLIDES/SLIDE3.jpeg" alt="Kovai Lakshmi Showroom 3" loading="lazy">
+              <img src="https://kovai-lakshmi-kitchen-equipments.github.io/SLIDES/SLIDE3.jpeg" alt="Kovai Lakshmi Showroom 3" loading="lazy">
             </div>
           </div>
           
@@ -1549,7 +1625,7 @@
             <li>Customized Commercial Solutions</li>
             <li>Reliable Delivery & After-Sales Support</li>
           </ul>
-          <button class="btn">KNOW MORE</button>
+          <a href="https://kovai-lakshmi-kitchen-equipments.github.io/about-us.html" class="btn">KNOW MORE</a>
         </div>
       </div>
     </div>
@@ -1594,7 +1670,7 @@
 
 
   <!-- ── POPULAR PRODUCTS ── -->
-  <section class="popular-section" aria-label="Popular products">
+  <section class="popular-section" id="popular-products" aria-label="Popular products">
     <div class="container">
       <h2 class="section-title">Popular Products</h2>
       <div class="product-grid">
@@ -1742,22 +1818,24 @@
       <div class="container">
         <h2>Offering The Best Experience Of<br>Commercial Kitchen Solutions</h2>
         <p class="cta-phone">📞 +91 70944 64175</p>
-        <button class="btn btn-gold">REQUEST A CALL →</button>
+        <a href="#request-call" class="btn btn-gold">REQUEST A CALL →</a>
       </div>
     </section>
 
-    <section class="contact-section" aria-label="Request a call">
+    <section class="contact-section" id="request-call" aria-label="Request a call">
       <div class="container contact-inner">
         <div class="contact-info">
           <h3>Request A Call</h3>
           <p>Enter your details and our expert team will contact you shortly.</p>
         </div>
-        <div class="contact-form">
-          <input type="text"   placeholder="Your Name"     aria-label="Your name">
-          <input type="email"  placeholder="Email Address" aria-label="Email address">
-          <input type="tel"    placeholder="Phone Number"  aria-label="Phone number">
-          <button class="btn">SEND NOW</button>
-        </div>
+        <!-- Sends the details to WhatsApp (+91 70944 64175) as a ready-made message -->
+        <form class="contact-form" id="callbackForm" novalidate>
+          <input type="text"  name="name"  id="cbName"  placeholder="Your Name *"    aria-label="Your name" autocomplete="name" required>
+          <input type="email" name="email" id="cbEmail" placeholder="Email Address"  aria-label="Email address" autocomplete="email">
+          <input type="tel"   name="phone" id="cbPhone" placeholder="Phone Number *" aria-label="Phone number" autocomplete="tel" inputmode="tel" required>
+          <button type="submit" class="btn">SEND NOW</button>
+          <p class="form-status" id="cbStatus" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
 
@@ -1769,62 +1847,70 @@
 
 
 
-  <!-- ── FOOTER ── -->
+  <!-- ── FOOTER (identical on every page) ── -->
   <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer-grid">
-
         <div>
           <div class="footer-logo">
-            <img src="https://kovai-lakshmi-kitchen-equipments.github.io/LOGO/LOGO.png" alt="Kovai Lakshmi Food Machinery">
+            <img src="https://kovai-lakshmi-kitchen-equipments.github.io/LOGO/LOGO.png" alt="Kovai Lakshmi Grinders">
           </div>
           <p class="footer-about"><b>" Built with strength, designed for performance. Trusted quality for every kitchen "</b></p>
         </div>
-
         <div>
-          <h4>Address</Address></h4>
+          <h4>Address</h4>
           <ul>
-            <li><b>Kovai Lakshmi Grinders</b></li> <li>Bharathiyar Rd, P N Palayam,</li> <li>Coimbatore - 641037 </li>
-            <li> +91 97897 31317</li>
-            <li> info.kovailakshmi@gmail.com</li>
+            <li><b>Kovai Lakshmi Grinders</b></li>
+            <li>Bharathiyar Rd, P N Palayam,</li>
+            <li>Coimbatore - 641037</li>
+            <li><a href="tel:+919789731317">+91 97897 31317</a></li>
+            <li><a href="mailto:info.kovailakshmi@gmail.com">info.kovailakshmi@gmail.com</a></li>
           </ul>
         </div>
-
         <div>
           <h4>Product Categories</h4>
           <ul>
-            <li><a href="#">Hotel Equipments</a></li>
-            <li><a href="#">Bakery Equipments</a></li>
-            <li><a href="#">Preparation Equipments</a></li>
-            </ul>
+            <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/hotel-equipment.html">Hotel Equipment</a></li>
+            <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/bakery-equipment.html">Bakery Equipment</a></li>
+            <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/preparation-equipment.html">Preparation Equipment</a></li>
+            <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/domestic-equipment.html">Domestic Equipment</a></li>
+          </ul>
         </div>
-
         <div>
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Resources</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/index.html">Home</a></li>
+            <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/about-us.html">About Us</a></li>
+            <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/gallery.html">Gallery</a></li>
+            <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/resources.html">Resources</a></li>
+            <li><a href="https://kovai-lakshmi-kitchen-equipments.github.io/contact-us.html">Contact Us</a></li>
           </ul>
         </div>
-
         <div>
-  <h4>Connect With Us</h4>
-  <ul class="social-list">
-    <li><a href="#" aria-label="Instagram"><img class="social-icon" src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/INSTA.png"     alt="Instagram"></a></li>
-    <li><a href="#" aria-label="Facebook"> <img class="social-icon" src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/FACEBOOK.png"  alt="Facebook"> </a></li>
-    <li><a href="#" aria-label="Mail">     <img class="social-icon" src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/MAIL.png"      alt="Mail">     </a></li>
-    <li><a href="#" aria-label="Phone">    <img class="social-icon" src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/PHONE.png"     alt="Phone">    </a></li>
-    <li><a href="#" aria-label="YouTube">  <img class="social-icon" src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/YOUTUBE.png"   alt="YouTube">  </a></li>
-    <li><a href="#" aria-label="LinkedIn">  <img class="social-icon" src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/LINKEDIN.png"   alt="LinkedIn">  </a></li>
-  </ul>
-</div>
-
+          <h4>Connect With Us</h4>
+          <ul class="social-list">
+            <li><a href="https://www.instagram.com/lakshmi.grinders/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img class="social-icon" src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/INSTA.png" alt="Instagram"></a></li>
+            <li><a href="https://www.facebook.com/p/kovai-Lakshmi-Grinders-100088313569360/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img class="social-icon" src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/FACEBOOK.png" alt="Facebook"></a></li>
+            <li><a href="mailto:info.kovailakshmi@gmail.com" aria-label="Mail"><img class="social-icon" src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/MAIL.png" alt="Mail"></a></li>
+            <li><a href="tel:+919789731317" aria-label="Phone"><img class="social-icon" src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/PHONE.png" alt="Phone"></a></li>
+            <li><a href="https://www.youtube.com/@kovailakshmigrinders" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img class="social-icon" src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/YOUTUBE.png" alt="YouTube"></a></li>
+            <li><a href="https://www.linkedin.com/company/kovai-lakshmi-grinders-cbe" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img class="social-icon" src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/LINKEDIN.png" alt="LinkedIn"></a></li>
+          </ul>
+        </div>
       </div>
       <div class="copyright">
         <p>&copy; 2026 Kovai Lakshmi Grinders. All Rights Reserved.</p>
+        <!-- ── DEVELOPER CREDIT ── -->
+        <div class="site-credit">
+          <p class="site-credit-name">Website by Raj Vishnu Kumar (RVK Adventurer)</p>
+          <div class="site-credit-links">
+            <a href="tel:+919629563236" aria-label="Phone" title="Phone"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.57 1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg></a>
+            <a href="mailto:vishnumatrix4599@gmail.com" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 4h20v16H2V4zm2 2v.01L12 13l8-6.99V6H4zm16 12V8.5l-8 7-8-7V18h16z"/></svg></a>
+            <a href="https://in.linkedin.com/in/rvkadventurer1221" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+            <a href="https://www.youtube.com/@RVKAdventurer" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3.02 3.02 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14c1.88.56 9.38.56 9.38.56s7.5 0 9.38-.56a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z"/></svg></a>
+            <a href="https://rvk-adventurer.github.io" target="_blank" rel="noopener noreferrer" aria-label="Website" title="Website"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.93 7h-2.66a15.6 15.6 0 0 0-1.16-3.98A8.03 8.03 0 0 1 18.93 9zM12 4.05c.7 1.03 1.42 2.66 1.83 4.95H10.17c.41-2.29 1.13-3.92 1.83-4.95zM4.26 13a7.9 7.9 0 0 1 0-2h3.02a17.1 17.1 0 0 0 0 2H4.26zm.81 2h2.66c.26 1.47.65 2.8 1.16 3.98A8.03 8.03 0 0 1 5.07 15zm2.66-6H5.07a8.03 8.03 0 0 1 3.82-3.98A15.6 15.6 0 0 0 7.73 9zM12 19.95c-.7-1.03-1.42-2.66-1.83-4.95h3.66c-.41 2.29-1.13 3.92-1.83 4.95zM10.02 13a15.1 15.1 0 0 1 0-2h3.96a15.1 15.1 0 0 1 0 2h-3.96zm4.98 5.98c.51-1.18.9-2.51 1.16-3.98h2.66a8.03 8.03 0 0 1-3.82 3.98zM16.72 13a17.1 17.1 0 0 0 0-2h3.02a7.9 7.9 0 0 1 0 2h-3.02z"/></svg></a>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
@@ -2058,6 +2144,78 @@
       startTimer();
     })();
 
+    /* ── REQUEST A CALL → WHATSAPP ── */
+    (function () {
+      var form = document.getElementById('callbackForm');
+      if (!form) return;
+
+      var WA_NUMBER = '917094464175';
+      var nameInput  = document.getElementById('cbName');
+      var emailInput = document.getElementById('cbEmail');
+      var phoneInput = document.getElementById('cbPhone');
+      var status     = document.getElementById('cbStatus');
+
+      function showStatus(msg, type) {
+        status.textContent = msg;
+        status.className = 'form-status ' + (type || '');
+      }
+
+      /* Accepts 10-digit Indian mobile numbers, with or without +91 / 0 and spaces or dashes */
+      function cleanPhone(value) {
+        var digits = value.replace(/\D/g, '');
+        if (digits.length === 12 && digits.indexOf('91') === 0) digits = digits.slice(2);
+        if (digits.length === 11 && digits.charAt(0) === '0') digits = digits.slice(1);
+        return /^[6-9]\d{9}$/.test(digits) ? digits : null;
+      }
+
+      function isEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      }
+
+      [nameInput, emailInput, phoneInput].forEach(function (input) {
+        input.addEventListener('input', function () {
+          input.classList.remove('is-invalid');
+          if (status.classList.contains('error')) showStatus('');
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var name  = nameInput.value.trim();
+        var email = emailInput.value.trim();
+        var phone = cleanPhone(phoneInput.value);
+        var errors = [];
+
+        [nameInput, emailInput, phoneInput].forEach(function (i) { i.classList.remove('is-invalid'); });
+
+        if (name.length < 2) { errors.push('your name'); nameInput.classList.add('is-invalid'); }
+        if (!phone) { errors.push('a valid 10-digit phone number'); phoneInput.classList.add('is-invalid'); }
+        if (email && !isEmail(email)) { errors.push('a valid email address (or leave it empty)'); emailInput.classList.add('is-invalid'); }
+
+        if (errors.length) {
+          var list = errors.length > 1 ? errors.slice(0, -1).join(', ') + ' and ' + errors[errors.length - 1] : errors[0];
+          showStatus('Please enter ' + list + '.', 'error');
+          form.querySelector('.is-invalid').focus();
+          return;
+        }
+
+        var message =
+          'Hello Kovai Lakshmi Grinders, I would like to request a call back.\n\n' +
+          'Name: ' + name + '\n' +
+          'Phone: +91 ' + phone + '\n' +
+          'Email: ' + (email || 'Not provided');
+
+        var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(message);
+        var win = window.open(url, '_blank');
+        if (win) { win.opener = null; }
+        else { window.location.href = url; } /* pop-up blocked: open in the same tab */
+
+        showStatus('Opening WhatsApp… please tap Send there to share your details. We will call you shortly.', 'success');
+        form.reset();
+      });
+    }());
+
   </script>
 
 
@@ -2066,7 +2224,7 @@
      class="float-wa" 
      target="_blank" 
      aria-label="Chat with us on WhatsApp">
-    <img src="SOCIAL MEDIAS/WA.png" alt="WhatsApp Chat">
+    <img src="https://kovai-lakshmi-kitchen-equipments.github.io/SOCIAL MEDIAS/WA.png" alt="WhatsApp Chat">
   </a>
 
 </body>
