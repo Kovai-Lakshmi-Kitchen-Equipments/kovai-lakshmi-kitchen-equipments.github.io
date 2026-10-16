@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Admin | Kovai Lakshmi Grinders</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="https://kovai-lakshmi-kitchen-equipments.github.io/LOGO/FAVICON.png" type="image/png">
+<link rel="stylesheet" href="https://kovai-lakshmi-kitchen-equipments.github.io/assets/css/site.css">
+<style>
+/* ============================================================
+   ADMIN PANEL (owner only – not indexed, no analytics)
+============================================================ */
+body { background: var(--bg); min-height: 100vh; }
+.adm-top { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.09); position: sticky; top: 0; z-index: 50; }
+.adm-top .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 70px; }
+.adm-brand { display: flex; align-items: center; gap: 12px; font-family: Georgia, 'Times New Roman', Times, serif; font-weight: 700; font-size: 18px; color: var(--dark); }
+.adm-brand img { height: 52px; width: auto; }
+.adm-nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+@media (max-width: 520px) {
+  .adm-brand span { display: none; }
+  .adm-brand img { height: 44px; }
+}
+.adm-main { padding: 28px 0 80px; }
+.adm-main .container { max-width: 1180px; }
+.view[hidden] { display: none !important; }
+h1.adm-title { font-family: Georgia, 'Times New Roman', Times, serif; font-size: clamp(24px, 4vw, 32px); color: var(--dark); margin-bottom: 6px; }
+.adm-sub { color: var(--muted); margin-bottom: 24px; }
+.card { background: #fff; border-radius: 14px; box-shadow: var(--shadow); padding: clamp(18px, 3vw, 28px); margin-bottom: 22px; }
+.card > h2 { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 20px; color: var(--primary); margin-bottom: 14px; }
+.b { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 18px; border-radius: 8px; border: 2px solid #000; background: #000; color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; transition: var(--trans); white-space: nowrap; }
+.b:hover:not([disabled]) { background: var(--primary); border-color: var(--primary); }
+.b[disabled] { opacity: .55; cursor: not-allowed; }
+.b.light { background: #fff; color: #000; }
+.b.light:hover:not([disabled]) { color: #fff; }
+.b.red { background: var(--primary); border-color: var(--primary); }
+.b.red:hover:not([disabled]) { background: #000; border-color: #000; }
+.b.green { background: #1e8e3e; border-color: #1e8e3e; }
+.b.small { padding: 6px 12px; font-size: 13px; }
+.field { margin-bottom: 16px; }
+.field > label, .field > .label { display: block; font-weight: 700; font-size: 14px; color: var(--dark); margin-bottom: 6px; }
+.field .hint { font-size: 13px; color: var(--muted); margin-top: 5px; }
+.inp, select.inp, textarea.inp { width: 100%; padding: 11px 14px; border: 1.5px solid #dfe3e8; border-radius: 8px; background: #fff; font-size: 15px; font-family: inherit; color: var(--text); outline: none; transition: border-color var(--trans), box-shadow var(--trans); }
+.inp:focus { border-color: var(--red); box-shadow: 0 0 0 4px var(--red-light); }
+textarea.inp { min-height: 90px; resize: vertical; }
+.counter { font-size: 12px; font-weight: 700; margin-top: 4px; }
+.counter.good { color: #1e8e3e; }
+.counter.bad { color: #d64545; }
+.msg { padding: 12px 16px; border-radius: 8px; margin: 10px 0; font-size: 14px; font-weight: 600; }
+.msg.error { background: #fdecec; color: #b42318; }
+.msg.ok { background: #eafaf0; color: #1e7b34; }
+.msg.info { background: #eef4ff; color: #1d4ed8; }
+.msg:empty { display: none; }
+
+/* Login */
+.login-wrap { min-height: calc(100vh - 160px); display: flex; align-items: center; justify-content: center; }
+.login-card { width: 100%; max-width: 420px; }
+
+/* Dashboard */
+.toolbar-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.post-list { display: flex; flex-direction: column; gap: 10px; }
+.post-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 14px 16px; border: 1px solid #eee; border-radius: 10px; background: #fff; }
+.post-row h3 { font-size: 16px; font-family: Georgia, 'Times New Roman', Times, serif; color: var(--dark); margin-bottom: 4px; overflow-wrap: anywhere; }
+.post-row .meta { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+.badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+.badge.published { background: #eafaf0; color: #1e7b34; }
+.badge.draft { background: #fff4e0; color: #9a5b00; }
+.badge.changes { background: #eef4ff; color: #1d4ed8; }
+.post-row .actions { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.empty-box { text-align: center; padding: 40px 16px; color: var(--muted); border: 2px dashed #e3e3e3; border-radius: 12px; }
+@media (max-width: 640px) {
+  .post-row { grid-template-columns: 1fr; }
+  .post-row .actions { justify-content: flex-start; }
+}
+
+/* Editor */
+.editor-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 22px; align-items: start; }
+.editor-side { position: sticky; top: 90px; }
+@media (max-width: 1000px) {
+  .editor-grid { grid-template-columns: 1fr; }
+  .editor-side { position: static; }
+}
+.save-state { font-size: 13px; font-weight: 700; color: var(--muted); }
+.save-state.saved { color: #1e8e3e; }
+.layout-pick { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.layout-pick label { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 8px; border: 2px solid #e5e5e5; border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: 700; text-align: center; background: #fff; transition: var(--trans); }
+.layout-pick input { position: absolute; opacity: 0; pointer-events: none; }
+.layout-pick label:hover { border-color: var(--red); }
+.layout-pick input:checked + label { border-color: var(--primary); background: var(--red-light); }
+.layout-pick input:focus-visible + label { outline: 3px solid var(--primary); outline-offset: 2px; }
+.layout-pick svg { width: 100%; max-width: 110px; height: auto; }
+@media (max-width: 640px) {
+  .layout-pick { grid-template-columns: repeat(2, 1fr); }
+}
+.cover-box { border: 2px dashed #d9d9d9; border-radius: 12px; padding: 14px; text-align: center; background: #fafafa; }
+.cover-box img { width: 100%; aspect-ratio: 1200 / 630; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
+.rte-toolbar { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px; border: 1.5px solid #dfe3e8; border-bottom: 0; border-radius: 10px 10px 0 0; background: #fafafa; position: sticky; top: 70px; z-index: 5; }
+.rte-toolbar button, .rte-toolbar select { min-width: 36px; height: 36px; padding: 0 8px; border: 1px solid #ddd; border-radius: 6px; background: #fff; font-size: 14px; font-weight: 700; color: var(--dark); cursor: pointer; }
+.rte-toolbar button:hover, .rte-toolbar select:hover { border-color: var(--red); color: var(--primary); }
+.rte-toolbar .sep { width: 1px; background: #ddd; margin: 2px 4px; }
+.rte-toolbar .toc-toggle { display: inline-flex; align-items: center; gap: 6px; padding: 0 10px; border: 1px solid #ddd; border-radius: 6px; background: #fff; font-size: 13px; font-weight: 700; cursor: pointer; }
+.rte-block { margin-bottom: 18px; }
+.rte-block > .label { font-weight: 700; font-size: 15px; margin-bottom: 6px; display: block; }
+.rte { min-height: 260px; padding: 16px 18px; border: 1.5px solid #dfe3e8; border-radius: 0 0 10px 10px; background: #fff; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 17px; line-height: 1.75; outline: none; overflow-wrap: break-word; }
+.rte-block .rte { border-radius: 10px; }
+.rte:focus { border-color: var(--red); box-shadow: 0 0 0 4px var(--red-light); }
+.rte:empty::before { content: attr(data-placeholder); color: #aaa; }
+.rte h2 { font-size: 26px; color: var(--primary); margin: 18px 0 8px; }
+.rte h3 { font-size: 21px; margin: 16px 0 8px; }
+.rte h4 { font-size: 18px; margin: 14px 0 6px; }
+.rte p { margin: 0 0 12px; }
+.rte ul { list-style: disc; padding-left: 24px; margin-bottom: 12px; }
+.rte ol { list-style: decimal; padding-left: 24px; margin-bottom: 12px; }
+.rte blockquote { border-left: 4px solid var(--red); padding: 8px 14px; background: var(--bg); margin: 10px 0; font-style: italic; }
+.rte img { max-width: 100%; border-radius: 8px; margin: 8px auto; }
+.rte figure { margin: 12px 0; }
+.rte figcaption { text-align: center; font-size: 14px; color: var(--muted); }
+.rte table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+.rte th, .rte td { border: 1px solid #ccc; padding: 8px; min-width: 40px; }
+.rte th { background: var(--red-light); }
+.rte a { color: var(--primary); text-decoration: underline; }
+.img-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin: 10px 0; }
+.img-list figure { margin: 0; position: relative; }
+.img-list img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; }
+.img-list .rm { position: absolute; top: 4px; right: 4px; width: 28px; height: 28px; border-radius: 50%; border: 0; background: rgba(0,0,0,.75); color: #fff; font-size: 16px; cursor: pointer; }
+.img-list figcaption { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.serp { border: 1px solid #e3e3e3; border-radius: 10px; padding: 14px; background: #fff; font-family: Arial, sans-serif; }
+.serp .s-url { font-size: 12px; color: #202124; margin-bottom: 4px; overflow-wrap: anywhere; }
+.serp .s-title { font-size: 19px; color: #1a0dab; line-height: 1.3; margin-bottom: 4px; overflow-wrap: anywhere; }
+.serp .s-desc { font-size: 13px; color: #4d5156; line-height: 1.5; overflow-wrap: anywhere; }
+.slug-row { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); overflow-wrap: anywhere; flex-wrap: wrap; }
+.slug-row .inp { flex: 1; min-width: 160px; }
+.check { display: flex; gap: 8px; align-items: center; font-weight: 700; font-size: 14px; cursor: pointer; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Modal */
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,.55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 1000; }
+.modal[hidden] { display: none; }
+.modal-card { background: #fff; border-radius: 14px; width: 100%; max-width: 560px; max-height: 92vh; overflow: auto; padding: 22px; box-shadow: var(--shadow-lg); }
+.modal-card.wide { max-width: 900px; }
+.modal-card h2 { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 21px; margin-bottom: 14px; color: var(--dark); }
+.crop-stage { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #222; border-radius: 10px; overflow: hidden; touch-action: none; cursor: grab; }
+.crop-stage canvas { width: 100%; height: 100%; display: block; }
+.crop-controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 12px 0; }
+.crop-controls input[type=range] { flex: 1; min-width: 160px; }
+.busy { position: fixed; inset: 0; background: rgba(255,255,255,.75); display: flex; align-items: center; justify-content: center; z-index: 2000; flex-direction: column; gap: 14px; font-weight: 700; color: var(--dark); text-align: center; padding: 20px; }
+.busy[hidden] { display: none; }
+.busy .spin { width: 42px; height: 42px; border: 4px solid var(--red-light); border-top-color: var(--primary); border-radius: 50%; animation: spin .9s linear infinite; }
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: #111; color: #fff; padding: 12px 20px; border-radius: 10px; font-weight: 700; z-index: 3000; box-shadow: var(--shadow-lg); max-width: calc(100vw - 32px); text-align: center; }
+.toast[hidden] { display: none; }
+.cat-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+.cat-row .inp { flex: 1; min-width: 160px; }
+.cat-row .count { font-size: 13px; color: var(--muted); min-width: 70px; }
+</style>
+</head>
+<body>
+
+  <header class="adm-top">
+    <div class="container bar">
+      <div class="adm-brand">
+        <img src="https://kovai-lakshmi-kitchen-equipments.github.io/LOGO/KOVAI%20LAKSHMI%20GRINDERS%20LOGO.png" alt="Kovai Lakshmi Grinders">
+        <span>Website Admin</span>
+      </div>
+      <nav class="adm-nav" id="admNav" hidden>
+        <button type="button" class="b light small" data-go="dashboard">My Posts</button>
+        <button type="button" class="b light small" data-go="categories">Categories</button>
+        <button type="button" class="b light small" data-go="password">Password</button>
+        <button type="button" class="b small" id="logoutBtn">Log out</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="adm-main">
+    <div class="container">
+
+      <!-- ═══════════ LOGIN ═══════════ -->
+      <section class="view" id="view-login">
+        <div class="login-wrap">
+          <form class="card login-card" id="loginForm" autocomplete="on">
+            <h1 class="adm-title">Welcome back</h1>
+            <p class="adm-sub">Log in to write and publish posts on your website.</p>
+            <div class="msg error" id="loginMsg" role="alert"></div>
+            <div class="field">
+              <label for="lgUser">Username</label>
+              <input class="inp" id="lgUser" name="username" autocomplete="username" required>
+            </div>
+            <div class="field">
+              <label for="lgPass">Password</label>
+              <input class="inp" id="lgPass" name="password" type="password" autocomplete="current-password" required>
+            </div>
+            <button class="b red" type="submit" style="width:100%">Log in</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ═══════════ DASHBOARD ═══════════ -->
+      <section class="view" id="view-dashboard" hidden>
+        <div class="toolbar-row">
+          <div>
+            <h1 class="adm-title">My Posts</h1>
+            <p class="adm-sub" style="margin:0">Drafts are only visible here. Published posts are live on the website.</p>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="b red" id="newPostBtn">+ New post</button>
+            <button type="button" class="b light" id="rebuildBtn" title="Updates every published post with the latest menu, footer and design">Rebuild all posts</button>
+          </div>
+        </div>
+        <div class="msg" id="dashMsg"></div>
+        <div class="post-list" id="postList"></div>
+      </section>
+
+      <!-- ═══════════ EDITOR ═══════════ -->
+      <section class="view" id="view-editor" hidden>
+        <div class="toolbar-row">
+          <div>
+            <h1 class="adm-title" id="edHeading">New post</h1>
+            <span class="save-state" id="saveState" aria-live="polite"></span>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="b light" id="backBtn">← Back</button>
+            <button type="button" class="b light" id="saveBtn">Save as draft</button>
+            <button type="button" class="b light" id="previewBtn">Preview</button>
+            <button type="button" class="b green" id="publishBtn">Publish</button>
+          </div>
+        </div>
+        <div class="msg" id="edMsg" role="alert"></div>
+
+        <div class="editor-grid">
+          <div class="editor-main">
+            <div class="card">
+              <div class="field">
+                <label for="edTitle">Post title</label>
+                <input class="inp" id="edTitle" placeholder="e.g. How to choose the right wet grinder for your hotel" maxlength="140">
+              </div>
+              <div class="field">
+                <label for="edCategory">Category</label>
+                <select class="inp" id="edCategory"></select>
+              </div>
+              <div class="field">
+                <span class="label">Choose a layout</span>
+                <div class="layout-pick" id="layoutPick" role="radiogroup" aria-label="Post layout">
+                  <input type="radio" name="layout" id="lay-full" value="full" checked>
+                  <label for="lay-full"><svg viewBox="0 0 110 80" aria-hidden="true"><rect x="2" y="2" width="106" height="30" rx="4" fill="#da0000" opacity=".8"/><rect x="2" y="38" width="80" height="6" rx="2" fill="#333"/><rect x="2" y="50" width="106" height="4" rx="2" fill="#bbb"/><rect x="2" y="58" width="106" height="4" rx="2" fill="#bbb"/><rect x="2" y="66" width="90" height="4" rx="2" fill="#bbb"/></svg>Cover + text</label>
+                  <input type="radio" name="layout" id="lay-side" value="side">
+                  <label for="lay-side"><svg viewBox="0 0 110 80" aria-hidden="true"><rect x="2" y="2" width="106" height="22" rx="4" fill="#da0000" opacity=".8"/><rect x="2" y="30" width="66" height="5" rx="2" fill="#333"/><rect x="2" y="40" width="66" height="4" rx="2" fill="#bbb"/><rect x="2" y="48" width="66" height="4" rx="2" fill="#bbb"/><rect x="2" y="56" width="66" height="4" rx="2" fill="#bbb"/><rect x="2" y="64" width="50" height="4" rx="2" fill="#bbb"/><rect x="74" y="30" width="34" height="20" rx="3" fill="#f0a500"/><rect x="74" y="54" width="34" height="20" rx="3" fill="#f0a500"/></svg>Text + side images</label>
+                  <input type="radio" name="layout" id="lay-gallery" value="gallery">
+                  <label for="lay-gallery"><svg viewBox="0 0 110 80" aria-hidden="true"><rect x="2" y="2" width="106" height="20" rx="4" fill="#da0000" opacity=".8"/><rect x="2" y="27" width="106" height="4" rx="2" fill="#bbb"/><rect x="2" y="35" width="80" height="4" rx="2" fill="#bbb"/><rect x="2" y="45" width="33" height="15" rx="3" fill="#f0a500"/><rect x="38" y="45" width="33" height="15" rx="3" fill="#f0a500"/><rect x="74" y="45" width="34" height="15" rx="3" fill="#f0a500"/><rect x="2" y="63" width="33" height="15" rx="3" fill="#f0a500"/><rect x="38" y="63" width="33" height="15" rx="3" fill="#f0a500"/></svg>Image gallery</label>
+                  <input type="radio" name="layout" id="lay-case" value="case">
+                  <label for="lay-case"><svg viewBox="0 0 110 80" aria-hidden="true"><rect x="2" y="2" width="106" height="18" rx="4" fill="#da0000" opacity=".8"/><rect x="2" y="25" width="106" height="15" rx="3" fill="#fde8e8" stroke="#da0000"/><rect x="2" y="44" width="106" height="15" rx="3" fill="#fff4dd" stroke="#f0a500"/><rect x="2" y="63" width="106" height="15" rx="3" fill="#eafaf0" stroke="#1e8e3e"/></svg>Case study</label>
+                </div>
+                <p class="hint" id="layoutHint"></p>
+              </div>
+            </div>
+
+            <div class="card">
+              <h2>Cover image</h2>
+              <div class="cover-box">
+                <img id="coverPreview" src="" alt="" hidden>
+                <p class="hint" id="coverHint">The cover must be exactly <strong>1200 × 630 px</strong>, <strong>1 MB or smaller</strong>, and a JPG, PNG or WebP file. It is also used when the post is shared on WhatsApp or Facebook.</p>
+                <div class="msg" id="coverMsg"></div>
+                <label class="b light" for="coverFile" style="margin-top:8px">Choose cover image</label>
+                <input type="file" id="coverFile" accept="image/jpeg,image/png,image/webp" hidden>
+              </div>
+              <div class="field" style="margin-top:14px">
+                <label for="edCoverAlt">Describe the cover image (image alt text)</label>
+                <input class="inp" id="edCoverAlt" placeholder="e.g. Tilting wet grinder in a hotel kitchen">
+                <p class="hint">A short description for people who cannot see the image, and for Google.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <h2>Write your post</h2>
+              <div class="rte-toolbar" id="rteToolbar" role="toolbar" aria-label="Text formatting">
+                <button type="button" data-cmd="bold" title="Bold"><b>B</b></button>
+                <button type="button" data-cmd="italic" title="Italic"><i>I</i></button>
+                <button type="button" data-cmd="underline" title="Underline"><u>U</u></button>
+                <button type="button" data-cmd="strikeThrough" title="Strikethrough"><s>S</s></button>
+                <span class="sep"></span>
+                <select data-block title="Text style" aria-label="Text style">
+                  <option value="p">Normal text</option>
+                  <option value="h2">Heading (big)</option>
+                  <option value="h3">Heading (medium)</option>
+                  <option value="h4">Heading (small)</option>
+                </select>
+                <span class="sep"></span>
+                <button type="button" data-cmd="insertUnorderedList" title="Bullet list">• List</button>
+                <button type="button" data-cmd="insertOrderedList" title="Numbered list">1. List</button>
+                <button type="button" data-cmd="quote" title="Quote">❝</button>
+                <span class="sep"></span>
+                <button type="button" data-cmd="justifyLeft" title="Align left">⯇</button>
+                <button type="button" data-cmd="justifyCenter" title="Align centre">≡</button>
+                <button type="button" data-cmd="justifyRight" title="Align right">⯈</button>
+                <span class="sep"></span>
+                <button type="button" data-cmd="link" title="Add link">🔗 Link</button>
+                <button type="button" data-cmd="table" title="Insert table">▦ Table</button>
+                <button type="button" data-cmd="image" title="Insert image">🖼 Image</button>
+                <label class="toc-toggle" title="Show a table of contents built from your headings"><input type="checkbox" id="edToc"> Contents list</label>
+                <span class="sep"></span>
+                <button type="button" data-cmd="undo" title="Undo">↶</button>
+                <button type="button" data-cmd="redo" title="Redo">↷</button>
+                <button type="button" data-cmd="removeFormat" title="Clear formatting">⌫ Clear</button>
+              </div>
+              <div id="editorsHost"></div>
+              <input type="file" id="inlineFile" accept="image/jpeg,image/png,image/webp" hidden>
+            </div>
+
+            <div class="card" id="extraImagesCard" hidden>
+              <h2 id="extraImagesTitle">Images</h2>
+              <p class="hint" id="extraImagesHint"></p>
+              <div class="img-list" id="extraImages"></div>
+              <label class="b light" for="extraFile">+ Add image</label>
+              <input type="file" id="extraFile" accept="image/jpeg,image/png,image/webp" hidden>
+            </div>
+          </div>
+
+          <!-- SEO side panel -->
+          <aside class="editor-side">
+            <div class="card">
+              <h2>Google &amp; sharing</h2>
+              <p class="hint" style="margin-bottom:12px">Empty boxes fill in automatically from your title and first paragraph. You can change them.</p>
+              <div class="field">
+                <span class="label">How it may look on Google</span>
+                <div class="serp" aria-hidden="true">
+                  <div class="s-url" id="serpUrl"></div>
+                  <div class="s-title" id="serpTitle"></div>
+                  <div class="s-desc" id="serpDesc"></div>
+                </div>
+              </div>
+              <div class="field">
+                <label for="edSlug">Post web address</label>
+                <div class="slug-row"><span>…/resources/</span><input class="inp" id="edSlug" placeholder="post-address"><span>/</span></div>
+                <p class="hint" id="slugHint">Made from the title. Only small letters, numbers and dashes.</p>
+              </div>
+              <div class="field">
+                <label for="edSeoTitle">Google title</label>
+                <input class="inp" id="edSeoTitle" maxlength="90">
+                <div class="counter" data-for="edSeoTitle" data-min="50" data-max="60"></div>
+              </div>
+              <div class="field">
+                <label for="edMetaDesc">Google description</label>
+                <textarea class="inp" id="edMetaDesc" maxlength="220"></textarea>
+                <div class="counter" data-for="edMetaDesc" data-min="150" data-max="160"></div>
+              </div>
+              <div class="field">
+                <label for="edKeywords">Keywords</label>
+                <input class="inp" id="edKeywords" placeholder="wet grinder, hotel kitchen, Coimbatore">
+                <p class="hint">Separate with commas.</p>
+              </div>
+              <div class="field">
+                <label for="edOgTitle">Share title (WhatsApp / Facebook)</label>
+                <input class="inp" id="edOgTitle" maxlength="90">
+                <div class="counter" data-for="edOgTitle" data-min="40" data-max="60"></div>
+              </div>
+              <div class="field">
+                <label for="edOgDesc">Share description</label>
+                <textarea class="inp" id="edOgDesc" maxlength="220"></textarea>
+                <div class="counter" data-for="edOgDesc" data-min="100" data-max="160"></div>
+              </div>
+              <div class="field">
+                <span class="label">Share image</span>
+                <p class="hint" id="shareHint">Uses the cover image.</p>
+                <div class="btn-row" style="margin-top:6px">
+                  <label class="b light small" for="shareFile">Use a different image</label>
+                  <button type="button" class="b light small" id="shareReset" hidden>Use cover again</button>
+                </div>
+                <input type="file" id="shareFile" accept="image/jpeg,image/png,image/webp" hidden>
+                <div class="msg" id="shareMsg"></div>
+              </div>
+              <div class="field">
+                <label for="edAuthor">Author</label>
+                <input class="inp" id="edAuthor" placeholder="Kovai Lakshmi Grinders">
+              </div>
+              <div class="field">
+                <label for="edDate">Publish date</label>
+                <input class="inp" id="edDate" type="date">
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ═══════════ CATEGORIES ═══════════ -->
+      <section class="view" id="view-categories" hidden>
+        <h1 class="adm-title">Categories</h1>
+        <p class="adm-sub">Categories appear as filter buttons on the Resources page.</p>
+        <div class="card">
+          <h2>Add a category</h2>
+          <form class="btn-row" id="catAddForm">
+            <input class="inp" id="catNew" placeholder="e.g. Recipes" style="flex:1;min-width:200px" maxlength="40" required>
+            <button class="b red" type="submit">Add</button>
+          </form>
+          <div class="msg" id="catMsg"></div>
+        </div>
+        <div class="card">
+          <h2>Your categories</h2>
+          <div id="catList"></div>
+        </div>
+      </section>
+
+      <!-- ═══════════ PASSWORD ═══════════ -->
+      <section class="view" id="view-password" hidden>
+        <h1 class="adm-title">Change password</h1>
+        <form class="card" id="pwForm" style="max-width:520px">
+          <div class="msg" id="pwMsg" role="alert"></div>
+          <div class="field"><label for="pwOld">Current password</label><input class="inp" id="pwOld" type="password" autocomplete="current-password" required></div>
+          <div class="field"><label for="pwNew">New password</label><input class="inp" id="pwNew" type="password" autocomplete="new-password" minlength="8" required><p class="hint">At least 8 characters. Use letters and numbers.</p></div>
+          <div class="field"><label for="pwNew2">Type the new password again</label><input class="inp" id="pwNew2" type="password" autocomplete="new-password" minlength="8" required></div>
+          <button class="b red" type="submit">Change password</button>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ═══════════ MODALS ═══════════ -->
+  <div class="modal" id="confirmModal" hidden role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+    <div class="modal-card">
+      <h2 id="confirmTitle">Are you sure?</h2>
+      <p id="confirmText" style="margin-bottom:18px"></p>
+      <div class="btn-row" style="justify-content:flex-end">
+        <button type="button" class="b light" data-close>Cancel</button>
+        <button type="button" class="b red" id="confirmOk">Yes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="linkModal" hidden role="dialog" aria-modal="true" aria-labelledby="linkTitle">
+    <form class="modal-card" id="linkForm">
+      <h2 id="linkTitle">Add a link</h2>
+      <div class="field"><label for="linkText">Text to show</label><input class="inp" id="linkText"></div>
+      <div class="field"><label for="linkUrl">Web address</label><input class="inp" id="linkUrl" placeholder="https://…" required></div>
+      <div class="btn-row" style="justify-content:flex-end">
+        <button type="button" class="b light" data-close>Cancel</button>
+        <button type="submit" class="b red">Add link</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal" id="tableModal" hidden role="dialog" aria-modal="true" aria-labelledby="tableTitle">
+    <form class="modal-card" id="tableForm">
+      <h2 id="tableTitle">Insert a table</h2>
+      <div class="btn-row">
+        <div class="field" style="flex:1"><label for="tblRows">Rows</label><input class="inp" id="tblRows" type="number" min="1" max="30" value="3"></div>
+        <div class="field" style="flex:1"><label for="tblCols">Columns</label><input class="inp" id="tblCols" type="number" min="1" max="8" value="3"></div>
+      </div>
+      <label class="check" style="margin-bottom:16px"><input type="checkbox" id="tblHead" checked> First row is a heading</label>
+      <div class="btn-row" style="justify-content:flex-end">
+        <button type="button" class="b light" data-close>Cancel</button>
+        <button type="submit" class="b red">Insert table</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal" id="cropModal" hidden role="dialog" aria-modal="true" aria-labelledby="cropTitle">
+    <div class="modal-card wide">
+      <h2 id="cropTitle">Adjust your image</h2>
+      <p class="hint" style="margin-bottom:10px">Drag the picture to choose what shows. Use the slider to zoom. The image will be saved in 16:9 shape, up to 1200 px wide and 1 MB.</p>
+      <div class="crop-stage" id="cropStage"><canvas id="cropCanvas" width="1200" height="675"></canvas></div>
+      <div class="crop-controls">
+        <label for="cropZoom" style="font-weight:700">Zoom</label>
+        <input type="range" id="cropZoom" min="1" max="4" step="0.01" value="1">
+      </div>
+      <div class="field"><label for="cropAlt">Describe this image (alt text)</label><input class="inp" id="cropAlt" placeholder="e.g. Chapathi pressing machine in operation"></div>
+      <div class="field" id="cropCaptionField"><label for="cropCaption">Caption (optional)</label><input class="inp" id="cropCaption"></div>
+      <div class="msg" id="cropMsg"></div>
+      <div class="btn-row" style="justify-content:flex-end">
+        <button type="button" class="b light" data-close>Cancel</button>
+        <button type="button" class="b red" id="cropOk">Use this image</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="busy" id="busy" hidden><div class="spin"></div><div id="busyText">Please wait…</div></div>
+  <div class="toast" id="toast" hidden role="status"></div>
+
+  <script src="https://kovai-lakshmi-kitchen-equipments.github.io/assets/js/site.js"></script>
+  <script>
+  /* ============================================================
+     ADMIN PANEL
+     The browser keeps only a temporary session pass (never the password),
+     in sessionStorage, so it is removed when the tab closes.
+  ============================================================ */
+  (function () {
+    'use strict';
+
+    var BASE = 'https://kovai-lakshmi-kitchen-equipments.github.io/';
+    var TOKEN_KEY = 'kl_admin_session';
+    var AUTOSAVE_MS = 60000;
+    var MAX_BYTES = 1024 * 1024;
+
+    var $ = function (id) { return document.getElementById(id); };
+    var esc = KL.escapeHtml;
+
+    var state = { posts: [], categories: [], post: null, dirty: false, slugTouched: false, editors: {}, activeEditor: null, autosaveTimer: null, saving: false };
+
+    /* ── helpers ─────────────────────────────────────────── */
+    function token() { try { return sessionStorage.getItem(TOKEN_KEY) || ''; } catch (e) { return ''; } }
+    function setToken(t) { try { if (t) sessionStorage.setItem(TOKEN_KEY, t); else sessionStorage.removeItem(TOKEN_KEY); } catch (e) {} }
+
+    function busy(on, text) { $('busy').hidden = !on; $('busyText').textContent = text || 'Please wait…'; }
+    var toastTimer;
+    function toast(text) { var t = $('toast'); t.textContent = text; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.hidden = true; }, 3500); }
+    function msg(id, text, type) { var m = $(id); m.textContent = text || ''; m.className = 'msg ' + (type || 'error'); }
+
+    function slugify(s) {
+      return String(s || '').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '')
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80).replace(/-+$/, '');
+    }
+    function today() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+    function niceDate(iso) { if (!iso) return ''; var d = new Date(iso + 'T00:00:00'); return isNaN(d) ? iso : d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }); }
+
+    /* Talks to the Apps Script. Sent as plain text with no custom headers so the reply can be read. */
+    function api(action, data) {
+      if (!KL.EXEC_URL) {
+        return Promise.reject(new Error('The admin is not connected yet. Paste the Apps Script address into assets/js/site.js (see the setup guide).'));
+      }
+      var body = Object.assign({ action: action, token: token() }, data || {});
+      return fetch(KL.EXEC_URL, { method: 'POST', body: JSON.stringify(body) })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (!res || res.ok !== true) {
+            if (res && res.code === 'SESSION') { setToken(''); show('login'); msg('loginMsg', 'Your session ended. Please log in again.', 'info'); }
+            throw new Error((res && res.error) || 'Something went wrong. Please try again.');
+          }
+          return res;
+        }, function () {
+          throw new Error('Could not reach the website server. Check your internet connection and try again.');
+        });
+    }
+
+    /* ── views ───────────────────────────────────────────── */
+    function show(view) {
+      ['login', 'dashboard', 'editor', 'categories', 'password'].forEach(function (v) { $('view-' + v).hidden = v !== view; });
+      $('admNav').hidden = view === 'login';
+      if (view !== 'editor') stopAutosave();
+      window.scrollTo(0, 0);
+    }
+
+    function go(view) {
+      if (view !== 'editor' && state.dirty && !$('view-editor').hidden) {
+        confirmBox('Leave without saving?', 'You have changes that are not saved yet.', 'Leave', function () { state.dirty = false; go(view); });
+        return;
+      }
+      if (view === 'dashboard') loadDashboard();
+      else if (view === 'categories') loadCategories();
+      else show(view);
+    }
+
+    document.querySelectorAll('[data-go]').forEach(function (b) { b.addEventListener('click', function () { go(b.getAttribute('data-go')); }); });
+
+    /* ── modals ──────────────────────────────────────────── */
+    function openModal(id) { $(id).hidden = false; document.body.classList.add('no-scroll'); var f = $(id).querySelector('input, button.red'); if (f) f.focus(); }
+    function closeModal(id) { $(id).hidden = true; document.body.classList.remove('no-scroll'); }
+    document.querySelectorAll('.modal').forEach(function (m) {
+      m.addEventListener('click', function (e) { if (e.target === m || e.target.hasAttribute('data-close')) closeModal(m.id); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') document.querySelectorAll('.modal:not([hidden])').forEach(function (m) { closeModal(m.id); });
+    });
+
+    function confirmBox(title, text, okText, onOk) {
+      $('confirmTitle').textContent = title;
+      $('confirmText').textContent = text;
+      $('confirmOk').textContent = okText || 'Yes';
+      $('confirmOk').onclick = function () { closeModal('confirmModal'); onOk(); };
+      openModal('confirmModal');
+    }
+
+    /* ── login / logout ──────────────────────────────────── */
+    $('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      msg('loginMsg', '');
+      busy(true, 'Logging in…');
+      api('login', { username: $('lgUser').value.trim(), password: $('lgPass').value }).then(function (res) {
+        setToken(res.token);
+        $('lgPass').value = '';
+        loadDashboard();
+      }).catch(function (err) { msg('loginMsg', err.message); }).then(function () { busy(false); });
+    });
+
+    $('logoutBtn').addEventListener('click', function () {
+      var done = function () { setToken(''); state.dirty = false; show('login'); };
+      api('logout').then(done, done);
+    });
+
+    /* ── dashboard ───────────────────────────────────────── */
+    function loadDashboard() {
+      busy(true, 'Loading your posts…');
+      return api('listPosts').then(function (res) {
+        state.posts = res.posts || [];
+        state.categories = res.categories || [];
+        renderPostList();
+        show('dashboard');
+      }).catch(function (err) {
+        if ($('view-login').hidden) { msg('dashMsg', err.message); show('dashboard'); }
+        else msg('loginMsg', err.message);
+      }).then(function () { busy(false); });
+    }
+
+    function catName(slug) { var c = state.categories.filter(function (x) { return x.slug === slug; })[0]; return c ? c.name : slug; }
+
+    function renderPostList() {
+      var list = $('postList');
+      if (!state.posts.length) {
+        list.innerHTML = '<div class="empty-box">No posts yet. Click <strong>+ New post</strong> to write your first one.</div>';
+        return;
+      }
+      list.innerHTML = state.posts.map(function (p) {
+        var badge = p.status === 'published' ? '<span class="badge published">Published</span>' : '<span class="badge draft">Draft</span>';
+        if (p.status === 'published' && p.dirty) badge += ' <span class="badge changes">Unpublished changes</span>';
+        return '<div class="post-row" data-id="' + esc(p.id) + '">' +
+          '<div><h3>' + esc(p.title || '(no title)') + '</h3><div class="meta">' + badge +
+          '<span>' + esc(catName(p.category)) + '</span><span>' + esc(niceDate(p.publishDate)) + '</span>' +
+          (p.updatedDate ? '<span>Updated ' + esc(niceDate(p.updatedDate)) + '</span>' : '') + '</div></div>' +
+          '<div class="actions">' +
+            '<button type="button" class="b small" data-act="edit">Edit</button>' +
+            '<button type="button" class="b light small" data-act="preview">Preview</button>' +
+            (p.status === 'published' ? '<a class="b light small" target="_blank" rel="noopener" href="' + esc(BASE + 'resources/' + p.slug + '/') + '">View live</a>' : '') +
+            '<button type="button" class="b light small" data-act="delete">Delete</button>' +
+          '</div></div>';
+      }).join('');
+    }
+
+    $('postList').addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-act]');
+      if (!btn) return;
+      var id = btn.closest('.post-row').getAttribute('data-id');
+      var post = state.posts.filter(function (p) { return p.id === id; })[0];
+      var act = btn.getAttribute('data-act');
+      if (act === 'edit') openPost(id);
+      else if (act === 'preview') {
+        var w = window.open('', '_blank');
+        api('getPost', { id: id }).then(function (res) { return previewInto(w, res.post); }).catch(function (err) { if (w) w.close(); toast(err.message); });
+      } else if (act === 'delete') {
+        confirmBox('Delete this post?', '"' + (post.title || 'Untitled') + '" will be removed' + (post.status === 'published' ? ' from the website' : '') + ', together with its images. This cannot be undone.', 'Delete', function () {
+          busy(true, 'Deleting…');
+          api('deletePost', { id: id }).then(function () { toast('Post deleted.'); return loadDashboard(); })
+            .catch(function (err) { msg('dashMsg', err.message); }).then(function () { busy(false); });
+        });
+      }
+    });
+
+    $('rebuildBtn').addEventListener('click', function () {
+      confirmBox('Rebuild all posts?', 'Every published post and the Resources page will be updated with the latest menu, footer and design. This can take up to a minute.', 'Rebuild', function () {
+        busy(true, 'Rebuilding all posts… please keep this page open.');
+        api('rebuildAll').then(function (res) {
+          msg('dashMsg', 'Done! ' + res.count + ' post' + (res.count === 1 ? '' : 's') + ' rebuilt. The website will update in about 1–2 minutes.', 'ok');
+        }).catch(function (err) { msg('dashMsg', err.message); }).then(function () { busy(false); });
+      });
+    });
+
+    /* ── editor: rich text boxes ─────────────────────────── */
+    var LAYOUT_HINTS = {
+      full: 'A large cover image, then your text.',
+      side: 'Your text with a column of pictures beside it. Add the pictures in the "Side images" box below.',
+      gallery: 'Your text followed by a grid of pictures. Add them in the "Gallery images" box below.',
+      'case': 'A case study in three parts: the Problem, the Solution and the Result.'
+    };
+
+    function makeEditor(key, label, placeholder) {
+      var wrap = document.createElement('div');
+      wrap.className = 'rte-block';
+      if (label) {
+        var l = document.createElement('span');
+        l.className = 'label';
+        l.textContent = label;
+        wrap.appendChild(l);
+      }
+      var el = document.createElement('div');
+      el.className = 'rte';
+      el.contentEditable = 'true';
+      el.setAttribute('role', 'textbox');
+      el.setAttribute('aria-multiline', 'true');
+      el.setAttribute('aria-label', label || 'Post text');
+      el.setAttribute('data-placeholder', placeholder || 'Start writing here…');
+      el.addEventListener('focus', function () { state.activeEditor = el; });
+      el.addEventListener('input', function () { markDirty(); if (el.innerHTML === '<br>') el.innerHTML = ''; });
+      /* Paste as clean text (keeps line breaks as paragraphs) */
+      el.addEventListener('paste', function (e) {
+        e.preventDefault();
+        var text = (e.clipboardData || window.clipboardData).getData('text/plain');
+        var html = text.split(/\r?\n\s*\r?\n/).map(function (para) {
+          return '<p>' + esc(para).replace(/\r?\n/g, '<br>') + '</p>';
+        }).join('');
+        document.execCommand('insertHTML', false, html);
+      });
+      wrap.appendChild(el);
+      state.editors[key] = el;
+      return wrap;
+    }
+
+    function buildEditors(layout, values) {
+      var host = $('editorsHost');
+      host.innerHTML = '';
+      state.editors = {};
+      values = values || {};
+      if (layout === 'case') {
+        host.appendChild(makeEditor('problem', 'Problem', 'What was the customer\'s problem?'));
+        host.appendChild(makeEditor('solution', 'Solution', 'How did we solve it?'));
+        host.appendChild(makeEditor('result', 'Result', 'What was the result?'));
+        host.appendChild(makeEditor('content', 'Extra notes (optional)', 'Anything else to add…'));
+      } else {
+        host.appendChild(makeEditor('content', '', 'Start writing here…'));
+      }
+      Object.keys(state.editors).forEach(function (k) { state.editors[k].innerHTML = toEditorHtml(values[k] || ''); });
+      state.activeEditor = state.editors.problem || state.editors.content;
+    }
+
+    /* Images just uploaded show from memory until the website has published them */
+    var localImages = {};
+    function toEditorHtml(html) {
+      var div = document.createElement('div');
+      div.innerHTML = html;
+      div.querySelectorAll('img').forEach(function (img) {
+        var src = img.getAttribute('src');
+        if (localImages[src]) { img.setAttribute('data-final', src); img.setAttribute('src', localImages[src]); }
+      });
+      return div.innerHTML;
+    }
+    function fromEditorHtml(el) {
+      var div = el.cloneNode(true);
+      div.querySelectorAll('img[data-final]').forEach(function (img) {
+        img.setAttribute('src', img.getAttribute('data-final'));
+        img.removeAttribute('data-final');
+      });
+      var html = div.innerHTML.trim();
+      return (html === '<br>' || html === '<p><br></p>') ? '' : html;
+    }
+
+    function exec(cmd, val) {
+      var ed = state.activeEditor;
+      if (!ed) return;
+      ed.focus();
+      document.execCommand(cmd, false, val);
+      markDirty();
+    }
+
+    var savedRange = null;
+    function saveSelection() {
+      var sel = window.getSelection();
+      savedRange = sel.rangeCount ? sel.getRangeAt(0).cloneRange() : null;
+    }
+    function restoreSelection() {
+      if (!state.activeEditor) return;
+      state.activeEditor.focus();
+      if (savedRange) { var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(savedRange); }
+    }
+
+    $('rteToolbar').addEventListener('mousedown', function (e) { if (e.target.closest('button')) e.preventDefault(); });
+    $('rteToolbar').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-cmd]');
+      if (!b) return;
+      var cmd = b.getAttribute('data-cmd');
+      if (cmd === 'quote') exec('formatBlock', 'blockquote');
+      else if (cmd === 'link') { saveSelection(); $('linkText').value = String(window.getSelection()); $('linkUrl').value = ''; openModal('linkModal'); }
+      else if (cmd === 'table') { saveSelection(); openModal('tableModal'); }
+      else if (cmd === 'image') { saveSelection(); cropFor = 'inline'; $('inlineFile').click(); }
+      else if (cmd === 'removeFormat') { exec('removeFormat'); exec('formatBlock', 'p'); }
+      else exec(cmd);
+    });
+    document.querySelector('[data-block]').addEventListener('change', function (e) {
+      exec('formatBlock', e.target.value);
+      e.target.value = 'p';
+    });
+
+    $('linkForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var url = $('linkUrl').value.trim();
+      if (!/^(https?:\/\/|mailto:|tel:|#)/i.test(url)) url = 'https://' + url;
+      var text = $('linkText').value.trim() || url;
+      closeModal('linkModal');
+      restoreSelection();
+      document.execCommand('insertHTML', false, '<a href="' + esc(url) + '">' + esc(text) + '</a>');
+      markDirty();
+    });
+
+    $('tableForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var rows = Math.max(1, Math.min(30, +$('tblRows').value || 3));
+      var cols = Math.max(1, Math.min(8, +$('tblCols').value || 3));
+      var head = $('tblHead').checked;
+      var html = '<div class="table-wrap"><table>';
+      for (var r = 0; r < rows; r++) {
+        if (r === 0 && head) html += '<thead>';
+        if ((r === 0 && !head) || (r === 1 && head)) html += '<tbody>';
+        html += '<tr>';
+        for (var c = 0; c < cols; c++) html += (r === 0 && head) ? '<th>Heading</th>' : '<td>&nbsp;</td>';
+        html += '</tr>';
+        if (r === 0 && head) html += '</thead>';
+      }
+      html += '</tbody></table></div><p><br></p>';
+      closeModal('tableModal');
+      restoreSelection();
+      document.execCommand('insertHTML', false, html);
+      markDirty();
+    });
+
+    /* ── image tools ─────────────────────────────────────── */
+    function readFile(file) {
+      return new Promise(function (resolve, reject) {
+        var fr = new FileReader();
+        fr.onload = function () { resolve(fr.result); };
+        fr.onerror = function () { reject(new Error('Could not read this file.')); };
+        fr.readAsDataURL(file);
+      });
+    }
+    function loadImage(src) {
+      return new Promise(function (resolve, reject) {
+        var img = new Image();
+        img.onload = function () { resolve(img); };
+        img.onerror = function () { reject(new Error('This file is not a picture we can open. Please use a JPG, PNG or WebP image.')); };
+        img.src = src;
+      });
+    }
+    function mb(bytes) { return (bytes / 1024 / 1024).toFixed(1) + ' MB'; }
+    var EXT = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
+
+    /* Strict cover check: exactly 1200 × 630 px, 1 MB or less, JPG / PNG / WebP. No automatic fixing. */
+    function checkCover(file) {
+      if (!EXT[file.type]) return Promise.reject(new Error('This file is a ' + (file.type || 'unknown type') + '. Please upload a JPG, PNG or WebP image.'));
+      if (file.size > MAX_BYTES) return Promise.reject(new Error('This image is ' + mb(file.size) + '. Please upload a cover of 1 MB or less.'));
+      return readFile(file).then(function (data) {
+        return loadImage(data).then(function (img) {
+          if (img.naturalWidth !== 1200 || img.naturalHeight !== 630) {
+            throw new Error('This image is ' + img.naturalWidth + ' × ' + img.naturalHeight + ' px. Please upload a cover that is exactly 1200 × 630 px.');
+          }
+          return data;
+        });
+      });
+    }
+
+    function needSlug() {
+      var s = currentSlug();
+      if (!s) throw new Error('Please type the post title first, so we know where to save the image.');
+      return s;
+    }
+
+    function upload(dataUrl, name) {
+      var slug = needSlug();
+      var m = /^data:([^;]+);base64,(.*)$/.exec(dataUrl);
+      return api('uploadImage', { slug: slug, name: name, contentType: m[1], data: m[2] }).then(function (res) {
+        localImages[res.url] = dataUrl;
+        return res.url;
+      });
+    }
+
+    function stamp() { return Date.now().toString(36); }
+
+    $('coverFile').addEventListener('change', function () {
+      var file = this.files[0];
+      this.value = '';
+      if (!file) return;
+      msg('coverMsg', '');
+      var slug;
+      try { slug = needSlug(); } catch (err) { msg('coverMsg', err.message); return; }
+      checkCover(file).then(function (data) {
+        busy(true, 'Uploading cover…');
+        return upload(data, 'cover-' + stamp() + '.' + EXT[file.type]).then(function (url) {
+          state.post.cover = url;
+          showCover();
+          markDirty();
+          msg('coverMsg', 'Cover added.', 'ok');
+        });
+      }).catch(function (err) { msg('coverMsg', err.message); }).then(function () { busy(false); });
+    });
+
+    $('shareFile').addEventListener('change', function () {
+      var file = this.files[0];
+      this.value = '';
+      if (!file) return;
+      msg('shareMsg', '');
+      try { needSlug(); } catch (err) { msg('shareMsg', err.message); return; }
+      checkCover(file).then(function (data) {
+        busy(true, 'Uploading share image…');
+        return upload(data, 'share-' + stamp() + '.' + EXT[file.type]).then(function (url) {
+          state.post.shareImage = url;
+          showShare();
+          markDirty();
+        });
+      }).catch(function (err) { msg('shareMsg', err.message); }).then(function () { busy(false); });
+    });
+    $('shareReset').addEventListener('click', function () { state.post.shareImage = ''; showShare(); markDirty(); });
+
+    function showCover() {
+      var url = state.post.cover;
+      $('coverPreview').hidden = !url;
+      $('coverPreview').src = url ? (localImages[url] || url) : '';
+      $('coverPreview').alt = $('edCoverAlt').value || 'Cover image';
+      showShare();
+    }
+    function showShare() {
+      var p = state.post;
+      $('shareHint').textContent = p.shareImage ? 'Uses a separate share image.' : (p.cover ? 'Uses the cover image.' : 'Uses the cover image (add a cover first).');
+      $('shareReset').hidden = !p.shareImage;
+    }
+
+    /* ── crop & compress tool (inline, side and gallery images) ── */
+    var crop = { img: null, zoom: 1, x: 0, y: 0, type: 'image/jpeg' };
+    var cropFor = 'inline';
+    var cropCanvas = $('cropCanvas');
+    var cctx = cropCanvas.getContext('2d');
+
+    function drawCrop() {
+      var W = cropCanvas.width, H = cropCanvas.height, img = crop.img;
+      var base = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+      var s = base * crop.zoom;
+      var dw = img.naturalWidth * s, dh = img.naturalHeight * s;
+      crop.x = Math.min(0, Math.max(W - dw, crop.x));
+      crop.y = Math.min(0, Math.max(H - dh, crop.y));
+      cctx.fillStyle = '#fff';
+      cctx.fillRect(0, 0, W, H);
+      cctx.drawImage(img, crop.x, crop.y, dw, dh);
+    }
+
+    function openCrop(file) {
+      msg('cropMsg', '');
+      if (!EXT[file.type]) { toast('Please choose a JPG, PNG or WebP image.'); return; }
+      readFile(file).then(loadImage).then(function (img) {
+        crop.img = img;
+        crop.zoom = 1;
+        crop.type = file.type === 'image/png' ? 'image/png' : (file.type === 'image/webp' ? 'image/webp' : 'image/jpeg');
+        /* never make the picture bigger than it really is: max 1200 px wide */
+        var outW = Math.min(1200, Math.round(Math.min(img.naturalWidth, img.naturalHeight * 16 / 9)));
+        cropCanvas.width = Math.max(320, outW);
+        cropCanvas.height = Math.round(cropCanvas.width * 9 / 16);
+        var base = Math.max(cropCanvas.width / img.naturalWidth, cropCanvas.height / img.naturalHeight);
+        crop.x = (cropCanvas.width - img.naturalWidth * base) / 2;
+        crop.y = (cropCanvas.height - img.naturalHeight * base) / 2;
+        $('cropZoom').value = 1;
+        $('cropAlt').value = '';
+        $('cropCaption').value = '';
+        drawCrop();
+        openModal('cropModal');
+      }).catch(function (err) { toast(err.message); });
+    }
+
+    (function dragToMove() {
+      var stage = $('cropStage'), drag = null;
+      stage.addEventListener('pointerdown', function (e) { drag = { x: e.clientX, y: e.clientY }; stage.setPointerCapture(e.pointerId); stage.style.cursor = 'grabbing'; });
+      stage.addEventListener('pointermove', function (e) {
+        if (!drag) return;
+        var scale = cropCanvas.width / stage.clientWidth;
+        crop.x += (e.clientX - drag.x) * scale;
+        crop.y += (e.clientY - drag.y) * scale;
+        drag = { x: e.clientX, y: e.clientY };
+        drawCrop();
+      });
+      ['pointerup', 'pointercancel'].forEach(function (t) { stage.addEventListener(t, function () { drag = null; stage.style.cursor = 'grab'; }); });
+    }());
+    $('cropZoom').addEventListener('input', function () {
+      var W = cropCanvas.width, H = cropCanvas.height, old = crop.zoom;
+      crop.zoom = +this.value;
+      /* zoom around the centre */
+      crop.x = W / 2 - (W / 2 - crop.x) * crop.zoom / old;
+      crop.y = H / 2 - (H / 2 - crop.y) * crop.zoom / old;
+      drawCrop();
+    });
+
+    /* Compress until the file is 1 MB or less (PNG falls back to JPG if it is too big) */
+    function exportCrop() {
+      return new Promise(function (resolve, reject) {
+        var type = crop.type, quality = 0.9;
+        function attempt() {
+          cropCanvas.toBlob(function (blob) {
+            if (!blob) { reject(new Error('Could not process this image.')); return; }
+            /* some browsers (Safari) cannot save WebP and give PNG instead: switch to JPG */
+            if (blob.type !== type && blob.size > MAX_BYTES) { type = 'image/jpeg'; quality = 0.9; attempt(); return; }
+            if (blob.size <= MAX_BYTES) {
+              var fr = new FileReader();
+              fr.onload = function () { resolve({ data: fr.result, ext: EXT[blob.type] || 'jpg' }); };
+              fr.readAsDataURL(blob);
+              return;
+            }
+            if (type === 'image/png') { type = 'image/jpeg'; quality = 0.9; }
+            else if (quality > 0.45) quality -= 0.1;
+            else { reject(new Error('This image is still larger than 1 MB after compressing. Please choose a smaller image.')); return; }
+            attempt();
+          }, type, quality);
+        }
+        attempt();
+      });
+    }
+
+    $('cropOk').addEventListener('click', function () {
+      var alt = $('cropAlt').value.trim();
+      if (!alt) { msg('cropMsg', 'Please describe the image in a few words (this helps Google and people who cannot see it).'); $('cropAlt').focus(); return; }
+      var caption = $('cropCaption').value.trim();
+      busy(true, 'Saving image…');
+      exportCrop().then(function (out) {
+        var prefix = cropFor === 'inline' ? 'image-' : (cropFor === 'extra' ? 'photo-' : 'image-');
+        return upload(out.data, prefix + stamp() + '.' + out.ext).then(function (url) {
+          closeModal('cropModal');
+          if (cropFor === 'inline') {
+            restoreSelection();
+            var html = '<figure><img src="' + esc(out.data) + '" data-final="' + esc(url) + '" alt="' + esc(alt) + '">' +
+              (caption ? '<figcaption>' + esc(caption) + '</figcaption>' : '') + '</figure><p><br></p>';
+            document.execCommand('insertHTML', false, html);
+          } else {
+            state.post.images = state.post.images || [];
+            state.post.images.push({ url: url, alt: alt, caption: caption });
+            renderExtraImages();
+          }
+          markDirty();
+        });
+      }).catch(function (err) { msg('cropMsg', err.message); }).then(function () { busy(false); });
+    });
+
+    $('inlineFile').addEventListener('change', function () { var f = this.files[0]; this.value = ''; if (!f) return; try { needSlug(); } catch (err) { toast(err.message); return; } cropFor = 'inline'; $('cropCaptionField').hidden = false; openCrop(f); });
+    $('extraFile').addEventListener('change', function () { var f = this.files[0]; this.value = ''; if (!f) return; try { needSlug(); } catch (err) { toast(err.message); return; } cropFor = 'extra'; $('cropCaptionField').hidden = false; openCrop(f); });
+
+    function renderExtraImages() {
+      var list = state.post.images || [];
+      $('extraImages').innerHTML = list.map(function (im, i) {
+        return '<figure><img src="' + esc(localImages[im.url] || im.url) + '" alt="' + esc(im.alt) + '"><button type="button" class="rm" data-i="' + i + '" aria-label="Remove image">×</button><figcaption>' + esc(im.alt) + '</figcaption></figure>';
+      }).join('') || '<p class="hint">No images yet.</p>';
+    }
+    $('extraImages').addEventListener('click', function (e) {
+      var b = e.target.closest('.rm');
+      if (!b) return;
+      state.post.images.splice(+b.getAttribute('data-i'), 1);
+      renderExtraImages();
+      markDirty();
+    });
+
+    /* ── layout picker ───────────────────────────────────── */
+    function currentLayout() { return (document.querySelector('input[name=layout]:checked') || {}).value || 'full'; }
+    function applyLayout(layout, keepContent) {
+      var values = keepContent ? collectEditors() : {};
+      buildEditors(layout, keepContent ? values : state.post);
+      $('layoutHint').textContent = LAYOUT_HINTS[layout];
+      var extra = layout === 'side' || layout === 'gallery';
+      $('extraImagesCard').hidden = !extra;
+      $('extraImagesTitle').textContent = layout === 'side' ? 'Side images' : 'Gallery images';
+      $('extraImagesHint').textContent = layout === 'side' ? 'These pictures appear in a column beside your text.' : 'These pictures appear in a grid below your text. Visitors can click them to see them bigger.';
+      renderExtraImages();
+    }
+    $('layoutPick').addEventListener('change', function () { applyLayout(currentLayout(), true); markDirty(); });
+
+    function collectEditors() {
+      var out = {};
+      Object.keys(state.editors).forEach(function (k) { out[k] = fromEditorHtml(state.editors[k]); });
+      return out;
+    }
+
+    /* ── SEO helpers ─────────────────────────────────────── */
+    function firstParagraph() {
+      var ed = state.editors.content || state.editors.problem;
+      var source = ed ? (state.editors.problem ? state.editors.problem : ed) : null;
+      if (!source) return '';
+      var p = source.querySelector('p');
+      var text = (p ? p.textContent : source.textContent).replace(/\s+/g, ' ').trim();
+      return text;
+    }
+    function cut(text, max) {
+      text = text.replace(/\s+/g, ' ').trim();
+      if (text.length <= max) return text;
+      return text.slice(0, max - 1).replace(/\s+\S*$/, '') + '…';
+    }
+    function autoFill(force) {
+      var title = $('edTitle').value.trim();
+      var para = firstParagraph();
+      var fill = function (id, value) { if ((force || !$(id).dataset.touched) && !$(id).value.trim() && value) $(id).value = value; };
+      if (title) {
+        fill('edSeoTitle', cut(title + (title.length < 38 ? ' | Kovai Lakshmi Grinders' : ''), 60));
+        fill('edOgTitle', cut(title, 60));
+      }
+      if (para) {
+        fill('edMetaDesc', cut(para, 158));
+        fill('edOgDesc', cut(para, 158));
+      }
+      if (!$('edCoverAlt').value.trim() && title) $('edCoverAlt').value = title;
+      updateCounters();
+      updateSerp();
+    }
+
+    function updateCounters() {
+      document.querySelectorAll('.counter').forEach(function (c) {
+        var len = $(c.getAttribute('data-for')).value.trim().length;
+        var min = +c.getAttribute('data-min'), max = +c.getAttribute('data-max');
+        var good = len >= min && len <= max;
+        c.className = 'counter ' + (good ? 'good' : 'bad');
+        c.textContent = len + ' characters · best ' + min + '–' + max + (good ? ' ✓' : '');
+      });
+    }
+
+    function currentSlug() { return slugify($('edSlug').value || $('edTitle').value); }
+
+    function updateSerp() {
+      var slug = currentSlug();
+      $('serpUrl').textContent = 'kovai-lakshmi-kitchen-equipments.github.io › resources › ' + (slug || 'post-address');
+      $('serpTitle').textContent = $('edSeoTitle').value || $('edTitle').value || 'Your post title';
+      $('serpDesc').textContent = cut($('edMetaDesc').value || firstParagraph() || 'Your Google description will appear here.', 160);
+      var used = state.posts.some(function (p) { return p.slug === slug && p.id !== state.post.id; });
+      var locked = state.post.status === 'published' && state.post.slug && slug !== state.post.slug;
+      $('slugHint').textContent = used ? '⚠ Another post already uses this address. Please change it.'
+        : (locked ? '⚠ This post is already live. Changing its address will break links people have shared.' : 'Made from the title. Only small letters, numbers and dashes.');
+      $('slugHint').style.color = (used || locked) ? '#d64545' : '';
+    }
+
+    ['edSeoTitle', 'edMetaDesc', 'edOgTitle', 'edOgDesc'].forEach(function (id) {
+      $(id).addEventListener('input', function () { $(id).dataset.touched = '1'; updateCounters(); updateSerp(); markDirty(); });
+    });
+    ['edKeywords', 'edAuthor', 'edDate', 'edCategory', 'edCoverAlt'].forEach(function (id) { $(id).addEventListener('input', markDirty); $(id).addEventListener('change', markDirty); });
+    $('edToc').addEventListener('change', markDirty);
+    $('edTitle').addEventListener('input', function () {
+      if (!state.slugTouched && state.post.status !== 'published') $('edSlug').value = slugify($('edTitle').value);
+      updateSerp();
+      markDirty();
+    });
+    $('edTitle').addEventListener('blur', function () { autoFill(false); });
+    $('edSlug').addEventListener('input', function () { state.slugTouched = true; updateSerp(); markDirty(); });
+    $('edSlug').addEventListener('blur', function () { $('edSlug').value = slugify($('edSlug').value); updateSerp(); });
+    $('editorsHost').addEventListener('focusout', function () { autoFill(false); });
+
+    /* ── open / collect / save ───────────────────────────── */
+    function fillCategorySelect(selected) {
+      $('edCategory').innerHTML = state.categories.map(function (c) {
+        return '<option value="' + esc(c.slug) + '"' + (c.slug === selected ? ' selected' : '') + '>' + esc(c.name) + '</option>';
+      }).join('');
+    }
+
+    function openEditor(post) {
+      state.post = Object.assign({ id: '', title: '', slug: '', category: (state.categories[0] || {}).slug || '', layout: 'full', cover: '', coverAlt: '', shareImage: '',
+        content: '', problem: '', solution: '', result: '', images: [], toc: false, seoTitle: '', metaDescription: '', keywords: '',
+        ogTitle: '', ogDescription: '', author: 'Kovai Lakshmi Grinders', publishDate: today(), status: 'draft' }, post || {});
+      var p = state.post;
+      $('edHeading').textContent = p.id ? 'Edit post' : 'New post';
+      $('edTitle').value = p.title;
+      $('edSlug').value = p.slug;
+      state.slugTouched = !!p.slug;
+      fillCategorySelect(p.category);
+      document.getElementById('lay-' + p.layout).checked = true;
+      $('edCoverAlt').value = p.coverAlt;
+      $('edToc').checked = !!p.toc;
+      $('edSeoTitle').value = p.seoTitle;
+      $('edMetaDesc').value = p.metaDescription;
+      $('edKeywords').value = p.keywords;
+      $('edOgTitle').value = p.ogTitle;
+      $('edOgDesc').value = p.ogDescription;
+      $('edAuthor').value = p.author;
+      $('edDate').value = p.publishDate;
+      ['edSeoTitle', 'edMetaDesc', 'edOgTitle', 'edOgDesc'].forEach(function (id) { delete $(id).dataset.touched; });
+      $('publishBtn').textContent = p.status === 'published' ? 'Update live post' : 'Publish';
+      msg('edMsg', ''); msg('coverMsg', ''); msg('shareMsg', '');
+      applyLayout(p.layout, false);
+      showCover();
+      updateCounters();
+      updateSerp();
+      state.dirty = false;
+      setSaveState(p.id ? 'Saved' : '', !!p.id);
+      show('editor');
+      startAutosave();
+    }
+
+    function openPost(id) {
+      busy(true, 'Opening post…');
+      api('getPost', { id: id }).then(function (res) { openEditor(res.post); })
+        .catch(function (err) { msg('dashMsg', err.message); }).then(function () { busy(false); });
+    }
+
+    $('newPostBtn').addEventListener('click', function () {
+      if (!state.categories.length) { msg('dashMsg', 'Please add a category first (Categories menu).'); return; }
+      openEditor(null);
+      $('edTitle').focus();
+    });
+
+    function collect() {
+      var p = state.post;
+      var eds = collectEditors();
+      return {
+        id: p.id, title: $('edTitle').value.trim(), slug: currentSlug(), category: $('edCategory').value,
+        layout: currentLayout(), cover: p.cover, coverAlt: $('edCoverAlt').value.trim(), shareImage: p.shareImage,
+        content: eds.content || '', problem: eds.problem || '', solution: eds.solution || '', result: eds.result || '',
+        images: (currentLayout() === 'side' || currentLayout() === 'gallery') ? (p.images || []) : [],
+        toc: $('edToc').checked, seoTitle: $('edSeoTitle').value.trim(), metaDescription: $('edMetaDesc').value.trim(),
+        keywords: $('edKeywords').value.trim(), ogTitle: $('edOgTitle').value.trim(), ogDescription: $('edOgDesc').value.trim(),
+        author: $('edAuthor').value.trim() || 'Kovai Lakshmi Grinders', publishDate: $('edDate').value || today()
+      };
+    }
+
+    function markDirty() { if ($('view-editor').hidden) return; state.dirty = true; setSaveState('Not saved yet', false); }
+    function setSaveState(text, saved) { $('saveState').textContent = text; $('saveState').className = 'save-state' + (saved ? ' saved' : ''); }
+
+    function save(quiet) {
+      var data = collect();
+      if (!data.title) { if (!quiet) msg('edMsg', 'Please type a title before saving.'); return Promise.resolve(false); }
+      if (state.saving) return Promise.resolve(false);
+      state.saving = true;
+      if (!quiet) busy(true, 'Saving draft…');
+      setSaveState('Saving…', false);
+      return api('savePost', { post: data }).then(function (res) {
+        state.post = Object.assign(state.post, res.post);
+        state.dirty = false;
+        var t = new Date();
+        setSaveState('Saved ✓ ' + t.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }), true);
+        $('edHeading').textContent = 'Edit post';
+        if (!quiet) toast(state.post.status === 'published' ? 'Changes saved. Click "Update live post" to put them on the website.' : 'Draft saved.');
+        return true;
+      }).catch(function (err) {
+        setSaveState('Not saved', false);
+        if (!quiet) msg('edMsg', err.message);
+        return false;
+      }).then(function (ok) { state.saving = false; if (!quiet) busy(false); return ok; });
+    }
+
+    function startAutosave() {
+      stopAutosave();
+      state.autosaveTimer = setInterval(function () { if (state.dirty && $('edTitle').value.trim()) save(true); }, AUTOSAVE_MS);
+    }
+    function stopAutosave() { if (state.autosaveTimer) clearInterval(state.autosaveTimer); state.autosaveTimer = null; }
+
+    $('saveBtn').addEventListener('click', function () { msg('edMsg', ''); autoFill(false); save(false); });
+    $('backBtn').addEventListener('click', function () { go('dashboard'); });
+
+    function validateForPublish(d) {
+      var problems = [];
+      if (!d.title) problems.push('a title');
+      if (!d.category) problems.push('a category');
+      if (!d.cover) problems.push('a cover image');
+      if (!d.coverAlt) problems.push('a description of the cover image');
+      var text = d.layout === 'case' ? (d.problem + d.solution + d.result) : d.content;
+      if (!text.replace(/<[^>]*>|&nbsp;/g, '').trim()) problems.push(d.layout === 'case' ? 'the Problem, Solution and Result' : 'some text');
+      if ((d.layout === 'side' || d.layout === 'gallery') && !d.images.length) problems.push('at least one ' + (d.layout === 'side' ? 'side' : 'gallery') + ' image');
+      if (!d.slug) problems.push('a web address');
+      if (state.posts.some(function (p) { return p.slug === d.slug && p.id !== d.id; })) problems.push('a web address that no other post uses');
+      return problems;
+    }
+
+    $('publishBtn').addEventListener('click', function () {
+      msg('edMsg', '');
+      autoFill(false);
+      var data = collect();
+      var problems = validateForPublish(data);
+      if (problems.length) { msg('edMsg', 'Before publishing, please add ' + problems.join(', ') + '.'); window.scrollTo(0, 0); return; }
+      var live = state.post.status === 'published';
+      confirmBox(live ? 'Update the live post?' : 'Publish this post?', live ? 'Your changes will replace the post on the website.' : 'The post will appear on your website and in Google.', live ? 'Update' : 'Publish', function () {
+        busy(true, live ? 'Updating the live post…' : 'Publishing…');
+        api('publishPost', { post: data }).then(function (res) {
+          state.post = Object.assign(state.post, res.post);
+          state.dirty = false;
+          $('publishBtn').textContent = 'Update live post';
+          setSaveState('Published ✓', true);
+          msg('edMsg', 'Published! Your post will be live in about 1–2 minutes at ' + res.url, 'ok');
+          window.scrollTo(0, 0);
+        }).catch(function (err) { msg('edMsg', err.message); }).then(function () { busy(false); });
+      });
+    });
+
+    /* Preview: shows exactly how the post will look, built by the server from the real template */
+    function previewInto(w, post) {
+      if (!w) { toast('Please allow pop-ups for this page to see the preview.'); return Promise.resolve(); }
+      w.document.write('<p style="font:16px sans-serif;padding:20px">Preparing preview…</p>');
+      return api('previewPost', { post: post }).then(function (res) {
+        var html = res.html;
+        /* show freshly uploaded images from memory while the website publishes them */
+        Object.keys(localImages).forEach(function (url) { html = html.split(url).join(localImages[url]); });
+        w.document.open();
+        w.document.write(html);
+        w.document.close();
+      });
+    }
+    $('previewBtn').addEventListener('click', function () {
+      autoFill(false);
+      var data = collect();
+      if (!data.title) { msg('edMsg', 'Please type a title first.'); return; }
+      var w = window.open('', '_blank');
+      previewInto(w, data).catch(function (err) { if (w) w.close(); msg('edMsg', err.message); });
+    });
+
+    window.addEventListener('beforeunload', function (e) {
+      if (state.dirty && !$('view-editor').hidden) { e.preventDefault(); e.returnValue = ''; }
+    });
+
+    /* ── categories ──────────────────────────────────────── */
+    function loadCategories() {
+      busy(true, 'Loading categories…');
+      api('listCategories').then(function (res) {
+        state.categories = res.categories;
+        renderCategories();
+        show('categories');
+      }).catch(function (err) { toast(err.message); }).then(function () { busy(false); });
+    }
+    function renderCategories() {
+      $('catList').innerHTML = state.categories.map(function (c) {
+        return '<div class="cat-row" data-slug="' + esc(c.slug) + '">' +
+          '<input class="inp" value="' + esc(c.name) + '" aria-label="Category name" maxlength="40">' +
+          '<span class="count">' + c.count + ' post' + (c.count === 1 ? '' : 's') + '</span>' +
+          '<button type="button" class="b small" data-cat="rename">Rename</button>' +
+          '<button type="button" class="b light small" data-cat="delete">Delete</button></div>';
+      }).join('') || '<p class="hint">No categories yet.</p>';
+    }
+    $('catAddForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = $('catNew').value.trim();
+      if (!name) return;
+      busy(true, 'Adding category…');
+      api('createCategory', { name: name }).then(function (res) {
+        state.categories = res.categories;
+        $('catNew').value = '';
+        renderCategories();
+        msg('catMsg', 'Category added. It will appear on the Resources page in about 1–2 minutes.', 'ok');
+      }).catch(function (err) { msg('catMsg', err.message); }).then(function () { busy(false); });
+    });
+    $('catList').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-cat]');
+      if (!b) return;
+      var row = b.closest('.cat-row');
+      var slug = row.getAttribute('data-slug');
+      var cat = state.categories.filter(function (c) { return c.slug === slug; })[0];
+      if (b.getAttribute('data-cat') === 'rename') {
+        var name = row.querySelector('input').value.trim();
+        if (!name || name === cat.name) return;
+        busy(true, 'Renaming… every post in this category is being updated.');
+        api('renameCategory', { slug: slug, name: name }).then(function (res) {
+          state.categories = res.categories;
+          renderCategories();
+          msg('catMsg', 'Category renamed. The website will update in about 1–2 minutes.', 'ok');
+        }).catch(function (err) { msg('catMsg', err.message); }).then(function () { busy(false); });
+      } else {
+        if (cat.count > 0) {
+          msg('catMsg', '"' + cat.name + '" still has ' + cat.count + ' post' + (cat.count === 1 ? '' : 's') + '. Move or delete those posts first, then you can delete the category.');
+          return;
+        }
+        confirmBox('Delete this category?', '"' + cat.name + '" will be removed from the Resources page.', 'Delete', function () {
+          busy(true, 'Deleting category…');
+          api('deleteCategory', { slug: slug }).then(function (res) {
+            state.categories = res.categories;
+            renderCategories();
+            msg('catMsg', 'Category deleted.', 'ok');
+          }).catch(function (err) { msg('catMsg', err.message); }).then(function () { busy(false); });
+        });
+      }
+    });
+
+    /* ── change password ─────────────────────────────────── */
+    $('pwForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      msg('pwMsg', '');
+      if ($('pwNew').value !== $('pwNew2').value) { msg('pwMsg', 'The two new passwords are not the same.'); return; }
+      if ($('pwNew').value.length < 8) { msg('pwMsg', 'Please use at least 8 characters.'); return; }
+      busy(true, 'Changing password…');
+      api('changePassword', { current: $('pwOld').value, next: $('pwNew').value }).then(function () {
+        $('pwForm').reset();
+        msg('pwMsg', 'Password changed. Use the new password next time you log in.', 'ok');
+      }).catch(function (err) { msg('pwMsg', err.message); }).then(function () { busy(false); });
+    });
+
+    /* ── start ───────────────────────────────────────────── */
+    if (!KL.EXEC_URL) {
+      msg('loginMsg', 'The admin is not connected yet. Paste the Apps Script address into assets/js/site.js (see the setup guide).', 'info');
+    }
+    if (token()) loadDashboard(); else show('login');
+  }());
+  </script>
+</body>
+</html>

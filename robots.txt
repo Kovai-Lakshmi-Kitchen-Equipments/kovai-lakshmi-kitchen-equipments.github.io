@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /resources/admin/
+
+Sitemap: https://kovai-lakshmi-kitchen-equipments.github.io/sitemap.xml
