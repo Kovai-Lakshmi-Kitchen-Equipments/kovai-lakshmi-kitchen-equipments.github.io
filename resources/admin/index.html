@@ -6,8 +6,8 @@
 <title>Website Admin | Kovai Lakshmi Grinders</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
-<link rel="icon" href="https://kovai-lakshmi-kitchen-equipments.github.io/LOGO/FAVICON.png" type="image/png">
-<link rel="stylesheet" href="https://kovai-lakshmi-kitchen-equipments.github.io/assets/css/site.css">
+<link rel="icon" href="https://kovailakshmi.in/LOGO/FAVICON.png" type="image/png">
+<link rel="stylesheet" href="https://kovailakshmi.in/assets/css/site.css">
 <style>
 /* ============================================================
    ADMIN PANEL (owner only – not indexed, no analytics)
@@ -162,7 +162,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
   <header class="adm-top">
     <div class="container bar">
       <div class="adm-brand">
-        <img src="https://kovai-lakshmi-kitchen-equipments.github.io/LOGO/KOVAI%20LAKSHMI%20GRINDERS%20LOGO.png" alt="Kovai Lakshmi Grinders">
+        <img src="https://kovailakshmi.in/LOGO/KOVAI%20LAKSHMI%20GRINDERS%20LOGO.png" alt="Kovai Lakshmi Grinders">
         <span>Website Admin</span>
       </div>
       <nav class="adm-nav" id="admNav" hidden>
@@ -477,7 +477,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
   <div class="busy" id="busy" hidden><div class="spin"></div><div id="busyText">Please wait…</div></div>
   <div class="toast" id="toast" hidden role="status"></div>
 
-  <script src="https://kovai-lakshmi-kitchen-equipments.github.io/assets/js/site.js"></script>
+  <script src="https://kovailakshmi.in/assets/js/site.js"></script>
   <script>
   /* ============================================================
      ADMIN PANEL
@@ -487,7 +487,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
   (function () {
     'use strict';
 
-    var BASE = 'https://kovai-lakshmi-kitchen-equipments.github.io/';
+    var BASE = 'https://kovailakshmi.in/';
     var TOKEN_KEY = 'kl_admin_session';
     var AUTOSAVE_MS = 60000;
     var MAX_BYTES = 1024 * 1024;
@@ -1091,7 +1091,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
 
     function updateSerp() {
       var slug = currentSlug();
-      $('serpUrl').textContent = 'kovai-lakshmi-kitchen-equipments.github.io › resources › ' + (slug || 'post-address');
+      $('serpUrl').textContent = 'kovailakshmi.in › resources › ' + (slug || 'post-address');
       $('serpTitle').textContent = $('edSeoTitle').value || $('edTitle').value || 'Your post title';
       $('serpDesc').textContent = cut($('edMetaDesc').value || firstParagraph() || 'Your Google description will appear here.', 160);
       var used = state.posts.some(function (p) { return p.slug === slug && p.id !== state.post.id; });

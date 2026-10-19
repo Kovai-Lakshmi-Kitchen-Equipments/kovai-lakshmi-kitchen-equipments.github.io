@@ -1,6 +1,6 @@
 # Kovai Lakshmi Grinders – Website
 
-Live site: <https://kovai-lakshmi-kitchen-equipments.github.io/>
+Live site: <https://kovailakshmi.in/> (custom domain; the repository is still `kovai-lakshmi-kitchen-equipments.github.io`)
 
 This folder is the complete website. Everything in it is uploaded to the root of the
 GitHub repository `kovai-lakshmi-kitchen-equipments.github.io` (branch `main`).
@@ -42,7 +42,7 @@ GitHub Pages publishes it automatically, usually within 1–2 minutes.
 └── README.md                       This file
 ```
 
-Every link and image uses the full address (`https://kovai-lakshmi-kitchen-equipments.github.io/...`),
+Every link and image uses the full address (`https://kovailakshmi.in/...`),
 with spaces written as `%20`.
 
 The Google Apps Script (backend) is **not** in this folder – it lives in the Google Sheet.
@@ -61,7 +61,7 @@ Excel file by the **site builder** (the `site-builder` folder delivered next to 
    - Specifications: one per line as `• Name: Value`.
    - How to Use: numbered lines `1. …`; extra parts with a heading line ending in `:` (e.g. `Caution:`) followed by `• …` lines.
    - Benefits: `• Title: description` lines.
-   - Image Source: the full image address, e.g. `https://kovai-lakshmi-kitchen-equipments.github.io/KITCHENPRODUCTS/My machine.jpg`.
+   - Image Source: the full image address, e.g. `https://kovailakshmi.in/KITCHENPRODUCTS/My machine.jpg`.
      Upload the image to `KITCHENPRODUCTS/` first and copy its name **exactly** (capital letters and extension matter).
    - Video: paste the YouTube "Embed" code. Add the video's upload date to `VIDEO_DATES` in `site-builder/gen/config.py`.
    - Category: `HOTEL AND KITCHEN EQUIPMENT`, `BAKERY EQUIPMENT` or `AGRI MACHINERIES`.
@@ -94,7 +94,7 @@ Header, footer and WhatsApp button are generated from `site-builder/gen/common.p
 
 ## 5. Admin guide for the shop owner (writing posts)
 
-Open **<https://kovai-lakshmi-kitchen-equipments.github.io/resources/admin/>** (bookmark it).
+Open **<https://kovailakshmi.in/resources/admin/>** (bookmark it).
 
 **Log in** – type your username and password. After 5 wrong tries, login is locked for 15 minutes.
 You stay logged in while you work; you are logged out after 2 hours without activity, or when you close the tab.

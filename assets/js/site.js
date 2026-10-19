@@ -15,7 +15,7 @@
   // PASTE YOUR APPS SCRIPT EXEC URL HERE
   KL.EXEC_URL = '';
 
-  KL.BASE = 'https://kovai-lakshmi-kitchen-equipments.github.io/';
+  KL.BASE = 'https://kovailakshmi.in/';
   KL.SEARCH_DATA_URL = KL.BASE + 'search-index.json';
   KL.MOBILE_MAX = 768;   /* matches the CSS mobile menu breakpoint */
   KL.TABLET_MAX = 1024;  /* matches the CSS collapsible search breakpoint */
