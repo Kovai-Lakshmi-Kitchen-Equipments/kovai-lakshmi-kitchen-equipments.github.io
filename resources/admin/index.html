@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website Admin | Kovai Lakshmi Grinders</title>
+<meta name="keywords" content="Kovai Lakshmi Grinders website admin, resources and gallery manager">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <link rel="icon" href="https://kovailakshmi.in/LOGO/FAVICON.png" type="image/png">
@@ -23,7 +24,6 @@ body { background: var(--bg); min-height: 100vh; }
   .adm-brand img { height: 44px; }
 }
 .adm-main { padding: 28px 0 80px; }
-.adm-main .container { max-width: 1180px; }
 .view[hidden] { display: none !important; }
 h1.adm-title { font-family: Georgia, 'Times New Roman', Times, serif; font-size: clamp(24px, 4vw, 32px); color: var(--dark); margin-bottom: 6px; }
 .adm-sub { color: var(--muted); margin-bottom: 24px; }
@@ -155,6 +155,110 @@ textarea.inp { min-height: 90px; resize: vertical; }
 .cat-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
 .cat-row .inp { flex: 1; min-width: 160px; }
 .cat-row .count { font-size: 13px; color: var(--muted); min-width: 70px; }
+
+/* Post layouts and sections */
+.preset-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.pick-tile { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 10px; border: 2px solid #e5e5e5; border-radius: 10px; background: #fff; cursor: pointer; text-align: center; font: inherit; font-size: 13px; font-weight: 700; color: var(--dark); transition: var(--trans); }
+.pick-tile:hover, .pick-tile:focus-visible { border-color: var(--red); outline: none; }
+.pick-tile.active { border-color: var(--primary); background: var(--red-light); }
+.pick-tile small { font-weight: 400; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.pick-tile svg { width: 100%; max-width: 110px; height: auto; }
+.section-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+.section-pick .pick-tile svg { max-width: 72px; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.sec-head h2 { margin: 0; }
+.blocks { margin-top: 14px; }
+.pb-ed { border: 2px solid #e8e8e8; border-radius: 12px; background: #fff; transition: border-color var(--trans); }
+.pb-ed:focus-within { border-color: var(--red); }
+.pb-ed-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 8px 10px 8px 12px; background: #fafafa; border-bottom: 1px solid #eee; border-radius: 10px 10px 0 0; }
+.pb-num { width: 28px; height: 28px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+.pb-name { display: flex; align-items: center; gap: 8px; font-weight: 700; flex: 1; min-width: 150px; }
+.pb-name svg { width: 36px; height: auto; flex-shrink: 0; }
+.pb-tools { display: flex; gap: 4px; }
+.pb-tools button { width: 34px; height: 34px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 15px; color: var(--dark); }
+.pb-tools button:hover:not([disabled]) { border-color: var(--red); color: var(--primary); }
+.pb-tools button[disabled] { opacity: .35; cursor: not-allowed; }
+.pb-opts { display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 10px 12px; border-bottom: 1px dashed #eee; font-size: 13px; }
+.pb-opts label { display: flex; align-items: center; gap: 6px; font-weight: 700; color: var(--muted); }
+.pb-opts select { padding: 5px 8px; border: 1.5px solid #dfe3e8; border-radius: 6px; font: inherit; font-weight: 600; color: var(--text); background: #fff; max-width: 100%; }
+.pb-body { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.pb-body .rte { min-height: 130px; border-radius: 10px; }
+.pb-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.pb-split.size-third { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+.pb-split.size-twothirds { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.pb-split.img-right .slot-wrap { order: 2; }
+.pb-split.img-right.size-third { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.pb-split.img-right.size-twothirds { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+.pb-text-side { display: flex; flex-direction: column; gap: 10px; }
+.pb-note { font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+@media (max-width: 700px) {
+  .pb-split, .pb-split.size-third, .pb-split.size-twothirds, .pb-split.img-right.size-third, .pb-split.img-right.size-twothirds { grid-template-columns: 1fr; }
+  .pb-split.img-right .slot-wrap { order: 0; }
+}
+.slot { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; width: 100%; min-height: 160px; padding: 14px; border: 2px dashed #cfcfcf; border-radius: 10px; background: #fafafa; cursor: pointer; text-align: center; font: inherit; font-size: 13px; color: var(--muted); transition: var(--trans); }
+.slot:hover, .slot:focus-visible { border-color: var(--red); color: var(--primary); outline: none; }
+.slot strong { color: var(--dark); font-size: 14px; }
+.slot .slot-ic { font-size: 28px; line-height: 1; color: var(--primary); }
+.slot-filled { position: relative; margin: 0; }
+.slot-filled img { width: 100%; border-radius: 10px; box-shadow: var(--shadow); background: #f0f0f0; }
+.slot-filled .slot-tools { position: absolute; top: 8px; right: 8px; display: flex; gap: 6px; }
+.mini { padding: 5px 10px; border-radius: 6px; border: 0; background: rgba(0,0,0,.78); color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; }
+.mini:hover, .mini:focus-visible { background: var(--primary); }
+.mini.light { background: #fff; color: var(--dark); border: 1px solid #ddd; }
+.mini.light:hover { background: var(--red-light); }
+.inp.sm { padding: 8px 10px; font-size: 14px; }
+.inp.need { border-color: #d64545; background: #fffafa; }
+.sub-label { font-weight: 700; font-size: 13px; color: var(--dark); }
+.add-between { position: relative; display: flex; justify-content: center; padding: 10px 0; }
+.add-between::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 2px dashed #e5e5e5; }
+.add-between button { position: relative; background: #fff; border: 2px solid #e5e5e5; border-radius: 999px; padding: 4px 14px; font: inherit; font-weight: 700; font-size: 13px; color: var(--muted); cursor: pointer; }
+.add-between button:hover, .add-between button:focus-visible { border-color: var(--primary); color: var(--primary); outline: none; }
+.add-between.last button { background: var(--primary); border-color: var(--primary); color: #fff; padding: 8px 20px; font-size: 14px; }
+.add-between.last button:hover { background: #000; border-color: #000; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+.photo-card { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 8px; border: 1px solid #eee; border-radius: 10px; background: #fff; }
+.photo-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; background: #f0f0f0; }
+.photo-card .pc-num { position: absolute; top: 14px; left: 14px; padding: 2px 9px; border-radius: 999px; background: rgba(0,0,0,.75); color: #fff; font-size: 12px; font-weight: 700; }
+.photo-card .pc-tools { display: flex; gap: 4px; }
+.photo-card .pc-tools button { flex: 1; height: 32px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 15px; }
+.photo-card .pc-tools button:hover { border-color: var(--red); color: var(--primary); }
+.photo-card.bad { border-color: #d64545; }
+.drop { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px; border: 2px dashed #cfcfcf; border-radius: 12px; background: #fafafa; color: var(--muted); text-align: center; transition: var(--trans); }
+.drop.over { border-color: var(--primary); background: var(--red-light); }
+.cards-ed { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.card-ed { display: flex; flex-direction: column; gap: 8px; padding: 10px; border: 1px solid #e8e8e8; border-radius: 10px; background: #fcfcfc; }
+.card-ed-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 13px; }
+.card-ed-head span { display: flex; gap: 4px; }
+.card-ed .slot { min-height: 120px; }
+.cta-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 10px; }
+@media (max-width: 600px) {
+  .cta-row { grid-template-columns: 1fr; }
+}
+.yt-prev { width: 100%; max-width: 360px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; }
+.pb-hr { border: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--red), transparent); margin: 14px 0; }
+.aspect-pick { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.aspect-pick button { padding: 6px 12px; border: 1.5px solid #ddd; border-radius: 999px; background: #fff; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+.aspect-pick button.active { border-color: var(--primary); background: var(--red-light); color: var(--primary); }
+.crop-stage { margin: 0 auto; max-width: 100%; }
+
+/* Gallery manager */
+.grp-main { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.grp-thumbs { display: flex; gap: 4px; flex-shrink: 0; }
+.grp-thumbs img { width: 52px; height: 40px; object-fit: cover; border-radius: 6px; background: #f0f0f0; }
+.count-pill { display: inline-block; margin-left: 8px; padding: 2px 10px; border-radius: 999px; background: var(--red-light); color: var(--primary); font-family: Arial, sans-serif; font-size: 13px; vertical-align: middle; }
+@media (max-width: 640px) {
+  .grp-main { flex-direction: column; align-items: flex-start; }
+}
+
+/* Preview (opens over the admin; "Exit preview" returns to where you were) */
+.pv { position: fixed; inset: 0; z-index: 1500; display: flex; flex-direction: column; background: #dfe3e8; }
+.pv[hidden] { display: none; }
+.pv-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 16px; background: #111; color: #fff; }
+.pv-title { flex: 1; min-width: 160px; font-weight: 700; font-size: 14px; }
+.pv-devices { display: flex; gap: 6px; }
+.pv-devices .b.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.pv-stage { flex: 1; display: flex; justify-content: center; padding: 12px; overflow: auto; }
+.pv-stage iframe { width: 100%; height: 100%; min-height: 400px; border: 0; border-radius: 8px; background: #fff; box-shadow: var(--shadow-lg); transition: width .25s ease; }
 </style>
 </head>
 <body>
@@ -167,6 +271,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       </div>
       <nav class="adm-nav" id="admNav" hidden>
         <button type="button" class="b light small" data-go="dashboard">My Posts</button>
+        <button type="button" class="b light small" data-go="gallery">Gallery</button>
         <button type="button" class="b light small" data-go="categories">Categories</button>
         <button type="button" class="b light small" data-go="password">Password</button>
         <button type="button" class="b small" id="logoutBtn">Log out</button>
@@ -182,7 +287,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
         <div class="login-wrap">
           <form class="card login-card" id="loginForm" autocomplete="on">
             <h1 class="adm-title">Welcome back</h1>
-            <p class="adm-sub">Log in to write and publish posts on your website.</p>
+            <p class="adm-sub">Log in to manage your posts and gallery photos.</p>
             <div class="msg error" id="loginMsg" role="alert"></div>
             <div class="field">
               <label for="lgUser">Username</label>
@@ -236,23 +341,9 @@ textarea.inp { min-height: 90px; resize: vertical; }
                 <label for="edTitle">Post title</label>
                 <input class="inp" id="edTitle" placeholder="e.g. How to choose the right wet grinder for your hotel" maxlength="140">
               </div>
-              <div class="field">
+              <div class="field" style="margin-bottom:0">
                 <label for="edCategory">Category</label>
                 <select class="inp" id="edCategory"></select>
-              </div>
-              <div class="field">
-                <span class="label">Choose a layout</span>
-                <div class="layout-pick" id="layoutPick" role="radiogroup" aria-label="Post layout">
-                  <input type="radio" name="layout" id="lay-full" value="full" checked>
-                  <label for="lay-full"><svg viewBox="0 0 110 80" aria-hidden="true"><rect x="2" y="2" width="106" height="30" rx="4" fill="#da0000" opacity=".8"/><rect x="2" y="38" width="80" height="6" rx="2" fill="#333"/><rect x="2" y="50" width="106" height="4" rx="2" fill="#bbb"/><rect x="2" y="58" width="106" height="4" rx="2" fill="#bbb"/><rect x="2" y="66" width="90" height="4" rx="2" fill="#bbb"/></svg>Cover + text</label>
-                  <input type="radio" name="layout" id="lay-side" value="side">
-                  <label for="lay-side"><svg viewBox="0 0 110 80" aria-hidden="true"><rect x="2" y="2" width="106" height="22" rx="4" fill="#da0000" opacity=".8"/><rect x="2" y="30" width="66" height="5" rx="2" fill="#333"/><rect x="2" y="40" width="66" height="4" rx="2" fill="#bbb"/><rect x="2" y="48" width="66" height="4" rx="2" fill="#bbb"/><rect x="2" y="56" width="66" height="4" rx="2" fill="#bbb"/><rect x="2" y="64" width="50" height="4" rx="2" fill="#bbb"/><rect x="74" y="30" width="34" height="20" rx="3" fill="#f0a500"/><rect x="74" y="54" width="34" height="20" rx="3" fill="#f0a500"/></svg>Text + side images</label>
-                  <input type="radio" name="layout" id="lay-gallery" value="gallery">
-                  <label for="lay-gallery"><svg viewBox="0 0 110 80" aria-hidden="true"><rect x="2" y="2" width="106" height="20" rx="4" fill="#da0000" opacity=".8"/><rect x="2" y="27" width="106" height="4" rx="2" fill="#bbb"/><rect x="2" y="35" width="80" height="4" rx="2" fill="#bbb"/><rect x="2" y="45" width="33" height="15" rx="3" fill="#f0a500"/><rect x="38" y="45" width="33" height="15" rx="3" fill="#f0a500"/><rect x="74" y="45" width="34" height="15" rx="3" fill="#f0a500"/><rect x="2" y="63" width="33" height="15" rx="3" fill="#f0a500"/><rect x="38" y="63" width="33" height="15" rx="3" fill="#f0a500"/></svg>Image gallery</label>
-                  <input type="radio" name="layout" id="lay-case" value="case">
-                  <label for="lay-case"><svg viewBox="0 0 110 80" aria-hidden="true"><rect x="2" y="2" width="106" height="18" rx="4" fill="#da0000" opacity=".8"/><rect x="2" y="25" width="106" height="15" rx="3" fill="#fde8e8" stroke="#da0000"/><rect x="2" y="44" width="106" height="15" rx="3" fill="#fff4dd" stroke="#f0a500"/><rect x="2" y="63" width="106" height="15" rx="3" fill="#eafaf0" stroke="#1e8e3e"/></svg>Case study</label>
-                </div>
-                <p class="hint" id="layoutHint"></p>
               </div>
             </div>
 
@@ -265,7 +356,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
                 <label class="b light" for="coverFile" style="margin-top:8px">Choose cover image</label>
                 <input type="file" id="coverFile" accept="image/jpeg,image/png,image/webp" hidden>
               </div>
-              <div class="field" style="margin-top:14px">
+              <div class="field" style="margin-top:14px;margin-bottom:0">
                 <label for="edCoverAlt">Describe the cover image (image alt text)</label>
                 <input class="inp" id="edCoverAlt" placeholder="e.g. Tilting wet grinder in a hotel kitchen">
                 <p class="hint">A short description for people who cannot see the image, and for Google.</p>
@@ -273,8 +364,18 @@ textarea.inp { min-height: 90px; resize: vertical; }
             </div>
 
             <div class="card">
-              <h2>Write your post</h2>
-              <div class="rte-toolbar" id="rteToolbar" role="toolbar" aria-label="Text formatting">
+              <h2>Choose a layout</h2>
+              <p class="hint" style="margin-bottom:12px">A layout gives you ready-made sections to fill in. You can still add, move, copy or delete sections afterwards.</p>
+              <div class="preset-pick" id="presetPick" role="group" aria-label="Post layouts"></div>
+            </div>
+
+            <div class="card">
+              <div class="sec-head">
+                <h2>Sections of your post</h2>
+                <label class="toc-toggle" title="Show a table of contents built from your headings"><input type="checkbox" id="edToc"> Show a contents list</label>
+              </div>
+              <p class="hint">Each numbered box is one part of your post, shown on the website in this order. A picture added inside a box appears next to that box's own text.</p>
+              <div class="rte-toolbar" id="rteToolbar" role="toolbar" aria-label="Text formatting (click inside a text box first)" style="margin-top:12px;border-radius:10px;border-bottom:1.5px solid #dfe3e8">
                 <button type="button" data-cmd="bold" title="Bold"><b>B</b></button>
                 <button type="button" data-cmd="italic" title="Italic"><i>I</i></button>
                 <button type="button" data-cmd="underline" title="Underline"><u>U</u></button>
@@ -297,23 +398,14 @@ textarea.inp { min-height: 90px; resize: vertical; }
                 <span class="sep"></span>
                 <button type="button" data-cmd="link" title="Add link">🔗 Link</button>
                 <button type="button" data-cmd="table" title="Insert table">▦ Table</button>
-                <button type="button" data-cmd="image" title="Insert image">🖼 Image</button>
-                <label class="toc-toggle" title="Show a table of contents built from your headings"><input type="checkbox" id="edToc"> Contents list</label>
                 <span class="sep"></span>
                 <button type="button" data-cmd="undo" title="Undo">↶</button>
                 <button type="button" data-cmd="redo" title="Redo">↷</button>
                 <button type="button" data-cmd="removeFormat" title="Clear formatting">⌫ Clear</button>
               </div>
-              <div id="editorsHost"></div>
-              <input type="file" id="inlineFile" accept="image/jpeg,image/png,image/webp" hidden>
-            </div>
-
-            <div class="card" id="extraImagesCard" hidden>
-              <h2 id="extraImagesTitle">Images</h2>
-              <p class="hint" id="extraImagesHint"></p>
-              <div class="img-list" id="extraImages"></div>
-              <label class="b light" for="extraFile">+ Add image</label>
-              <input type="file" id="extraFile" accept="image/jpeg,image/png,image/webp" hidden>
+              <div class="blocks" id="blocks"></div>
+              <input type="file" id="blockFile" accept="image/jpeg,image/png,image/webp" hidden>
+              <input type="file" id="multiFile" accept="image/jpeg,image/png,image/webp" multiple hidden>
             </div>
           </div>
 
@@ -383,6 +475,61 @@ textarea.inp { min-height: 90px; resize: vertical; }
         </div>
       </section>
 
+      <!-- ═══════════ GALLERY ═══════════ -->
+      <section class="view" id="view-gallery" hidden>
+        <div class="toolbar-row">
+          <div>
+            <h1 class="adm-title">Gallery</h1>
+            <p class="adm-sub" style="margin:0">Each photo group shows its heading and then its photos on the Gallery page, in this order.</p>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="b red" id="newGroupBtn">+ New photo group</button>
+            <a class="b light" href="https://kovailakshmi.in/gallery/" target="_blank" rel="noopener">View Gallery page</a>
+          </div>
+        </div>
+        <div class="msg" id="galMsg"></div>
+        <div class="post-list" id="groupList"></div>
+      </section>
+
+      <!-- ═══════════ PHOTO GROUP ═══════════ -->
+      <section class="view" id="view-group" hidden>
+        <div class="toolbar-row">
+          <div>
+            <h1 class="adm-title" id="grHeading">Photo group</h1>
+            <span class="save-state" id="grState" aria-live="polite"></span>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="b light" id="grBack">← Back</button>
+            <button type="button" class="b light" id="grSave">Save as draft</button>
+            <button type="button" class="b light" id="grPreview">Preview</button>
+            <button type="button" class="b green" id="grPublish">Publish</button>
+          </div>
+        </div>
+        <div class="msg" id="grMsg" role="alert"></div>
+        <div class="card">
+          <div class="field">
+            <label for="grTitle">Group heading</label>
+            <input class="inp" id="grTitle" maxlength="100" placeholder="e.g. Hotel kitchen installation, Coimbatore">
+            <p class="hint">Shown above the photos on the Gallery page.</p>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label for="grDesc">Short note under the heading (optional)</label>
+            <textarea class="inp" id="grDesc" maxlength="500" placeholder="e.g. Commercial grinders and chapathi machines we installed for a hotel."></textarea>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Photos <span class="count-pill" id="grCount">0</span></h2>
+          <p class="hint" style="margin-bottom:12px">Photos appear on the website in this order – use ← → to move them. Describe each photo in a few words; it helps Google and people who cannot see the picture.</p>
+          <div id="groupPhotos"></div>
+          <div class="drop" id="grDrop" style="margin-top:12px">
+            <p><strong>Drag photos here</strong> or</p>
+            <button type="button" class="b light" id="grAdd">+ Add photos</button>
+            <p class="hint">You can choose many at once. Big photos are made smaller automatically (up to 1600 px, 1 MB each). Photos are saved as soon as they are uploaded.</p>
+          </div>
+          <input type="file" id="grFile" accept="image/jpeg,image/png,image/webp" multiple hidden>
+        </div>
+      </section>
+
       <!-- ═══════════ CATEGORIES ═══════════ -->
       <section class="view" id="view-categories" hidden>
         <h1 class="adm-title">Categories</h1>
@@ -404,7 +551,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       <!-- ═══════════ PASSWORD ═══════════ -->
       <section class="view" id="view-password" hidden>
         <h1 class="adm-title">Change password</h1>
-        <form class="card" id="pwForm" style="max-width:520px">
+        <form class="card" id="pwForm">
           <div class="msg" id="pwMsg" role="alert"></div>
           <div class="field"><label for="pwOld">Current password</label><input class="inp" id="pwOld" type="password" autocomplete="current-password" required></div>
           <div class="field"><label for="pwNew">New password</label><input class="inp" id="pwNew" type="password" autocomplete="new-password" minlength="8" required><p class="hint">At least 8 characters. Use letters and numbers.</p></div>
@@ -458,7 +605,14 @@ textarea.inp { min-height: 90px; resize: vertical; }
   <div class="modal" id="cropModal" hidden role="dialog" aria-modal="true" aria-labelledby="cropTitle">
     <div class="modal-card wide">
       <h2 id="cropTitle">Adjust your image</h2>
-      <p class="hint" style="margin-bottom:10px">Drag the picture to choose what shows. Use the slider to zoom. The image will be saved in 16:9 shape, up to 1200 px wide and 1 MB.</p>
+      <p class="hint" style="margin-bottom:10px">Choose a shape, drag the picture to choose what shows and use the slider to zoom. It is saved up to 1200 px wide and 1 MB.</p>
+      <div class="aspect-pick" id="cropAspect" role="group" aria-label="Picture shape">
+        <button type="button" data-a="16:9">Wide 16:9</button>
+        <button type="button" data-a="4:3">Standard 4:3</button>
+        <button type="button" data-a="1:1">Square</button>
+        <button type="button" data-a="3:4">Tall 3:4</button>
+        <button type="button" data-a="free">Original shape</button>
+      </div>
       <div class="crop-stage" id="cropStage"><canvas id="cropCanvas" width="1200" height="675"></canvas></div>
       <div class="crop-controls">
         <label for="cropZoom" style="font-weight:700">Zoom</label>
@@ -472,6 +626,42 @@ textarea.inp { min-height: 90px; resize: vertical; }
         <button type="button" class="b red" id="cropOk">Use this image</button>
       </div>
     </div>
+  </div>
+
+  <div class="modal" id="addModal" hidden role="dialog" aria-modal="true" aria-labelledby="addTitle">
+    <div class="modal-card wide">
+      <h2 id="addTitle">Add a section</h2>
+      <div class="section-pick" id="sectionPick"></div>
+      <div class="btn-row" style="justify-content:flex-end;margin-top:16px">
+        <button type="button" class="b light" data-close>Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="groupNewModal" hidden role="dialog" aria-modal="true" aria-labelledby="groupNewTitle">
+    <form class="modal-card" id="groupNewForm">
+      <h2 id="groupNewTitle">New photo group</h2>
+      <div class="field"><label for="gnTitle">Group heading</label><input class="inp" id="gnTitle" maxlength="100" placeholder="e.g. Our showroom" required></div>
+      <div class="field"><label for="gnDesc">Short note (optional)</label><textarea class="inp" id="gnDesc" maxlength="500"></textarea></div>
+      <div class="msg" id="gnMsg"></div>
+      <div class="btn-row" style="justify-content:flex-end">
+        <button type="button" class="b light" data-close>Cancel</button>
+        <button type="submit" class="b red">Create and add photos</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="pv" id="previewOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="pvTitle">
+    <div class="pv-bar">
+      <button type="button" class="b red small" id="pvExit">← Exit preview</button>
+      <span class="pv-title" id="pvTitle">Preview</span>
+      <div class="pv-devices" role="group" aria-label="Screen size">
+        <button type="button" class="b light small" data-w="390">Phone</button>
+        <button type="button" class="b light small" data-w="820">Tablet</button>
+        <button type="button" class="b light small active" data-w="0">Computer</button>
+      </div>
+    </div>
+    <div class="pv-stage"><iframe id="pvFrame" title="Preview of the page" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"></iframe></div>
   </div>
 
   <div class="busy" id="busy" hidden><div class="spin"></div><div id="busyText">Please wait…</div></div>
@@ -495,7 +685,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
     var $ = function (id) { return document.getElementById(id); };
     var esc = KL.escapeHtml;
 
-    var state = { posts: [], categories: [], post: null, dirty: false, slugTouched: false, editors: {}, activeEditor: null, autosaveTimer: null, saving: false };
+    var state = { posts: [], categories: [], groups: [], post: null, group: null, dirty: false, slugTouched: false, activeEditor: null, autosaveTimer: null, saving: false, addAt: 0, imgTarget: null, multiTarget: 0 };
 
     /* ── helpers ─────────────────────────────────────────── */
     function token() { try { return sessionStorage.getItem(TOKEN_KEY) || ''; } catch (e) { return ''; } }
@@ -534,18 +724,19 @@ textarea.inp { min-height: 90px; resize: vertical; }
 
     /* ── views ───────────────────────────────────────────── */
     function show(view) {
-      ['login', 'dashboard', 'editor', 'categories', 'password'].forEach(function (v) { $('view-' + v).hidden = v !== view; });
+      ['login', 'dashboard', 'editor', 'gallery', 'group', 'categories', 'password'].forEach(function (v) { $('view-' + v).hidden = v !== view; });
       $('admNav').hidden = view === 'login';
       if (view !== 'editor') stopAutosave();
       window.scrollTo(0, 0);
     }
 
     function go(view) {
-      if (view !== 'editor' && state.dirty && !$('view-editor').hidden) {
+      if (state.dirty && editing()) {
         confirmBox('Leave without saving?', 'You have changes that are not saved yet.', 'Leave', function () { state.dirty = false; go(view); });
         return;
       }
       if (view === 'dashboard') loadDashboard();
+      else if (view === 'gallery') loadGallery();
       else if (view === 'categories') loadCategories();
       else show(view);
     }
@@ -559,7 +750,10 @@ textarea.inp { min-height: 90px; resize: vertical; }
       m.addEventListener('click', function (e) { if (e.target === m || e.target.hasAttribute('data-close')) closeModal(m.id); });
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') document.querySelectorAll('.modal:not([hidden])').forEach(function (m) { closeModal(m.id); });
+      if (e.key !== 'Escape') return;
+      var open = document.querySelectorAll('.modal:not([hidden])');
+      if (open.length) open.forEach(function (m) { closeModal(m.id); });
+      else if (!$('previewOverlay').hidden) closePreview();
     });
 
     function confirmBox(title, text, okText, onOk) {
@@ -578,7 +772,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       api('login', { username: $('lgUser').value.trim(), password: $('lgPass').value }).then(function (res) {
         setToken(res.token);
         $('lgPass').value = '';
-        loadDashboard();
+        return loadDashboard();
       }).catch(function (err) { msg('loginMsg', err.message); }).then(function () { busy(false); });
     });
 
@@ -633,8 +827,10 @@ textarea.inp { min-height: 90px; resize: vertical; }
       var act = btn.getAttribute('data-act');
       if (act === 'edit') openPost(id);
       else if (act === 'preview') {
-        var w = window.open('', '_blank');
-        api('getPost', { id: id }).then(function (res) { return previewInto(w, res.post); }).catch(function (err) { if (w) w.close(); toast(err.message); });
+        busy(true, 'Preparing preview…');
+        api('getPost', { id: id }).then(function (res) { return api('previewPost', { post: res.post }); })
+          .then(function (res) { openPreview(res.html, 'Preview of "' + (post.title || 'Untitled') + '"' + (post.status === 'published' && !post.dirty ? '' : ' – not live yet')); })
+          .catch(function (err) { msg('dashMsg', err.message); }).then(function () { busy(false); });
       } else if (act === 'delete') {
         confirmBox('Delete this post?', '"' + (post.title || 'Untitled') + '" will be removed' + (post.status === 'published' ? ' from the website' : '') + ', together with its images. This cannot be undone.', 'Delete', function () {
           busy(true, 'Deleting…');
@@ -653,68 +849,12 @@ textarea.inp { min-height: 90px; resize: vertical; }
       });
     });
 
-    /* ── editor: rich text boxes ─────────────────────────── */
-    var LAYOUT_HINTS = {
-      full: 'A large cover image, then your text.',
-      side: 'Your text with a column of pictures beside it. Add the pictures in the "Side images" box below.',
-      gallery: 'Your text followed by a grid of pictures. Add them in the "Gallery images" box below.',
-      'case': 'A case study in three parts: the Problem, the Solution and the Result.'
-    };
-
-    function makeEditor(key, label, placeholder) {
-      var wrap = document.createElement('div');
-      wrap.className = 'rte-block';
-      if (label) {
-        var l = document.createElement('span');
-        l.className = 'label';
-        l.textContent = label;
-        wrap.appendChild(l);
-      }
-      var el = document.createElement('div');
-      el.className = 'rte';
-      el.contentEditable = 'true';
-      el.setAttribute('role', 'textbox');
-      el.setAttribute('aria-multiline', 'true');
-      el.setAttribute('aria-label', label || 'Post text');
-      el.setAttribute('data-placeholder', placeholder || 'Start writing here…');
-      el.addEventListener('focus', function () { state.activeEditor = el; });
-      el.addEventListener('input', function () { markDirty(); if (el.innerHTML === '<br>') el.innerHTML = ''; });
-      /* Paste as clean text (keeps line breaks as paragraphs) */
-      el.addEventListener('paste', function (e) {
-        e.preventDefault();
-        var text = (e.clipboardData || window.clipboardData).getData('text/plain');
-        var html = text.split(/\r?\n\s*\r?\n/).map(function (para) {
-          return '<p>' + esc(para).replace(/\r?\n/g, '<br>') + '</p>';
-        }).join('');
-        document.execCommand('insertHTML', false, html);
-      });
-      wrap.appendChild(el);
-      state.editors[key] = el;
-      return wrap;
-    }
-
-    function buildEditors(layout, values) {
-      var host = $('editorsHost');
-      host.innerHTML = '';
-      state.editors = {};
-      values = values || {};
-      if (layout === 'case') {
-        host.appendChild(makeEditor('problem', 'Problem', 'What was the customer\'s problem?'));
-        host.appendChild(makeEditor('solution', 'Solution', 'How did we solve it?'));
-        host.appendChild(makeEditor('result', 'Result', 'What was the result?'));
-        host.appendChild(makeEditor('content', 'Extra notes (optional)', 'Anything else to add…'));
-      } else {
-        host.appendChild(makeEditor('content', '', 'Start writing here…'));
-      }
-      Object.keys(state.editors).forEach(function (k) { state.editors[k].innerHTML = toEditorHtml(values[k] || ''); });
-      state.activeEditor = state.editors.problem || state.editors.content;
-    }
-
-    /* Images just uploaded show from memory until the website has published them */
+    /* ── shared: images shown from memory until the website has published them ── */
     var localImages = {};
+    function shown(url) { return localImages[url] || url; }
     function toEditorHtml(html) {
       var div = document.createElement('div');
-      div.innerHTML = html;
+      div.innerHTML = html || '';
       div.querySelectorAll('img').forEach(function (img) {
         var src = img.getAttribute('src');
         if (localImages[src]) { img.setAttribute('data-final', src); img.setAttribute('src', localImages[src]); }
@@ -731,14 +871,433 @@ textarea.inp { min-height: 90px; resize: vertical; }
       return (html === '<br>' || html === '<p><br></p>') ? '' : html;
     }
 
-    function exec(cmd, val) {
-      var ed = state.activeEditor;
-      if (!ed) return;
-      ed.focus();
-      document.execCommand(cmd, false, val);
-      markDirty();
+    /* ── section types and starting layouts ──────────────── */
+    function icon(inner, w, h) { return '<svg viewBox="0 0 ' + (w || 72) + ' ' + (h || 48) + '" aria-hidden="true" focusable="false">' + inner + '</svg>'; }
+    var L = function (x, y, w, c) { return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="4" rx="2" fill="' + (c || '#bbb') + '"/>'; };
+    var R = function (x, y, w, h, c, extra) { return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="3" fill="' + c + '"' + (extra || '') + '/>'; };
+    var PIC = '#f0a500', RED = '#da0000';
+
+    var SECTIONS = {
+      text: { name: 'Text', desc: 'A heading with paragraphs, lists, tables or links.',
+        svg: icon(R(4, 5, 40, 6, '#333') + L(4, 16, 64) + L(4, 24, 64) + L(4, 32, 56) + L(4, 40, 40)) },
+      imageText: { name: 'Picture + text', desc: 'A paragraph with its own picture beside it. Add several for a zig-zag.',
+        svg: icon(R(4, 7, 30, 34, PIC) + R(40, 9, 26, 5, '#333') + L(40, 19, 28) + L(40, 27, 28) + L(40, 35, 20)) },
+      image: { name: 'Big picture', desc: 'One large picture with a caption.',
+        svg: icon(R(4, 5, 64, 31, PIC) + L(18, 40, 36)) },
+      gallery: { name: 'Photo gallery', desc: 'Many photos in a grid. Visitors can open them full screen.',
+        svg: icon(R(4, 6, 19, 17, PIC) + R(26.5, 6, 19, 17, PIC) + R(49, 6, 19, 17, PIC) + R(4, 26, 19, 17, PIC) + R(26.5, 26, 19, 17, PIC) + R(49, 26, 19, 17, PIC)) },
+      cards: { name: 'Cards with pictures', desc: 'Small cards, each with a picture, title, text and an optional link.',
+        svg: icon(R(4, 5, 19, 38, '#fff', ' stroke="#ccc"') + R(26.5, 5, 19, 38, '#fff', ' stroke="#ccc"') + R(49, 5, 19, 38, '#fff', ' stroke="#ccc"') + R(4, 5, 19, 14, PIC) + R(26.5, 5, 19, 14, PIC) + R(49, 5, 19, 14, PIC) + L(7, 24, 13, '#333') + L(29.5, 24, 13, '#333') + L(52, 24, 13, '#333') + L(7, 32, 13) + L(29.5, 32, 13) + L(52, 32, 13)) },
+      video: { name: 'YouTube video', desc: 'Paste a YouTube link to show the video.',
+        svg: icon(R(4, 5, 64, 38, '#222') + '<path d="M30 15 46 24 30 33Z" fill="#f00"/>') },
+      quote: { name: 'Customer quote', desc: 'A customer review or quote, with who said it.',
+        svg: icon(R(4, 5, 64, 38, '#f4f6f9') + '<text x="8" y="31" font-size="28" font-family="Georgia,serif" fill="#ff0000">“</text>' + L(24, 15, 40, '#999') + L(24, 23, 36, '#999') + L(24, 33, 20, '#333')) },
+      callout: { name: 'Highlight box', desc: 'A coloured box: tip, important note, or Problem / Solution / Result.',
+        svg: icon(R(4, 5, 64, 38, '#fff4f4') + '<rect x="4" y="5" width="5" height="38" fill="' + RED + '"/>' + R(14, 11, 22, 7, RED) + L(14, 24, 48) + L(14, 32, 40)) },
+      cta: { name: 'Call-to-action', desc: 'A red box with a button, e.g. "Ask for a price on WhatsApp".',
+        svg: icon(R(4, 7, 64, 34, RED) + R(10, 15, 26, 5, '#fff') + R(10, 24, 20, 3, '#fff', ' opacity=".7"') + R(42, 18, 22, 12, '#fff')) },
+      divider: { name: 'Divider line', desc: 'A thin line to separate parts of the post.',
+        svg: icon(L(4, 10, 64) + '<rect x="10" y="23" width="52" height="2" fill="' + RED + '"/>' + L(4, 34, 64)) }
+    };
+
+    function newCard() { return { image: null, title: '', text: '', link: '', linkText: '' }; }
+    function newBlock(type, extra) {
+      var defs = {
+        text: { heading: '', html: '', bg: 'none' },
+        imageText: { heading: '', html: '', image: null, side: 'auto', size: 'half', valign: 'center', bg: 'none' },
+        image: { image: null, width: 'wide' },
+        gallery: { heading: '', images: [], cols: '3', bg: 'none' },
+        cards: { heading: '', cards: [newCard(), newCard(), newCard()], cols: '3', style: 'shadow', bg: 'none' },
+        video: { heading: '', video: '', caption: '', bg: 'none' },
+        quote: { text: '', by: '' },
+        callout: { heading: '', html: '', tone: 'note' },
+        cta: { heading: '', text: '', label: '', link: '' },
+        divider: {}
+      };
+      return Object.assign({ type: type }, JSON.parse(JSON.stringify(defs[type])), extra || {});
     }
 
+    var T = function (svg) { return icon(svg, 110, 80); };
+    var PRESETS = {
+      article: { name: 'Simple article', desc: 'Headings and paragraphs',
+        svg: T(R(2, 2, 106, 24, RED, ' opacity=".85"') + R(2, 32, 70, 6, '#333') + L(2, 44, 106) + L(2, 52, 106) + L(2, 60, 96) + L(2, 68, 80)),
+        make: function () { return [newBlock('text')]; } },
+      zigzag: { name: 'Zig-zag story', desc: 'Each paragraph with its own picture, left then right',
+        svg: T(R(2, 2, 106, 14, RED, ' opacity=".85"') + R(2, 21, 40, 26, PIC) + L(48, 25, 60) + L(48, 33, 60) + L(48, 41, 44) + R(68, 52, 40, 26, PIC) + L(2, 56, 60) + L(2, 64, 60) + L(2, 72, 44)),
+        make: function () { return [newBlock('text'), newBlock('imageText'), newBlock('imageText'), newBlock('imageText'), newBlock('cta')]; } },
+      cards: { name: 'Picture cards', desc: 'An introduction, then cards with pictures',
+        svg: T(R(2, 2, 106, 14, RED, ' opacity=".85"') + L(2, 22, 106) + L(2, 30, 80) + R(2, 40, 33, 38, '#fff', ' stroke="#ccc"') + R(38.5, 40, 33, 38, '#fff', ' stroke="#ccc"') + R(75, 40, 33, 38, '#fff', ' stroke="#ccc"') + R(2, 40, 33, 18, PIC) + R(38.5, 40, 33, 18, PIC) + R(75, 40, 33, 18, PIC)),
+        make: function () { return [newBlock('text'), newBlock('cards'), newBlock('cta')]; } },
+      photos: { name: 'Photo story', desc: 'Text, a big picture and a photo gallery',
+        svg: T(R(2, 2, 106, 14, RED, ' opacity=".85"') + L(2, 21, 106) + R(2, 30, 106, 24, PIC) + R(2, 59, 33, 19, PIC) + R(38.5, 59, 33, 19, PIC) + R(75, 59, 33, 19, PIC)),
+        make: function () { return [newBlock('text'), newBlock('image'), newBlock('text'), newBlock('gallery')]; } },
+      'case': { name: 'Case study', desc: 'Problem → Solution → Result',
+        svg: T(R(2, 2, 106, 16, RED, ' opacity=".85"') + R(2, 23, 106, 16, '#fde8e8', ' stroke="#da0000"') + R(2, 43, 106, 16, '#fff4dd', ' stroke="#f0a500"') + R(2, 63, 106, 15, '#eafaf0', ' stroke="#1e8e3e"')),
+        make: function () { return [newBlock('callout', { tone: 'problem' }), newBlock('callout', { tone: 'solution' }), newBlock('image'), newBlock('callout', { tone: 'result' }), newBlock('quote'), newBlock('cta')]; } },
+      video: { name: 'Video post', desc: 'Text with a YouTube video',
+        svg: T(R(2, 2, 106, 14, RED, ' opacity=".85"') + L(2, 21, 106) + L(2, 29, 80) + R(14, 37, 82, 41, '#222') + '<path d="M48 48 64 57.5 48 67Z" fill="#f00"/>'),
+        make: function () { return [newBlock('text'), newBlock('video'), newBlock('text'), newBlock('cta')]; } }
+    };
+
+    var CALLOUT_HINTS = {
+      note: ['Heading (optional)', 'Write the note…'],
+      tip: ['Heading, e.g. Tip for daily cleaning', 'Write the tip…'],
+      warning: ['Heading, e.g. Before you start', 'Write the important point…'],
+      problem: ['Heading, e.g. The customer\'s challenge', 'What problem did the customer have?'],
+      solution: ['Heading, e.g. What we supplied', 'How did we solve it? Which machines did we supply?'],
+      result: ['Heading, e.g. The result', 'What changed for the customer? Use numbers if you have them.']
+    };
+
+    /* ── sections editor ─────────────────────────────────── */
+    var blocksEl = $('blocks');
+    var BG = [['none', 'Plain'], ['soft', 'Light grey band'], ['card', 'White card'], ['tint', 'Light red']];
+
+    function ytId(v) {
+      v = String(v || '').trim();
+      var m = /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:[^#]*&)?v=|embed\/|shorts\/|live\/|v\/))([A-Za-z0-9_-]{11})/.exec(v);
+      if (m) return m[1];
+      return /^[A-Za-z0-9_-]{11}$/.test(v) ? v : '';
+    }
+    function imagesOf(b) {
+      var out = [];
+      if (b.image) out.push(b.image);
+      (b.images || []).forEach(function (im) { out.push(im); });
+      (b.cards || []).forEach(function (c) { if (c.image) out.push(c.image); });
+      return out;
+    }
+    function textOf(b) {
+      var div = document.createElement('div');
+      div.innerHTML = b.html || '';
+      var parts = [b.heading, div.textContent, b.text, b.by, b.caption, b.label];
+      (b.cards || []).forEach(function (c) { parts.push(c.title, c.text); });
+      return parts.join(' ').replace(/\s+/g, ' ').trim();
+    }
+    function hasContent(b) { return !!(textOf(b) || imagesOf(b).length || (b.type === 'video' && b.video)); }
+
+    /* Same rule as the website: "automatic" pictures alternate left, right, left… */
+    function sidesOf(blocks) {
+      var last = 'right';
+      return blocks.map(function (b) {
+        if (b.type !== 'imageText') return '';
+        last = b.side === 'left' || b.side === 'right' ? b.side : (last === 'left' ? 'right' : 'left');
+        return last;
+      });
+    }
+
+    function opt(key, label, value, choices) {
+      return '<label>' + label + ' <select data-o="' + key + '">' + choices.map(function (c) {
+        return '<option value="' + c[0] + '"' + (String(value) === c[0] ? ' selected' : '') + '>' + c[1] + '</option>';
+      }).join('') + '</select></label>';
+    }
+    function optionsHtml(b) {
+      var o = [];
+      switch (b.type) {
+        case 'imageText':
+          o.push(opt('side', 'Picture', b.side, [['auto', 'Automatic zig-zag'], ['left', 'On the left'], ['right', 'On the right']]),
+            opt('size', 'Picture size', b.size, [['half', 'Half'], ['third', 'Small (1/3)'], ['twothirds', 'Large (2/3)']]),
+            opt('valign', 'Text', b.valign, [['center', 'Middle of picture'], ['top', 'Top of picture']]));
+          break;
+        case 'image': o.push(opt('width', 'Width', b.width, [['wide', 'Text width'], ['full', 'Edge to edge'], ['medium', 'Medium, centred']])); break;
+        case 'gallery': o.push(opt('cols', 'Photos per row', b.cols, [['2', '2'], ['3', '3'], ['4', '4']])); break;
+        case 'cards':
+          o.push(opt('cols', 'Cards per row', b.cols, [['2', '2'], ['3', '3'], ['4', '4']]),
+            opt('style', 'Card style', b.style, [['shadow', 'Shadow'], ['outline', 'Outline'], ['tint', 'Light red']]));
+          break;
+        case 'callout':
+          o.push(opt('tone', 'Box type', b.tone, [['note', 'Note (grey)'], ['tip', 'Tip (blue)'], ['warning', 'Important (yellow)'], ['problem', 'Problem (red)'], ['solution', 'Solution (yellow)'], ['result', 'Result (green)']]));
+          break;
+      }
+      if ('bg' in b) o.push(opt('bg', 'Background', b.bg, BG));
+      return o.join('');
+    }
+
+    function slotHtml(im, label) {
+      if (!im) return '<button type="button" class="slot" data-act="img"><span class="slot-ic">+</span><strong>' + esc(label) + '</strong><small>JPG, PNG or WebP · you can crop it</small></button>';
+      return '<figure class="slot-filled"><img src="' + esc(shown(im.url)) + '" alt=""><div class="slot-tools"><button type="button" class="mini" data-act="img">Change</button><button type="button" class="mini" data-act="img-rm">Remove</button></div></figure>' +
+        '<input class="inp sm' + (im.alt ? '' : ' need') + '" data-im="alt" maxlength="200" aria-label="Describe this picture" placeholder="Describe this picture (required)" value="' + esc(im.alt || '') + '">' +
+        '<input class="inp sm" data-im="caption" maxlength="200" aria-label="Caption" placeholder="Caption under the picture (optional)" value="' + esc(im.caption || '') + '">';
+    }
+
+    function photosHtml(list) {
+      if (!list.length) return '';
+      return '<div class="photo-grid">' + list.map(function (im, j) {
+        return '<div class="photo-card' + (im.alt ? '' : ' bad') + '" data-j="' + j + '"><span class="pc-num">' + (j + 1) + '</span>' +
+          '<img src="' + esc(shown(im.url)) + '" alt="" loading="lazy">' +
+          '<input class="inp sm' + (im.alt ? '' : ' need') + '" data-im="alt" maxlength="200" aria-label="Describe photo ' + (j + 1) + '" placeholder="Describe this photo (required)" value="' + esc(im.alt || '') + '">' +
+          '<input class="inp sm" data-im="caption" maxlength="200" aria-label="Caption of photo ' + (j + 1) + '" placeholder="Caption (optional)" value="' + esc(im.caption || '') + '">' +
+          '<div class="pc-tools"><button type="button" data-act="ph-left" title="Move earlier" aria-label="Move photo ' + (j + 1) + ' earlier"' + (j === 0 ? ' disabled' : '') + '>←</button>' +
+          '<button type="button" data-act="ph-right" title="Move later" aria-label="Move photo ' + (j + 1) + ' later"' + (j === list.length - 1 ? ' disabled' : '') + '>→</button>' +
+          '<button type="button" data-act="ph-rm" title="Remove photo" aria-label="Remove photo ' + (j + 1) + '">×</button></div></div>';
+      }).join('') + '</div>';
+    }
+
+    function cardHtml(c, j, n) {
+      return '<div class="card-ed" data-j="' + j + '"><div class="card-ed-head"><strong>Card ' + (j + 1) + '</strong><span>' +
+        '<button type="button" class="mini light" data-act="card-left" aria-label="Move card ' + (j + 1) + ' earlier"' + (j === 0 ? ' disabled' : '') + '>←</button>' +
+        '<button type="button" class="mini light" data-act="card-right" aria-label="Move card ' + (j + 1) + ' later"' + (j === n - 1 ? ' disabled' : '') + '>→</button>' +
+        '<button type="button" class="mini light" data-act="card-rm" aria-label="Remove card ' + (j + 1) + '">×</button></span></div>' +
+        slotHtml(c.image, 'Add a picture for this card') +
+        '<input class="inp sm" data-cf="title" maxlength="120" aria-label="Card title" placeholder="Card title" value="' + esc(c.title || '') + '">' +
+        '<textarea class="inp sm" data-cf="text" rows="3" maxlength="700" aria-label="Card text" placeholder="Card text">' + esc(c.text || '') + '</textarea>' +
+        '<input class="inp sm" data-cf="link" aria-label="Card link" placeholder="Link (optional), e.g. a product page address" value="' + esc(c.link || '') + '">' +
+        '<input class="inp sm" data-cf="linkText" maxlength="40" aria-label="Link text" placeholder="Link text, e.g. View product" value="' + esc(c.linkText || '') + '"></div>';
+    }
+
+    function ytPreview(v) {
+      var id = ytId(v);
+      if (id) return '<img class="yt-prev" src="https://i.ytimg.com/vi/' + id + '/hqdefault.jpg" alt="Video thumbnail">';
+      return v && v.trim() ? '<p class="msg error">This does not look like a YouTube link. Copy the address from YouTube\'s Share button.</p>' : '';
+    }
+
+    function bodyHtml(b, i, side) {
+      var headIn = function (ph) { return '<input class="inp" data-f="heading" maxlength="140" aria-label="Heading of section ' + (i + 1) + '" placeholder="' + esc(ph || 'Heading (optional)') + '" value="' + esc(b.heading || '') + '">'; };
+      var rte = function (ph) { return '<div class="rte" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Text of section ' + (i + 1) + '" data-f="html" data-placeholder="' + esc(ph) + '"></div>'; };
+      switch (b.type) {
+        case 'text': return headIn() + rte('Write your text here…');
+        case 'imageText':
+          return '<div class="pb-split img-' + side + ' size-' + b.size + '"><div class="slot-wrap"><p class="pb-note">Picture for this paragraph – shown on the ' + side.toUpperCase() +
+            (b.side === 'auto' ? ' (automatic zig-zag)' : '') + '</p>' + slotHtml(b.image, 'Add the picture for this paragraph') + '</div>' +
+            '<div class="pb-text-side">' + headIn() + rte('Write the paragraph that goes with this picture…') + '</div></div>';
+        case 'image': return slotHtml(b.image, 'Add a big picture');
+        case 'gallery':
+          return headIn('Heading above the photos (optional)') + photosHtml(b.images) +
+            '<div class="drop" data-drop><p><strong>Drag photos here</strong> or</p><button type="button" class="b light small" data-act="gal-add">+ Add photos</button>' +
+            '<p class="hint">You can choose many at once (up to 40). Big photos are made smaller automatically.</p></div>';
+        case 'cards':
+          return headIn('Heading above the cards (optional)') + '<div class="cards-ed">' + b.cards.map(function (c, j) { return cardHtml(c, j, b.cards.length); }).join('') +
+            (b.cards.length < 12 ? '<button type="button" class="slot" data-act="card-add"><span class="slot-ic">+</span><strong>Add a card</strong><small>Up to 12 cards</small></button>' : '') + '</div>';
+        case 'video':
+          return headIn() + '<label class="sub-label">YouTube link<input class="inp" data-f="video" style="margin-top:6px" placeholder="https://www.youtube.com/watch?v=…" value="' + esc(b.video || '') + '"></label>' +
+            '<div class="yt-box">' + ytPreview(b.video) + '</div>' +
+            '<input class="inp sm" data-f="caption" maxlength="200" aria-label="Line under the video" placeholder="Short line under the video (optional)" value="' + esc(b.caption || '') + '">';
+        case 'quote':
+          return '<textarea class="inp" data-f="text" rows="3" maxlength="800" aria-label="Quote" placeholder="The customer\'s words…">' + esc(b.text || '') + '</textarea>' +
+            '<input class="inp sm" data-f="by" maxlength="120" aria-label="Who said it" placeholder="Who said it, e.g. Owner, Hotel name, Coimbatore" value="' + esc(b.by || '') + '">';
+        case 'callout':
+          var hint = CALLOUT_HINTS[b.tone] || CALLOUT_HINTS.note;
+          return headIn(hint[0]) + rte(hint[1]);
+        case 'cta':
+          return headIn('Heading, e.g. Need this machine for your kitchen?') +
+            '<textarea class="inp" data-f="text" rows="2" maxlength="400" aria-label="Text" placeholder="One or two lines (optional)">' + esc(b.text || '') + '</textarea>' +
+            '<div class="cta-row"><input class="inp" data-f="label" maxlength="40" aria-label="Button text" placeholder="Button text, e.g. Ask for a price" value="' + esc(b.label || '') + '">' +
+            '<input class="inp" data-f="link" aria-label="Button link" placeholder="Button link (https://…)" value="' + esc(b.link || '') + '"></div>' +
+            '<div class="btn-row" style="align-items:center"><span class="hint" style="margin:0">Quick links:</span>' +
+            '<button type="button" class="b light small" data-act="quick" data-v="wa">WhatsApp</button>' +
+            '<button type="button" class="b light small" data-act="quick" data-v="call">Call</button>' +
+            '<button type="button" class="b light small" data-act="quick" data-v="contact">Contact page</button></div>';
+        case 'divider':
+          return '<hr class="pb-hr"><p class="hint" style="text-align:center;margin:0">A thin line that separates parts of the post.</p>';
+      }
+      return '';
+    }
+
+    function blockHtml(b, i, n, side) {
+      var tool = function (act, label, title, off) { return '<button type="button" data-act="' + act + '" title="' + title + '" aria-label="' + title + '"' + (off ? ' disabled' : '') + '>' + label + '</button>'; };
+      var opts = optionsHtml(b);
+      return '<div class="pb-ed" data-i="' + i + '" role="group" aria-label="Section ' + (i + 1) + ': ' + SECTIONS[b.type].name + '">' +
+        '<div class="pb-ed-head"><span class="pb-num">' + (i + 1) + '</span><span class="pb-name">' + SECTIONS[b.type].svg + SECTIONS[b.type].name + '</span>' +
+        '<div class="pb-tools">' + tool('up', '↑', 'Move section up', i === 0) + tool('down', '↓', 'Move section down', i === n - 1) +
+        tool('dup', '⧉', 'Copy this section') + tool('del', '🗑', 'Delete this section') + '</div></div>' +
+        (opts ? '<div class="pb-opts">' + opts + '</div>' : '') +
+        '<div class="pb-body">' + bodyHtml(b, i, side) + '</div></div>';
+    }
+
+    function addHere(at, last) {
+      return '<div class="add-between' + (last ? ' last' : '') + '"><button type="button" data-act="add" data-at="' + at + '">+ Add section' + (last ? '' : ' here') + '</button></div>';
+    }
+
+    function renderSections() {
+      var list = state.post.blocks;
+      var sides = sidesOf(list);
+      blocksEl.innerHTML = (list.length ? '' : '<div class="empty-box">No sections yet. Choose a layout above, or add your first section.</div>') +
+        list.map(function (b, i) { return (i ? addHere(i) : '') + blockHtml(b, i, list.length, sides[i]); }).join('') + addHere(list.length, true);
+      blocksEl.querySelectorAll('[data-f="html"]').forEach(function (el) { el.innerHTML = toEditorHtml(list[+el.closest('[data-i]').getAttribute('data-i')].html); });
+      state.activeEditor = blocksEl.querySelector('.rte');
+    }
+
+    function renderPresets() {
+      $('presetPick').innerHTML = Object.keys(PRESETS).map(function (k) {
+        var p = PRESETS[k];
+        return '<button type="button" class="pick-tile' + (state.post.layout === k ? ' active' : '') + '" data-preset="' + k + '" aria-pressed="' + (state.post.layout === k) + '">' + p.svg + p.name + '<small>' + p.desc + '</small></button>';
+      }).join('');
+    }
+    $('presetPick').addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-preset]');
+      if (!btn) return;
+      var key = btn.getAttribute('data-preset');
+      var apply = function () {
+        state.post.layout = key;
+        state.post.blocks = PRESETS[key].make();
+        renderPresets();
+        renderSections();
+        markDirty();
+        toast('Layout added. Fill in each numbered section.');
+      };
+      syncEditors();
+      if (state.post.blocks.some(hasContent)) {
+        confirmBox('Use the "' + PRESETS[key].name + '" layout?', 'This replaces your current sections and what you wrote in them. To keep them, press Cancel and use "+ Add section" instead.', 'Replace sections', apply);
+      } else apply();
+    });
+
+    /* Add-section picker */
+    $('sectionPick').innerHTML = Object.keys(SECTIONS).map(function (k) {
+      return '<button type="button" class="pick-tile" data-type="' + k + '">' + SECTIONS[k].svg + SECTIONS[k].name + '<small>' + SECTIONS[k].desc + '</small></button>';
+    }).join('');
+    function openAdd(at) { state.addAt = at; openModal('addModal'); var f = $('sectionPick').querySelector('button'); if (f) f.focus(); }
+    $('sectionPick').addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-type]');
+      if (!btn) return;
+      closeModal('addModal');
+      syncEditors();
+      var at = Math.min(state.addAt, state.post.blocks.length);
+      state.post.blocks.splice(at, 0, newBlock(btn.getAttribute('data-type')));
+      if (!state.post.layout) state.post.layout = 'custom';
+      after(at, true);
+    });
+
+    /* Re-draws the sections, keeps the changed one in view */
+    function after(i, focus) {
+      markDirty();
+      renderSections();
+      var el = blocksEl.querySelector('[data-i="' + i + '"]');
+      if (el) {
+        el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        if (focus) { var f = el.querySelector('input, .rte, textarea, .slot'); if (f) f.focus({ preventScroll: true }); }
+      }
+    }
+
+    function syncEditors() {
+      blocksEl.querySelectorAll('[data-f="html"]').forEach(function (el) {
+        var b = blockAt(el);
+        if (b) b.html = fromEditorHtml(el);
+      });
+    }
+
+    function blockAt(el) { var w = el.closest('[data-i]'); return w ? state.post.blocks[+w.getAttribute('data-i')] : null; }
+    function idxAt(el) { return +el.closest('[data-i]').getAttribute('data-i'); }
+    function jAt(el) { var w = el.closest('[data-j]'); return w ? +w.getAttribute('data-j') : -1; }
+    /* Where the picture of a slot is kept */
+    function holder(b, j) {
+      if (b.type === 'cards') return { obj: b.cards[j], key: 'image' };
+      if (b.type === 'gallery') return { obj: b.images, key: j };
+      return { obj: b, key: 'image' };
+    }
+    function moveIn(list, j, d) { var k = j + d; if (k < 0 || k >= list.length) return; list.splice(k, 0, list.splice(j, 1)[0]); }
+
+    blocksEl.addEventListener('input', function (e) {
+      var t = e.target, b = blockAt(t);
+      if (!b) return;
+      var f = t.getAttribute('data-f'), im = t.getAttribute('data-im'), cf = t.getAttribute('data-cf');
+      if (f === 'html') {
+        if (t.innerHTML === '<br>') t.innerHTML = '';
+        b.html = fromEditorHtml(t);
+      } else if (f) {
+        b[f] = t.value;
+        if (f === 'video') t.closest('.pb-body').querySelector('.yt-box').innerHTML = ytPreview(t.value);
+      } else if (im) {
+        var h = holder(b, jAt(t)), o = h.obj[h.key];
+        if (!o) return;
+        o[im] = t.value;
+        if (im === 'alt') {
+          t.classList.toggle('need', !t.value.trim());
+          var pc = t.closest('.photo-card');
+          if (pc) pc.classList.toggle('bad', !t.value.trim());
+        }
+      } else if (cf) {
+        b.cards[jAt(t)][cf] = t.value;
+      } else return;
+      markDirty();
+    });
+
+    blocksEl.addEventListener('change', function (e) {
+      var t = e.target, key = t.getAttribute('data-o');
+      if (!key) return;
+      var i = idxAt(t);
+      syncEditors();
+      state.post.blocks[i][key] = t.value;
+      after(i);
+      var again = blocksEl.querySelector('[data-i="' + i + '"] [data-o="' + key + '"]');
+      if (again) again.focus({ preventScroll: true });
+    });
+
+    blocksEl.addEventListener('focusin', function (e) { if (e.target.classList && e.target.classList.contains('rte')) state.activeEditor = e.target; });
+    blocksEl.addEventListener('focusout', function () { autoFill(false); });
+
+    /* Paste as clean text (keeps line breaks as paragraphs) */
+    blocksEl.addEventListener('paste', function (e) {
+      if (!e.target.closest || !e.target.closest('.rte')) return;
+      e.preventDefault();
+      var text = (e.clipboardData || window.clipboardData).getData('text/plain');
+      var html = text.split(/\r?\n\s*\r?\n/).map(function (para) { return '<p>' + esc(para).replace(/\r?\n/g, '<br>') + '</p>'; }).join('');
+      document.execCommand('insertHTML', false, html);
+    });
+
+    blocksEl.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-act]');
+      if (!btn || btn.disabled) return;
+      var act = btn.getAttribute('data-act');
+      if (act === 'add') { openAdd(+btn.getAttribute('data-at')); return; }
+      syncEditors();
+      var list = state.post.blocks, i = idxAt(btn), b = list[i], j = jAt(btn);
+      switch (act) {
+        case 'up': if (i > 0) { moveIn(list, i, -1); after(i - 1); } break;
+        case 'down': if (i < list.length - 1) { moveIn(list, i, 1); after(i + 1); } break;
+        case 'dup': list.splice(i + 1, 0, JSON.parse(JSON.stringify(b))); after(i + 1); break;
+        case 'del':
+          var remove = function () { list.splice(i, 1); after(Math.max(0, Math.min(i, list.length - 1))); };
+          if (hasContent(b)) confirmBox('Delete section ' + (i + 1) + '?', 'The "' + SECTIONS[b.type].name + '" section and everything in it will be removed from this post.', 'Delete', remove);
+          else remove();
+          break;
+        case 'img': pickImage(i, j); break;
+        case 'img-rm': var h = holder(b, j); h.obj[h.key] = null; after(i); break;
+        case 'gal-add': state.multiTarget = i; $('multiFile').click(); break;
+        case 'ph-left': moveIn(b.images, j, -1); after(i); break;
+        case 'ph-right': moveIn(b.images, j, 1); after(i); break;
+        case 'ph-rm': b.images.splice(j, 1); after(i); break;
+        case 'card-add': if (b.cards.length < 12) { b.cards.push(newCard()); after(i); } break;
+        case 'card-left': moveIn(b.cards, j, -1); after(i); break;
+        case 'card-right': moveIn(b.cards, j, 1); after(i); break;
+        case 'card-rm':
+          var dropCard = function () { b.cards.splice(j, 1); after(i); };
+          var c = b.cards[j];
+          if (c.image || c.title || c.text) confirmBox('Remove card ' + (j + 1) + '?', 'Its picture and text will be removed from this post.', 'Remove', dropCard); else dropCard();
+          break;
+        case 'quick': b.link = quickLink(btn.getAttribute('data-v')); after(i); break;
+      }
+    });
+
+    /* Drag photos onto a photo gallery section */
+    ['dragenter', 'dragover'].forEach(function (t) {
+      blocksEl.addEventListener(t, function (e) { var d = e.target.closest && e.target.closest('[data-drop]'); if (!d) return; e.preventDefault(); d.classList.add('over'); });
+    });
+    ['dragleave', 'drop'].forEach(function (t) {
+      blocksEl.addEventListener(t, function (e) { var d = e.target.closest && e.target.closest('[data-drop]'); if (d) d.classList.remove('over'); });
+    });
+    blocksEl.addEventListener('drop', function (e) {
+      var d = e.target.closest && e.target.closest('[data-drop]');
+      if (!d) return;
+      e.preventDefault();
+      addGalleryPhotos(idxAt(d), e.dataTransfer.files);
+    });
+
+    var WA_NUMBER = '917094464175';            // same WhatsApp number as the website
+    var CALL_NUMBER = '+919789731317';
+    function quickLink(kind) {
+      if (kind === 'wa') return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent('Hello Kovai Lakshmi Grinders, I read your post "' + ($('edTitle').value.trim() || 'on your website') + '" and would like to know more.');
+      if (kind === 'call') return 'tel:' + CALL_NUMBER;
+      return BASE + 'contact-us/';
+    }
+
+    /* ── formatting toolbar (works on the text box you clicked last) ── */
+    function exec(cmd, val) {
+      var ed = state.activeEditor;
+      if (!ed || !document.body.contains(ed)) { toast('Click inside a text box first.'); return; }
+      ed.focus();
+      document.execCommand(cmd, false, val);
+      var b = blockAt(ed);
+      if (b) b.html = fromEditorHtml(ed);
+      markDirty();
+    }
     var savedRange = null;
     function saveSelection() {
       var sel = window.getSelection();
@@ -749,35 +1308,40 @@ textarea.inp { min-height: 90px; resize: vertical; }
       state.activeEditor.focus();
       if (savedRange) { var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(savedRange); }
     }
-
     $('rteToolbar').addEventListener('mousedown', function (e) { if (e.target.closest('button')) e.preventDefault(); });
     $('rteToolbar').addEventListener('click', function (e) {
       var b = e.target.closest('button[data-cmd]');
       if (!b) return;
       var cmd = b.getAttribute('data-cmd');
       if (cmd === 'quote') exec('formatBlock', 'blockquote');
-      else if (cmd === 'link') { saveSelection(); $('linkText').value = String(window.getSelection()); $('linkUrl').value = ''; openModal('linkModal'); }
-      else if (cmd === 'table') { saveSelection(); openModal('tableModal'); }
-      else if (cmd === 'image') { saveSelection(); cropFor = 'inline'; $('inlineFile').click(); }
-      else if (cmd === 'removeFormat') { exec('removeFormat'); exec('formatBlock', 'p'); }
+      else if (cmd === 'link') {
+        if (!state.activeEditor || !document.body.contains(state.activeEditor)) { toast('Click inside a text box first.'); return; }
+        saveSelection(); $('linkText').value = String(window.getSelection()); $('linkUrl').value = ''; openModal('linkModal');
+      } else if (cmd === 'table') {
+        if (!state.activeEditor || !document.body.contains(state.activeEditor)) { toast('Click inside a text box first.'); return; }
+        saveSelection(); openModal('tableModal');
+      } else if (cmd === 'removeFormat') { exec('removeFormat'); exec('formatBlock', 'p'); }
       else exec(cmd);
     });
     document.querySelector('[data-block]').addEventListener('change', function (e) {
       exec('formatBlock', e.target.value);
       e.target.value = 'p';
     });
-
+    function insertHtml(html) {
+      restoreSelection();
+      document.execCommand('insertHTML', false, html);
+      var b = state.activeEditor && blockAt(state.activeEditor);
+      if (b) b.html = fromEditorHtml(state.activeEditor);
+      markDirty();
+    }
     $('linkForm').addEventListener('submit', function (e) {
       e.preventDefault();
       var url = $('linkUrl').value.trim();
       if (!/^(https?:\/\/|mailto:|tel:|#)/i.test(url)) url = 'https://' + url;
       var text = $('linkText').value.trim() || url;
       closeModal('linkModal');
-      restoreSelection();
-      document.execCommand('insertHTML', false, '<a href="' + esc(url) + '">' + esc(text) + '</a>');
-      markDirty();
+      insertHtml('<a href="' + esc(url) + '">' + esc(text) + '</a>');
     });
-
     $('tableForm').addEventListener('submit', function (e) {
       e.preventDefault();
       var rows = Math.max(1, Math.min(30, +$('tblRows').value || 3));
@@ -794,9 +1358,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       }
       html += '</tbody></table></div><p><br></p>';
       closeModal('tableModal');
-      restoreSelection();
-      document.execCommand('insertHTML', false, html);
-      markDirty();
+      insertHtml(html);
     });
 
     /* ── image tools ─────────────────────────────────────── */
@@ -818,6 +1380,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
     }
     function mb(bytes) { return (bytes / 1024 / 1024).toFixed(1) + ' MB'; }
     var EXT = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
+    function stamp() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 5); }
 
     /* Strict cover check: exactly 1200 × 630 px, 1 MB or less, JPG / PNG / WebP. No automatic fixing. */
     function checkCover(file) {
@@ -848,15 +1411,106 @@ textarea.inp { min-height: 90px; resize: vertical; }
       });
     }
 
-    function stamp() { return Date.now().toString(36); }
+    /* Photos for galleries: kept in their own shape, made smaller if needed (max 1600 px, 1 MB) */
+    function canvasTo(canvas, type, quality) {
+      return new Promise(function (resolve) { canvas.toBlob(resolve, type, quality); });
+    }
+    function blobToData(blob) {
+      return new Promise(function (resolve) { var fr = new FileReader(); fr.onload = function () { resolve(fr.result); }; fr.readAsDataURL(blob); });
+    }
+    function preparePhoto(file) {
+      if (!EXT[file.type]) return Promise.reject(new Error('"' + file.name + '" is not a JPG, PNG or WebP picture.'));
+      return readFile(file).then(function (data) {
+        return loadImage(data).then(function (img) {
+          var w = img.naturalWidth, h = img.naturalHeight, MAX = 1600;
+          if (file.size <= MAX_BYTES && Math.max(w, h) <= MAX) return { data: data, w: w, h: h };
+          var scale = Math.min(1, MAX / Math.max(w, h));
+          var canvas = document.createElement('canvas');
+          function attempt(s, q) {
+            canvas.width = Math.round(w * s);
+            canvas.height = Math.round(h * s);
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            return canvasTo(canvas, 'image/jpeg', q).then(function (blob) {
+              if (blob && blob.size <= MAX_BYTES) return blobToData(blob).then(function (d) { return { data: d, w: canvas.width, h: canvas.height }; });
+              if (q > 0.55) return attempt(s, q - 0.1);
+              if (s > 0.3) return attempt(s * 0.8, 0.82);
+              throw new Error('"' + file.name + '" is still larger than 1 MB after making it smaller. Please choose a smaller photo.');
+            });
+          }
+          return attempt(scale, 0.85);
+        });
+      });
+    }
 
+    /* Uploads photos in small batches (each batch is saved to the website in one go) */
+    function uploadPhotos(kind, key, fileList, altBase) {
+      var files = Array.prototype.slice.call(fileList || []);
+      var out = [], i = 0, total = files.length;
+      function nextBatch() {
+        if (i >= total) return Promise.resolve(out);
+        var batch = [], size = 0;
+        function prep() {
+          if (i >= total || batch.length >= 6 || size > 5500000) return Promise.resolve();
+          var f = files[i++];
+          busy(true, 'Preparing photo ' + i + ' of ' + total + '…');
+          return preparePhoto(f).then(function (p) { batch.push(p); size += p.data.length * 0.75; return prep(); });
+        }
+        return prep().then(function () {
+          busy(true, 'Uploading photos ' + (out.length + 1) + '–' + (out.length + batch.length) + ' of ' + total + '… please keep this page open.');
+          var payload = batch.map(function (p, n) {
+            var m = /^data:([^;]+);base64,(.*)$/.exec(p.data);
+            return { name: 'photo-' + stamp() + '-' + n, contentType: m[1], data: m[2] };
+          });
+          var req = { kind: kind, files: payload };
+          req[kind === 'gallery' ? 'group' : 'slug'] = key;
+          return api('uploadImages', req).then(function (res) {
+            res.urls.forEach(function (url, n) {
+              localImages[url] = batch[n].data;
+              out.push({ url: url, alt: altBase ? altBase + ' – photo ' + (out.length + 1) : '', caption: '', w: batch[n].w, h: batch[n].h });
+            });
+            return nextBatch();
+          });
+        });
+      }
+      return nextBatch().catch(function (err) { err.partial = out; throw err; });
+    }
+
+    function addGalleryPhotos(i, fileList) {
+      var b = state.post.blocks[i];
+      if (!fileList || !fileList.length) return;
+      var slug;
+      try { slug = needSlug(); } catch (err) { toast(err.message); return; }
+      var room = 40 - b.images.length;
+      if (room <= 0) { toast('A photo gallery section can hold up to 40 photos. Add another gallery section for more.'); return; }
+      var files = Array.prototype.slice.call(fileList, 0, room);
+      var base = (b.heading || $('edTitle').value || '').trim();
+      uploadPhotos('post', slug, files, base).then(function (list) {
+        b.images = b.images.concat(list);
+        after(i);
+        toast(list.length + ' photo' + (list.length === 1 ? '' : 's') + ' added. Please check each description.');
+        if (fileList.length > room) toast('Only ' + room + ' photos were added – a gallery section holds up to 40.');
+      }).catch(function (err) {
+        if (err.partial && err.partial.length) { b.images = b.images.concat(err.partial); after(i); }
+        msg('edMsg', err.message);
+      }).then(function () { busy(false); });
+    }
+    $('multiFile').addEventListener('change', function () {
+      var files = this.files;
+      var copy = Array.prototype.slice.call(files);
+      this.value = '';
+      addGalleryPhotos(state.multiTarget, copy);
+    });
+
+    /* Cover and share image */
     $('coverFile').addEventListener('change', function () {
       var file = this.files[0];
       this.value = '';
       if (!file) return;
       msg('coverMsg', '');
-      var slug;
-      try { slug = needSlug(); } catch (err) { msg('coverMsg', err.message); return; }
+      try { needSlug(); } catch (err) { msg('coverMsg', err.message); return; }
       checkCover(file).then(function (data) {
         busy(true, 'Uploading cover…');
         return upload(data, 'cover-' + stamp() + '.' + EXT[file.type]).then(function (url) {
@@ -867,7 +1521,6 @@ textarea.inp { min-height: 90px; resize: vertical; }
         });
       }).catch(function (err) { msg('coverMsg', err.message); }).then(function () { busy(false); });
     });
-
     $('shareFile').addEventListener('change', function () {
       var file = this.files[0];
       this.value = '';
@@ -884,11 +1537,10 @@ textarea.inp { min-height: 90px; resize: vertical; }
       }).catch(function (err) { msg('shareMsg', err.message); }).then(function () { busy(false); });
     });
     $('shareReset').addEventListener('click', function () { state.post.shareImage = ''; showShare(); markDirty(); });
-
     function showCover() {
       var url = state.post.cover;
       $('coverPreview').hidden = !url;
-      $('coverPreview').src = url ? (localImages[url] || url) : '';
+      $('coverPreview').src = url ? shown(url) : '';
       $('coverPreview').alt = $('edCoverAlt').value || 'Cover image';
       showShare();
     }
@@ -898,11 +1550,25 @@ textarea.inp { min-height: 90px; resize: vertical; }
       $('shareReset').hidden = !p.shareImage;
     }
 
-    /* ── crop & compress tool (inline, side and gallery images) ── */
-    var crop = { img: null, zoom: 1, x: 0, y: 0, type: 'image/jpeg' };
-    var cropFor = 'inline';
+    /* ── crop & compress tool (pictures inside sections) ─── */
+    var crop = { img: null, zoom: 1, x: 0, y: 0, type: 'image/jpeg', aspect: '4:3' };
     var cropCanvas = $('cropCanvas');
     var cctx = cropCanvas.getContext('2d');
+    var DEFAULT_SHAPE = { imageText: '4:3', image: '16:9', cards: '4:3' };
+
+    function pickImage(i, j) {
+      try { needSlug(); } catch (err) { toast(err.message); return; }
+      state.imgTarget = { i: i, j: j };
+      $('blockFile').click();
+    }
+    $('blockFile').addEventListener('change', function () {
+      var f = this.files[0];
+      this.value = '';
+      if (!f || !state.imgTarget) return;
+      var b = state.post.blocks[state.imgTarget.i];
+      var h = holder(b, state.imgTarget.j), old = h.obj[h.key];
+      openCrop(f, DEFAULT_SHAPE[b.type] || '16:9', old ? old.alt : '', old ? old.caption : '');
+    });
 
     function drawCrop() {
       var W = cropCanvas.width, H = cropCanvas.height, img = crop.img;
@@ -913,28 +1579,41 @@ textarea.inp { min-height: 90px; resize: vertical; }
       crop.y = Math.min(0, Math.max(H - dh, crop.y));
       cctx.fillStyle = '#fff';
       cctx.fillRect(0, 0, W, H);
-      cctx.drawImage(img, crop.x, crop.y, dw, dh);
+      cctx.drawImage(crop.img, crop.x, crop.y, dw, dh);
     }
 
-    function openCrop(file) {
+    /* Never makes a picture bigger than it really is: up to 1200 px on the longest side */
+    function setAspect(a) {
+      var img = crop.img;
+      var r = a === 'free' ? img.naturalWidth / img.naturalHeight : (function (p) { return +p[0] / +p[1]; }(a.split(':')));
+      crop.aspect = a;
+      var w = Math.min(1200, img.naturalWidth, Math.round(img.naturalHeight * r));
+      if (w / r > 1200) w = Math.round(1200 * r);
+      cropCanvas.width = Math.max(120, w);
+      cropCanvas.height = Math.max(90, Math.round(cropCanvas.width / r));
+      var stage = $('cropStage');
+      stage.style.aspectRatio = cropCanvas.width + ' / ' + cropCanvas.height;
+      stage.style.width = 'min(100%, calc(56vh * ' + (cropCanvas.width / cropCanvas.height).toFixed(4) + '))';
+      crop.zoom = 1;
+      $('cropZoom').value = 1;
+      var base = Math.max(cropCanvas.width / img.naturalWidth, cropCanvas.height / img.naturalHeight);
+      crop.x = (cropCanvas.width - img.naturalWidth * base) / 2;
+      crop.y = (cropCanvas.height - img.naturalHeight * base) / 2;
+      document.querySelectorAll('#cropAspect button').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-a') === a); b.setAttribute('aria-pressed', b.getAttribute('data-a') === a); });
+      drawCrop();
+    }
+    $('cropAspect').addEventListener('click', function (e) { var b = e.target.closest('[data-a]'); if (b && crop.img) setAspect(b.getAttribute('data-a')); });
+
+    function openCrop(file, aspect, alt, caption) {
       msg('cropMsg', '');
       if (!EXT[file.type]) { toast('Please choose a JPG, PNG or WebP image.'); return; }
       readFile(file).then(loadImage).then(function (img) {
         crop.img = img;
-        crop.zoom = 1;
         crop.type = file.type === 'image/png' ? 'image/png' : (file.type === 'image/webp' ? 'image/webp' : 'image/jpeg');
-        /* never make the picture bigger than it really is: max 1200 px wide */
-        var outW = Math.min(1200, Math.round(Math.min(img.naturalWidth, img.naturalHeight * 16 / 9)));
-        cropCanvas.width = Math.max(320, outW);
-        cropCanvas.height = Math.round(cropCanvas.width * 9 / 16);
-        var base = Math.max(cropCanvas.width / img.naturalWidth, cropCanvas.height / img.naturalHeight);
-        crop.x = (cropCanvas.width - img.naturalWidth * base) / 2;
-        crop.y = (cropCanvas.height - img.naturalHeight * base) / 2;
-        $('cropZoom').value = 1;
-        $('cropAlt').value = '';
-        $('cropCaption').value = '';
-        drawCrop();
+        $('cropAlt').value = alt || '';
+        $('cropCaption').value = caption || '';
         openModal('cropModal');
+        setAspect(aspect);
       }).catch(function (err) { toast(err.message); });
     }
 
@@ -954,8 +1633,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
     $('cropZoom').addEventListener('input', function () {
       var W = cropCanvas.width, H = cropCanvas.height, old = crop.zoom;
       crop.zoom = +this.value;
-      /* zoom around the centre */
-      crop.x = W / 2 - (W / 2 - crop.x) * crop.zoom / old;
+      crop.x = W / 2 - (W / 2 - crop.x) * crop.zoom / old;      /* zoom around the centre */
       crop.y = H / 2 - (H / 2 - crop.y) * crop.zoom / old;
       drawCrop();
     });
@@ -967,7 +1645,6 @@ textarea.inp { min-height: 90px; resize: vertical; }
         function attempt() {
           cropCanvas.toBlob(function (blob) {
             if (!blob) { reject(new Error('Could not process this image.')); return; }
-            /* some browsers (Safari) cannot save WebP and give PNG instead: switch to JPG */
             if (blob.type !== type && blob.size > MAX_BYTES) { type = 'image/jpeg'; quality = 0.9; attempt(); return; }
             if (blob.size <= MAX_BYTES) {
               var fr = new FileReader();
@@ -989,71 +1666,34 @@ textarea.inp { min-height: 90px; resize: vertical; }
       var alt = $('cropAlt').value.trim();
       if (!alt) { msg('cropMsg', 'Please describe the image in a few words (this helps Google and people who cannot see it).'); $('cropAlt').focus(); return; }
       var caption = $('cropCaption').value.trim();
+      var t = state.imgTarget;
       busy(true, 'Saving image…');
       exportCrop().then(function (out) {
-        var prefix = cropFor === 'inline' ? 'image-' : (cropFor === 'extra' ? 'photo-' : 'image-');
-        return upload(out.data, prefix + stamp() + '.' + out.ext).then(function (url) {
+        return upload(out.data, 'image-' + stamp() + '.' + out.ext).then(function (url) {
           closeModal('cropModal');
-          if (cropFor === 'inline') {
-            restoreSelection();
-            var html = '<figure><img src="' + esc(out.data) + '" data-final="' + esc(url) + '" alt="' + esc(alt) + '">' +
-              (caption ? '<figcaption>' + esc(caption) + '</figcaption>' : '') + '</figure><p><br></p>';
-            document.execCommand('insertHTML', false, html);
-          } else {
-            state.post.images = state.post.images || [];
-            state.post.images.push({ url: url, alt: alt, caption: caption });
-            renderExtraImages();
-          }
-          markDirty();
+          var b = state.post.blocks[t.i];
+          var h = holder(b, t.j);
+          h.obj[h.key] = { url: url, alt: alt, caption: caption, w: cropCanvas.width, h: cropCanvas.height };
+          after(t.i);
         });
       }).catch(function (err) { msg('cropMsg', err.message); }).then(function () { busy(false); });
     });
 
-    $('inlineFile').addEventListener('change', function () { var f = this.files[0]; this.value = ''; if (!f) return; try { needSlug(); } catch (err) { toast(err.message); return; } cropFor = 'inline'; $('cropCaptionField').hidden = false; openCrop(f); });
-    $('extraFile').addEventListener('change', function () { var f = this.files[0]; this.value = ''; if (!f) return; try { needSlug(); } catch (err) { toast(err.message); return; } cropFor = 'extra'; $('cropCaptionField').hidden = false; openCrop(f); });
-
-    function renderExtraImages() {
-      var list = state.post.images || [];
-      $('extraImages').innerHTML = list.map(function (im, i) {
-        return '<figure><img src="' + esc(localImages[im.url] || im.url) + '" alt="' + esc(im.alt) + '"><button type="button" class="rm" data-i="' + i + '" aria-label="Remove image">×</button><figcaption>' + esc(im.alt) + '</figcaption></figure>';
-      }).join('') || '<p class="hint">No images yet.</p>';
-    }
-    $('extraImages').addEventListener('click', function (e) {
-      var b = e.target.closest('.rm');
-      if (!b) return;
-      state.post.images.splice(+b.getAttribute('data-i'), 1);
-      renderExtraImages();
-      markDirty();
-    });
-
-    /* ── layout picker ───────────────────────────────────── */
-    function currentLayout() { return (document.querySelector('input[name=layout]:checked') || {}).value || 'full'; }
-    function applyLayout(layout, keepContent) {
-      var values = keepContent ? collectEditors() : {};
-      buildEditors(layout, keepContent ? values : state.post);
-      $('layoutHint').textContent = LAYOUT_HINTS[layout];
-      var extra = layout === 'side' || layout === 'gallery';
-      $('extraImagesCard').hidden = !extra;
-      $('extraImagesTitle').textContent = layout === 'side' ? 'Side images' : 'Gallery images';
-      $('extraImagesHint').textContent = layout === 'side' ? 'These pictures appear in a column beside your text.' : 'These pictures appear in a grid below your text. Visitors can click them to see them bigger.';
-      renderExtraImages();
-    }
-    $('layoutPick').addEventListener('change', function () { applyLayout(currentLayout(), true); markDirty(); });
-
-    function collectEditors() {
-      var out = {};
-      Object.keys(state.editors).forEach(function (k) { out[k] = fromEditorHtml(state.editors[k]); });
-      return out;
-    }
-
     /* ── SEO helpers ─────────────────────────────────────── */
-    function firstParagraph() {
-      var ed = state.editors.content || state.editors.problem;
-      var source = ed ? (state.editors.problem ? state.editors.problem : ed) : null;
-      if (!source) return '';
-      var p = source.querySelector('p');
-      var text = (p ? p.textContent : source.textContent).replace(/\s+/g, ' ').trim();
-      return text;
+    function firstText() {
+      var list = state.post ? state.post.blocks : [];
+      for (var i = 0; i < list.length; i++) {
+        var b = list[i];
+        if (b.html) {
+          var d = document.createElement('div');
+          d.innerHTML = b.html;
+          var p = d.querySelector('p');
+          var t = (p ? p.textContent : d.textContent).replace(/\s+/g, ' ').trim();
+          if (t) return t;
+        }
+        if (b.text && b.type !== 'quote') return b.text.replace(/\s+/g, ' ').trim();
+      }
+      return '';
     }
     function cut(text, max) {
       text = text.replace(/\s+/g, ' ').trim();
@@ -1061,12 +1701,14 @@ textarea.inp { min-height: 90px; resize: vertical; }
       return text.slice(0, max - 1).replace(/\s+\S*$/, '') + '…';
     }
     function autoFill(force) {
+      if (!state.post) return;
       var title = $('edTitle').value.trim();
-      var para = firstParagraph();
+      var para = firstText();
       var fill = function (id, value) { if ((force || !$(id).dataset.touched) && !$(id).value.trim() && value) $(id).value = value; };
       if (title) {
         fill('edSeoTitle', cut(title + (title.length < 38 ? ' | Kovai Lakshmi Grinders' : ''), 60));
         fill('edOgTitle', cut(title, 60));
+        fill('edKeywords', [title, catName($('edCategory').value), 'Kovai Lakshmi Grinders', 'Coimbatore'].filter(Boolean).join(', '));
       }
       if (para) {
         fill('edMetaDesc', cut(para, 158));
@@ -1093,7 +1735,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       var slug = currentSlug();
       $('serpUrl').textContent = 'kovailakshmi.in › resources › ' + (slug || 'post-address');
       $('serpTitle').textContent = $('edSeoTitle').value || $('edTitle').value || 'Your post title';
-      $('serpDesc').textContent = cut($('edMetaDesc').value || firstParagraph() || 'Your Google description will appear here.', 160);
+      $('serpDesc').textContent = cut($('edMetaDesc').value || firstText() || 'Your Google description will appear here.', 160);
       var used = state.posts.some(function (p) { return p.slug === slug && p.id !== state.post.id; });
       var locked = state.post.status === 'published' && state.post.slug && slug !== state.post.slug;
       $('slugHint').textContent = used ? '⚠ Another post already uses this address. Please change it.'
@@ -1101,10 +1743,10 @@ textarea.inp { min-height: 90px; resize: vertical; }
       $('slugHint').style.color = (used || locked) ? '#d64545' : '';
     }
 
-    ['edSeoTitle', 'edMetaDesc', 'edOgTitle', 'edOgDesc'].forEach(function (id) {
+    ['edSeoTitle', 'edMetaDesc', 'edOgTitle', 'edOgDesc', 'edKeywords'].forEach(function (id) {
       $(id).addEventListener('input', function () { $(id).dataset.touched = '1'; updateCounters(); updateSerp(); markDirty(); });
     });
-    ['edKeywords', 'edAuthor', 'edDate', 'edCategory', 'edCoverAlt'].forEach(function (id) { $(id).addEventListener('input', markDirty); $(id).addEventListener('change', markDirty); });
+    ['edAuthor', 'edDate', 'edCategory', 'edCoverAlt'].forEach(function (id) { $(id).addEventListener('input', markDirty); $(id).addEventListener('change', markDirty); });
     $('edToc').addEventListener('change', markDirty);
     $('edTitle').addEventListener('input', function () {
       if (!state.slugTouched && state.post.status !== 'published') $('edSlug').value = slugify($('edTitle').value);
@@ -1114,7 +1756,6 @@ textarea.inp { min-height: 90px; resize: vertical; }
     $('edTitle').addEventListener('blur', function () { autoFill(false); });
     $('edSlug').addEventListener('input', function () { state.slugTouched = true; updateSerp(); markDirty(); });
     $('edSlug').addEventListener('blur', function () { $('edSlug').value = slugify($('edSlug').value); updateSerp(); });
-    $('editorsHost').addEventListener('focusout', function () { autoFill(false); });
 
     /* ── open / collect / save ───────────────────────────── */
     function fillCategorySelect(selected) {
@@ -1124,16 +1765,16 @@ textarea.inp { min-height: 90px; resize: vertical; }
     }
 
     function openEditor(post) {
-      state.post = Object.assign({ id: '', title: '', slug: '', category: (state.categories[0] || {}).slug || '', layout: 'full', cover: '', coverAlt: '', shareImage: '',
-        content: '', problem: '', solution: '', result: '', images: [], toc: false, seoTitle: '', metaDescription: '', keywords: '',
+      state.post = Object.assign({ id: '', title: '', slug: '', category: (state.categories[0] || {}).slug || '', layout: '', cover: '', coverAlt: '', shareImage: '',
+        blocks: [], toc: false, seoTitle: '', metaDescription: '', keywords: '',
         ogTitle: '', ogDescription: '', author: 'Kovai Lakshmi Grinders', publishDate: today(), status: 'draft' }, post || {});
       var p = state.post;
+      if (!Array.isArray(p.blocks)) p.blocks = [];
       $('edHeading').textContent = p.id ? 'Edit post' : 'New post';
       $('edTitle').value = p.title;
       $('edSlug').value = p.slug;
       state.slugTouched = !!p.slug;
       fillCategorySelect(p.category);
-      document.getElementById('lay-' + p.layout).checked = true;
       $('edCoverAlt').value = p.coverAlt;
       $('edToc').checked = !!p.toc;
       $('edSeoTitle').value = p.seoTitle;
@@ -1143,10 +1784,11 @@ textarea.inp { min-height: 90px; resize: vertical; }
       $('edOgDesc').value = p.ogDescription;
       $('edAuthor').value = p.author;
       $('edDate').value = p.publishDate;
-      ['edSeoTitle', 'edMetaDesc', 'edOgTitle', 'edOgDesc'].forEach(function (id) { delete $(id).dataset.touched; });
+      ['edSeoTitle', 'edMetaDesc', 'edOgTitle', 'edOgDesc', 'edKeywords'].forEach(function (id) { delete $(id).dataset.touched; });
       $('publishBtn').textContent = p.status === 'published' ? 'Update live post' : 'Publish';
       msg('edMsg', ''); msg('coverMsg', ''); msg('shareMsg', '');
-      applyLayout(p.layout, false);
+      renderPresets();
+      renderSections();
       showCover();
       updateCounters();
       updateSerp();
@@ -1170,19 +1812,23 @@ textarea.inp { min-height: 90px; resize: vertical; }
 
     function collect() {
       var p = state.post;
-      var eds = collectEditors();
+      syncEditors();
       return {
         id: p.id, title: $('edTitle').value.trim(), slug: currentSlug(), category: $('edCategory').value,
-        layout: currentLayout(), cover: p.cover, coverAlt: $('edCoverAlt').value.trim(), shareImage: p.shareImage,
-        content: eds.content || '', problem: eds.problem || '', solution: eds.solution || '', result: eds.result || '',
-        images: (currentLayout() === 'side' || currentLayout() === 'gallery') ? (p.images || []) : [],
+        layout: p.layout || 'custom', cover: p.cover, coverAlt: $('edCoverAlt').value.trim(), shareImage: p.shareImage,
+        blocks: JSON.parse(JSON.stringify(p.blocks)),
         toc: $('edToc').checked, seoTitle: $('edSeoTitle').value.trim(), metaDescription: $('edMetaDesc').value.trim(),
         keywords: $('edKeywords').value.trim(), ogTitle: $('edOgTitle').value.trim(), ogDescription: $('edOgDesc').value.trim(),
         author: $('edAuthor').value.trim() || 'Kovai Lakshmi Grinders', publishDate: $('edDate').value || today()
       };
     }
 
-    function markDirty() { if ($('view-editor').hidden) return; state.dirty = true; setSaveState('Not saved yet', false); }
+    function editing() { return !$('view-editor').hidden || !$('view-group').hidden; }
+    function markDirty() {
+      if (!editing()) return;
+      state.dirty = true;
+      if (!$('view-editor').hidden) setSaveState('Not saved yet', false); else setGroupState('Not saved yet', false);
+    }
     function setSaveState(text, saved) { $('saveState').textContent = text; $('saveState').className = 'save-state' + (saved ? ' saved' : ''); }
 
     function save(quiet) {
@@ -1193,7 +1839,9 @@ textarea.inp { min-height: 90px; resize: vertical; }
       if (!quiet) busy(true, 'Saving draft…');
       setSaveState('Saving…', false);
       return api('savePost', { post: data }).then(function (res) {
+        var blocks = state.post.blocks;            /* keep the sections being edited on screen */
         state.post = Object.assign(state.post, res.post);
+        state.post.blocks = blocks;
         state.dirty = false;
         var t = new Date();
         setSaveState('Saved ✓ ' + t.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }), true);
@@ -1209,22 +1857,32 @@ textarea.inp { min-height: 90px; resize: vertical; }
 
     function startAutosave() {
       stopAutosave();
-      state.autosaveTimer = setInterval(function () { if (state.dirty && $('edTitle').value.trim()) save(true); }, AUTOSAVE_MS);
+      state.autosaveTimer = setInterval(function () { if (state.dirty && !$('view-editor').hidden && $('edTitle').value.trim()) save(true); }, AUTOSAVE_MS);
     }
     function stopAutosave() { if (state.autosaveTimer) clearInterval(state.autosaveTimer); state.autosaveTimer = null; }
 
     $('saveBtn').addEventListener('click', function () { msg('edMsg', ''); autoFill(false); save(false); });
     $('backBtn').addEventListener('click', function () { go('dashboard'); });
 
+    function uniq(list) { return list.filter(function (v, k) { return list.indexOf(v) === k; }); }
     function validateForPublish(d) {
       var problems = [];
       if (!d.title) problems.push('a title');
       if (!d.category) problems.push('a category');
       if (!d.cover) problems.push('a cover image');
       if (!d.coverAlt) problems.push('a description of the cover image');
-      var text = d.layout === 'case' ? (d.problem + d.solution + d.result) : d.content;
-      if (!text.replace(/<[^>]*>|&nbsp;/g, '').trim()) problems.push(d.layout === 'case' ? 'the Problem, Solution and Result' : 'some text');
-      if ((d.layout === 'side' || d.layout === 'gallery') && !d.images.length) problems.push('at least one ' + (d.layout === 'side' ? 'side' : 'gallery') + ' image');
+      if (!d.blocks.some(hasContent)) problems.push('at least one section with text or pictures');
+      var noAlt = [], noPic = [], badVideo = [], noLink = [];
+      d.blocks.forEach(function (b, i) {
+        imagesOf(b).forEach(function (im) { if (!String(im.alt || '').trim()) noAlt.push(i + 1); });
+        if ((b.type === 'image' && !b.image) || (b.type === 'gallery' && !b.images.length)) noPic.push(i + 1);
+        if (b.type === 'video' && !ytId(b.video)) badVideo.push(i + 1);
+        if (b.type === 'cta' && b.label && !b.link) noLink.push(i + 1);
+      });
+      if (noAlt.length) problems.push('a description for every picture (section ' + uniq(noAlt).join(', ') + ')');
+      if (noPic.length) problems.push('the pictures for section ' + noPic.join(', ') + ' (or delete those sections)');
+      if (badVideo.length) problems.push('a correct YouTube link in section ' + badVideo.join(', '));
+      if (noLink.length) problems.push('a link for the button in section ' + noLink.join(', '));
       if (!d.slug) problems.push('a web address');
       if (state.posts.some(function (p) { return p.slug === d.slug && p.id !== d.id; })) problems.push('a web address that no other post uses');
       return problems;
@@ -1235,12 +1893,14 @@ textarea.inp { min-height: 90px; resize: vertical; }
       autoFill(false);
       var data = collect();
       var problems = validateForPublish(data);
-      if (problems.length) { msg('edMsg', 'Before publishing, please add ' + problems.join(', ') + '.'); window.scrollTo(0, 0); return; }
+      if (problems.length) { msg('edMsg', 'Before publishing, please add ' + problems.join('; ') + '.'); window.scrollTo(0, 0); return; }
       var live = state.post.status === 'published';
       confirmBox(live ? 'Update the live post?' : 'Publish this post?', live ? 'Your changes will replace the post on the website.' : 'The post will appear on your website and in Google.', live ? 'Update' : 'Publish', function () {
         busy(true, live ? 'Updating the live post…' : 'Publishing…');
         api('publishPost', { post: data }).then(function (res) {
+          var blocks = state.post.blocks;
           state.post = Object.assign(state.post, res.post);
+          state.post.blocks = blocks;
           state.dirty = false;
           $('publishBtn').textContent = 'Update live post';
           setSaveState('Published ✓', true);
@@ -1250,29 +1910,251 @@ textarea.inp { min-height: 90px; resize: vertical; }
       });
     });
 
-    /* Preview: shows exactly how the post will look, built by the server from the real template */
-    function previewInto(w, post) {
-      if (!w) { toast('Please allow pop-ups for this page to see the preview.'); return Promise.resolve(); }
-      w.document.write('<p style="font:16px sans-serif;padding:20px">Preparing preview…</p>');
-      return api('previewPost', { post: post }).then(function (res) {
-        var html = res.html;
-        /* show freshly uploaded images from memory while the website publishes them */
-        Object.keys(localImages).forEach(function (url) { html = html.split(url).join(localImages[url]); });
-        w.document.open();
-        w.document.write(html);
-        w.document.close();
-      });
+    /* ── preview: opens over the admin, "Exit preview" brings you back ── */
+    var PREVIEW_JS = '<script>(function(){' +
+      'document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a)return;var h=a.getAttribute("href")||"";e.preventDefault();' +
+      'if(h.charAt(0)==="#"){var t=document.getElementById(decodeURIComponent(h.slice(1)));if(t)t.scrollIntoView({behavior:"smooth"});return;}' +
+      'window.open(a.href,"_blank","noopener");},true);' +
+      'document.addEventListener("submit",function(e){e.preventDefault();},true);' +
+      '}());<\/script>';
+    var previewReturn = null;
+    function openPreview(html, label) {
+      Object.keys(localImages).forEach(function (url) { html = html.split(url).join(localImages[url]); });
+      /* no Google Analytics visits from previews */
+      html = html.replace(/<script[^>]*gtag\/js[^>]*><\/script>/gi, '').replace(/<script>(?:(?!<\/script>)[\s\S])*?gtag\('config'(?:(?!<\/script>)[\s\S])*?<\/script>/gi, '');
+      html = html.replace('</body>', PREVIEW_JS + '\n</body>');
+      previewReturn = document.activeElement;
+      $('pvTitle').textContent = label;
+      $('pvFrame').srcdoc = html;
+      $('previewOverlay').hidden = false;
+      document.body.classList.add('no-scroll');
+      $('pvExit').focus();
     }
+    function closePreview() {
+      $('previewOverlay').hidden = true;
+      $('pvFrame').srcdoc = '';
+      document.body.classList.remove('no-scroll');
+      if (previewReturn && document.body.contains(previewReturn)) previewReturn.focus();
+    }
+    $('pvExit').addEventListener('click', closePreview);
+    document.querySelector('.pv-devices').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-w]');
+      if (!b) return;
+      var w = +b.getAttribute('data-w');
+      $('pvFrame').style.width = w ? w + 'px' : '100%';
+      $('pvFrame').style.maxWidth = '100%';
+      document.querySelectorAll('.pv-devices .b').forEach(function (x) { x.classList.toggle('active', x === b); });
+    });
+
     $('previewBtn').addEventListener('click', function () {
       autoFill(false);
       var data = collect();
       if (!data.title) { msg('edMsg', 'Please type a title first.'); return; }
-      var w = window.open('', '_blank');
-      previewInto(w, data).catch(function (err) { if (w) w.close(); msg('edMsg', err.message); });
+      busy(true, 'Preparing preview…');
+      api('previewPost', { post: data }).then(function (res) { openPreview(res.html, 'Preview of "' + data.title + '" – not live yet'); })
+        .catch(function (err) { msg('edMsg', err.message); }).then(function () { busy(false); });
     });
 
     window.addEventListener('beforeunload', function (e) {
-      if (state.dirty && !$('view-editor').hidden) { e.preventDefault(); e.returnValue = ''; }
+      if (state.dirty && editing()) { e.preventDefault(); e.returnValue = ''; }
+    });
+
+    /* ── gallery ─────────────────────────────────────────── */
+    function loadGallery() {
+      busy(true, 'Loading your photo groups…');
+      return api('listGallery').then(function (res) {
+        state.groups = res.groups || [];
+        renderGroups();
+        show('gallery');
+      }).catch(function (err) {
+        if ($('view-login').hidden) { msg('galMsg', err.message); show('gallery'); }
+      }).then(function () { busy(false); });
+    }
+
+    function renderGroups() {
+      var list = $('groupList');
+      if (!state.groups.length) {
+        list.innerHTML = '<div class="empty-box">No photo groups yet. Click <strong>+ New photo group</strong> to add your first photos.</div>';
+        return;
+      }
+      var n = state.groups.length;
+      list.innerHTML = state.groups.map(function (g, k) {
+        var badge = g.status === 'published' ? '<span class="badge published">On website</span>' : '<span class="badge draft">Draft</span>';
+        if (g.status === 'published' && g.dirty) badge += ' <span class="badge changes">Unpublished changes</span>';
+        var thumbs = g.photos.slice(0, 4).map(function (ph) { return '<img src="' + esc(shown(ph.url)) + '" alt="" loading="lazy">'; }).join('');
+        return '<div class="post-row" data-id="' + esc(g.id) + '"><div class="grp-main"><div class="grp-thumbs">' + (thumbs || '<span class="hint">No photos yet</span>') + '</div>' +
+          '<div><h3>' + esc(g.title) + '</h3><div class="meta">' + badge + '<span>' + g.photos.length + ' photo' + (g.photos.length === 1 ? '' : 's') + '</span>' +
+          (g.updated ? '<span>Updated ' + esc(niceDate(g.updated)) + '</span>' : '') + '</div></div></div>' +
+          '<div class="actions">' +
+            '<button type="button" class="b light small" data-g="up" aria-label="Move up"' + (k === 0 ? ' disabled' : '') + '>↑</button>' +
+            '<button type="button" class="b light small" data-g="down" aria-label="Move down"' + (k === n - 1 ? ' disabled' : '') + '>↓</button>' +
+            '<button type="button" class="b small" data-g="edit">Edit</button>' +
+            '<button type="button" class="b light small" data-g="preview">Preview</button>' +
+            '<button type="button" class="b light small" data-g="delete">Delete</button>' +
+          '</div></div>';
+      }).join('');
+    }
+
+    $('groupList').addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-g]');
+      if (!btn || btn.disabled) return;
+      var id = btn.closest('.post-row').getAttribute('data-id');
+      var g = state.groups.filter(function (x) { return x.id === id; })[0];
+      var act = btn.getAttribute('data-g');
+      if (act === 'edit') openGroup(g);
+      else if (act === 'preview') {
+        busy(true, 'Preparing preview…');
+        api('previewGallery', { group: g }).then(function (res) { openPreview(res.html, 'Gallery preview with "' + g.title + '"'); })
+          .catch(function (err) { msg('galMsg', err.message); }).then(function () { busy(false); });
+      } else if (act === 'up' || act === 'down') {
+        busy(true, 'Changing the order…');
+        api('moveGallery', { id: id, dir: act === 'up' ? -1 : 1 }).then(function (res) {
+          state.groups = res.groups;
+          renderGroups();
+          if (g.status === 'published') msg('galMsg', 'Order changed. The Gallery page will update in about 1–2 minutes.', 'ok');
+        }).catch(function (err) { msg('galMsg', err.message); }).then(function () { busy(false); });
+      } else if (act === 'delete') {
+        confirmBox('Delete this photo group?', '"' + g.title + '" and its ' + g.photos.length + ' photo' + (g.photos.length === 1 ? '' : 's') + ' will be removed' + (g.status === 'published' ? ' from the website' : '') + '. This cannot be undone.', 'Delete', function () {
+          busy(true, 'Deleting…');
+          api('deleteGallery', { id: id }).then(function (res) {
+            state.groups = res.groups;
+            renderGroups();
+            toast('Photo group deleted.');
+          }).catch(function (err) { msg('galMsg', err.message); }).then(function () { busy(false); });
+        });
+      }
+    });
+
+    $('newGroupBtn').addEventListener('click', function () { $('groupNewForm').reset(); msg('gnMsg', ''); openModal('groupNewModal'); });
+    $('groupNewForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var title = $('gnTitle').value.trim();
+      if (!title) return;
+      busy(true, 'Creating the photo group…');
+      api('saveGallery', { group: { title: title, description: $('gnDesc').value.trim(), photos: [] } }).then(function (res) {
+        closeModal('groupNewModal');
+        state.groups.unshift(res.group);
+        openGroup(res.group);
+        toast('Photo group created. Now add your photos.');
+      }).catch(function (err) { msg('gnMsg', err.message); }).then(function () { busy(false); });
+    });
+
+    function setGroupState(text, saved) { $('grState').textContent = text; $('grState').className = 'save-state' + (saved ? ' saved' : ''); }
+
+    function openGroup(g) {
+      state.group = JSON.parse(JSON.stringify(g));
+      $('grTitle').value = g.title;
+      $('grDesc').value = g.description || '';
+      $('grPublish').textContent = g.status === 'published' ? 'Update live group' : 'Publish';
+      msg('grMsg', '');
+      renderGroupPhotos();
+      state.dirty = false;
+      setGroupState(g.status === 'published' ? (g.dirty ? 'Saved – not on the website yet' : 'On the website') : 'Draft – saved', true);
+      show('group');
+    }
+
+    function renderGroupPhotos() {
+      var list = state.group.photos;
+      $('groupPhotos').innerHTML = photosHtml(list) || '<div class="empty-box">No photos yet.</div>';
+      $('grCount').textContent = list.length + ' / ' + MAX_GROUP_PHOTOS;
+    }
+    var MAX_GROUP_PHOTOS = 80;
+
+    $('groupPhotos').addEventListener('input', function (e) {
+      var t = e.target, key = t.getAttribute('data-im');
+      if (!key) return;
+      var ph = state.group.photos[jAt(t)];
+      ph[key] = t.value;
+      if (key === 'alt') { t.classList.toggle('need', !t.value.trim()); t.closest('.photo-card').classList.toggle('bad', !t.value.trim()); }
+      markDirty();
+    });
+    $('groupPhotos').addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-act]');
+      if (!btn || btn.disabled) return;
+      var j = jAt(btn), list = state.group.photos, act = btn.getAttribute('data-act');
+      if (act === 'ph-left') moveIn(list, j, -1);
+      else if (act === 'ph-right') moveIn(list, j, 1);
+      else if (act === 'ph-rm') list.splice(j, 1);
+      else return;
+      renderGroupPhotos();
+      markDirty();
+    });
+
+    function collectGroup() {
+      return { id: state.group.id, title: $('grTitle').value.trim(), description: $('grDesc').value.trim(), photos: state.group.photos };
+    }
+    ['grTitle', 'grDesc'].forEach(function (id) { $(id).addEventListener('input', markDirty); });
+
+    function addGroupPhotos(fileList) {
+      var files = Array.prototype.slice.call(fileList || []);
+      if (!files.length) return;
+      var room = MAX_GROUP_PHOTOS - state.group.photos.length;
+      if (room <= 0) { msg('grMsg', 'A photo group can hold up to ' + MAX_GROUP_PHOTOS + ' photos. Please make a new group for more.'); return; }
+      var skipped = files.length - room;
+      files = files.slice(0, room);
+      msg('grMsg', '');
+      uploadPhotos('gallery', state.group.id, files, $('grTitle').value.trim()).then(function (list) {
+        state.group.photos = state.group.photos.concat(list);
+        renderGroupPhotos();
+        markDirty();
+        return saveGroup(true).then(function () {
+          msg('grMsg', list.length + ' photo' + (list.length === 1 ? '' : 's') + ' added and saved. Check each description, then Publish.' + (skipped > 0 ? ' ' + skipped + ' photo(s) were not added – the limit is ' + MAX_GROUP_PHOTOS + '.' : ''), 'ok');
+        });
+      }).catch(function (err) {
+        if (err.partial && err.partial.length) { state.group.photos = state.group.photos.concat(err.partial); renderGroupPhotos(); markDirty(); saveGroup(true); }
+        msg('grMsg', err.message);
+      }).then(function () { busy(false); });
+    }
+    $('grAdd').addEventListener('click', function () { $('grFile').click(); });
+    $('grFile').addEventListener('change', function () { var f = Array.prototype.slice.call(this.files); this.value = ''; addGroupPhotos(f); });
+    ['dragenter', 'dragover'].forEach(function (t) { $('grDrop').addEventListener(t, function (e) { e.preventDefault(); $('grDrop').classList.add('over'); }); });
+    ['dragleave', 'drop'].forEach(function (t) { $('grDrop').addEventListener(t, function () { $('grDrop').classList.remove('over'); }); });
+    $('grDrop').addEventListener('drop', function (e) { e.preventDefault(); addGroupPhotos(e.dataTransfer.files); });
+
+    function saveGroup(quiet) {
+      var data = collectGroup();
+      if (!data.title) { msg('grMsg', 'Please type a heading for this photo group.'); return Promise.resolve(false); }
+      if (!quiet) busy(true, 'Saving…');
+      setGroupState('Saving…', false);
+      return api('saveGallery', { group: data }).then(function (res) {
+        state.group = Object.assign(state.group, res.group, { photos: state.group.photos });
+        state.dirty = false;
+        setGroupState('Saved ✓ ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }), true);
+        if (!quiet) toast(state.group.status === 'published' ? 'Saved. Click "Update live group" to show the changes on the website.' : 'Draft saved.');
+        return true;
+      }).catch(function (err) { setGroupState('Not saved', false); msg('grMsg', err.message); return false; })
+        .then(function (ok) { if (!quiet) busy(false); return ok; });
+    }
+    $('grSave').addEventListener('click', function () { saveGroup(false); });
+    $('grBack').addEventListener('click', function () { go('gallery'); });
+    $('grPreview').addEventListener('click', function () {
+      var data = collectGroup();
+      if (!data.title) { msg('grMsg', 'Please type a heading first.'); return; }
+      busy(true, 'Preparing preview…');
+      api('previewGallery', { group: data }).then(function (res) { openPreview(res.html, 'Gallery preview – "' + data.title + '" is not live yet'); })
+        .catch(function (err) { msg('grMsg', err.message); }).then(function () { busy(false); });
+    });
+    $('grPublish').addEventListener('click', function () {
+      var data = collectGroup();
+      var problems = [];
+      if (!data.title) problems.push('a heading');
+      if (!data.photos.length) problems.push('at least one photo');
+      var noAlt = [];
+      data.photos.forEach(function (ph, k) { if (!String(ph.alt || '').trim()) noAlt.push(k + 1); });
+      if (noAlt.length) problems.push('a description for photo ' + noAlt.join(', '));
+      if (problems.length) { msg('grMsg', 'Before publishing, please add ' + problems.join('; ') + '.'); window.scrollTo(0, 0); return; }
+      var live = state.group.status === 'published';
+      confirmBox(live ? 'Update this group on the website?' : 'Publish this photo group?', live ? 'The Gallery page will show your changes.' : 'The heading and photos will appear on the Gallery page.', live ? 'Update' : 'Publish', function () {
+        busy(true, 'Publishing…');
+        api('publishGallery', { group: data }).then(function (res) {
+          state.group = Object.assign(state.group, res.group);
+          state.dirty = false;
+          $('grPublish').textContent = 'Update live group';
+          setGroupState('On the website ✓', true);
+          msg('grMsg', 'Published! The Gallery page will update in about 1–2 minutes: ' + res.url, 'ok');
+          window.scrollTo(0, 0);
+        }).catch(function (err) { msg('grMsg', err.message); }).then(function () { busy(false); });
+      });
     });
 
     /* ── categories ──────────────────────────────────────── */

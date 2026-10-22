@@ -39,7 +39,7 @@
   "name": "Kovai Lakshmi Grinders",
   "url": "https://kovailakshmi.in/",
   "logo": "https://kovailakshmi.in/LOGO/LOGO.png",
-  "image": "",
+  "image": "https://kovailakshmi.in/LOGO/LOGO.png",
   "description": "Manufacturer and supplier of commercial kitchen equipment, bakery machinery and food preparation machines in Coimbatore, Tamil Nadu. Serving hotels, bakeries and food businesses since 1983.",
   "slogan": "Excellence in your Kitchen",
   "foundingDate": "1983",
@@ -67,7 +67,8 @@
         "Wednesday",
         "Thursday",
         "Friday",
-        "Saturday"
+        "Saturday",
+        "Sunday"
       ],
       "opens": "09:00",
       "closes": "20:30"
@@ -200,7 +201,6 @@
    CONTACT SECTION
 ============================================================ */
 .contact-page { padding: clamp(50px, 8vw, 80px) 0; background-color: #ffffff; width: 100%; }
-.contact-page .container { max-width: 1240px; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 50px; align-items: start; }
 
 /* ---- Left Column: Contact Info ---- */
@@ -256,8 +256,8 @@
 }
 
 /* ---- Google Map (full width, fixed aspect ratio) ---- */
-.map-section { width: 100%; line-height: 0; background: var(--bg); }
-.map-wrap { position: relative; width: 100%; aspect-ratio: 16 / 6; min-height: 320px; }
+.map-section { width: 100%; line-height: 0; background: #ffffff; padding: 0 0 clamp(40px, 6vw, 70px); }
+.map-wrap { position: relative; width: min(75%, 75vh); aspect-ratio: 1 / 1; margin: 0 auto; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); }
 .map-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
 @media (max-width: 900px) {
@@ -265,7 +265,6 @@
   .contact-details { align-items: center; text-align: center; }
   .info-block h2::after { left: 50%; transform: translateX(-50%); }
   .info-block-icon { margin-left: auto; margin-right: auto; }
-  .map-wrap { aspect-ratio: 4 / 3; }
 }
 @media (max-width: 600px) {
   .contact-page { padding: 40px 0; }
@@ -276,7 +275,6 @@
   .info-block-icon { width: 58px; height: 58px; }
   .info-block-icon svg { width: 26px; height: 26px; }
   .btn-submit { width: 100%; padding: 13px; }
-  .map-wrap { aspect-ratio: 1 / 1; min-height: 280px; }
 }
 </style>
 </head>
@@ -298,8 +296,8 @@
               <li><a href="https://kovailakshmi.in/hotel-equipment/">Hotel &amp; Kitchen Equipment</a></li>
               <li><a href="https://kovailakshmi.in/bakery-equipment/">Bakery Equipment</a></li>
               <li><a href="https://kovailakshmi.in/agri-machineries/">Agri Machineries</a></li>
-              <!-- Domestic Equipment: page not created yet – add its URL in href -->
-              <li><a href="">Domestic Equipment</a></li>
+              <!-- Domestic Equipment: online shop on its own subdomain (being set up) -->
+              <li><a href="https://shopping.kovailakshmi.in/">Domestic Equipment</a></li>
             </ul>
           </li>
           <li><a href="https://kovailakshmi.in/gallery/">Gallery</a></li>
@@ -353,7 +351,7 @@
             <div class="info-block">
               <div class="info-block-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div>
               <h2>Working Hours</h2>
-              <p>Monday to Saturday<br>9:00 am – 8:30 pm</p>
+              <p>Monday to Sunday (all 7 days)<br>9:00 am – 8:30 pm</p>
             </div>
           </div>
 
@@ -438,8 +436,8 @@
             <li><a href="https://kovailakshmi.in/hotel-equipment/">Hotel &amp; Kitchen Equipment</a></li>
             <li><a href="https://kovailakshmi.in/bakery-equipment/">Bakery Equipment</a></li>
             <li><a href="https://kovailakshmi.in/agri-machineries/">Agri Machineries</a></li>
-            <!-- Domestic Equipment: page not created yet – add its URL in href -->
-            <li><a href="">Domestic Equipment</a></li>
+            <!-- Domestic Equipment: online shop on its own subdomain (being set up) -->
+            <li><a href="https://shopping.kovailakshmi.in/">Domestic Equipment</a></li>
           </ul>
         </div>
         <div>

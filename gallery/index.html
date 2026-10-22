@@ -39,7 +39,7 @@
   "name": "Kovai Lakshmi Grinders",
   "url": "https://kovailakshmi.in/",
   "logo": "https://kovailakshmi.in/LOGO/LOGO.png",
-  "image": "",
+  "image": "https://kovailakshmi.in/LOGO/LOGO.png",
   "description": "Manufacturer and supplier of commercial kitchen equipment, bakery machinery and food preparation machines in Coimbatore, Tamil Nadu. Serving hotels, bakeries and food businesses since 1983.",
   "slogan": "Excellence in your Kitchen",
   "foundingDate": "1983",
@@ -67,7 +67,8 @@
         "Wednesday",
         "Thursday",
         "Friday",
-        "Saturday"
+        "Saturday",
+        "Sunday"
       ],
       "opens": "09:00",
       "closes": "20:30"
@@ -181,30 +182,39 @@
 <link rel="stylesheet" href="https://kovailakshmi.in/assets/css/site.css">
 <style>
 /* ============================================================
-   GALLERY
+   GALLERY (photo groups: heading, optional note, then the photos)
 ============================================================ */
 .gallery-section { padding: clamp(40px, 7vw, 80px) 0; background: #ffffff; }
+.gallery-jump { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: clamp(28px, 4vw, 44px); }
+.gallery-jump a { padding: 8px 18px; border-radius: 999px; border: 2px solid var(--red); color: var(--primary); font-weight: 700; font-size: 14px; background: #ffffff; transition: var(--trans); }
+.gallery-jump a:hover, .gallery-jump a:focus-visible { background: var(--primary); border-color: var(--primary); color: #ffffff; }
+.gallery-group { scroll-margin-top: 120px; }
+.gallery-group + .gallery-group { margin-top: clamp(44px, 6vw, 72px); }
+.gallery-head { margin-bottom: clamp(16px, 2.5vw, 24px); }
+.gallery-head h2 { position: relative; padding-bottom: 12px; font-family: Georgia, 'Times New Roman', Times, serif; font-size: clamp(24px, 3.5vw, 32px); line-height: 1.25; color: var(--primary); }
+.gallery-head h2::after { content: ''; position: absolute; left: 0; bottom: 0; width: 60px; height: 3px; border-radius: 2px; background: var(--red); }
+.gallery-head p { margin-top: 12px; color: var(--muted); font-family: Georgia, 'Times New Roman', Times, serif; font-size: 17px; line-height: 1.7; }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: clamp(12px, 2vw, 22px); }
-.gallery-item { margin: 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: var(--bg); aspect-ratio: 4 / 3; cursor: zoom-in; position: relative; }
+.gallery-item { margin: 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: var(--bg); aspect-ratio: 4 / 3; position: relative; }
 .gallery-item button { all: unset; display: block; width: 100%; height: 100%; cursor: zoom-in; }
 .gallery-item button:focus-visible { outline: 3px solid var(--primary); outline-offset: -3px; }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
 .gallery-item:hover img { transform: scale(1.06); }
 .gallery-empty { text-align: center; padding: 60px 20px; color: var(--muted); font-family: Georgia, 'Times New Roman', Times, serif; font-size: 18px; border: 2px dashed #e3e3e3; border-radius: var(--radius); }
-.gallery-grid:not(:empty) + .gallery-empty { display: none; }
 
-/* ── Full-screen viewer (80% of the screen, background faded + blurred, page scroll locked) ── */
+/* ── Full-screen photo viewer ── */
 .lightbox { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, .55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
 .lightbox.open { opacity: 1; visibility: visible; }
 .lightbox-frame { position: relative; width: 80vw; height: 80vh; display: flex; align-items: center; justify-content: center; }
 .lightbox-frame img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,.45); background: #fff; }
 .lightbox-caption { position: absolute; left: 0; right: 0; bottom: -36px; text-align: center; color: #fff; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 15px; text-shadow: 0 1px 4px rgba(0,0,0,.6); }
-.lb-btn { position: absolute; display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; border: 0; background: rgba(255,255,255,.95); color: var(--dark); font-size: 26px; line-height: 1; box-shadow: 0 4px 14px rgba(0,0,0,.3); transition: background var(--trans), color var(--trans), transform var(--trans); }
+.lightbox-count { position: absolute; left: 0; top: -36px; color: #fff; font-size: 14px; font-weight: 700; text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+.lb-btn { position: absolute; display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; border: 0; background: rgba(255,255,255,.95); color: var(--dark); font-size: 26px; line-height: 1; box-shadow: 0 4px 14px rgba(0,0,0,.3); cursor: pointer; transition: background var(--trans), color var(--trans), transform var(--trans); }
 .lb-btn:hover, .lb-btn:focus-visible { background: var(--primary); color: #fff; }
 .lb-close { top: -18px; right: -18px; }
 .lb-prev { left: -64px; top: 50%; transform: translateY(-50%); }
 .lb-next { right: -64px; top: 50%; transform: translateY(-50%); }
-.lightbox.single .lb-prev, .lightbox.single .lb-next { display: none; }
+.lightbox.single .lb-prev, .lightbox.single .lb-next, .lightbox.single .lightbox-count { display: none; }
 @media (max-width: 900px) {
   .lightbox-frame { width: 90vw; height: 75vh; }
   .lb-prev { left: 6px; }
@@ -234,8 +244,8 @@
               <li><a href="https://kovailakshmi.in/hotel-equipment/">Hotel &amp; Kitchen Equipment</a></li>
               <li><a href="https://kovailakshmi.in/bakery-equipment/">Bakery Equipment</a></li>
               <li><a href="https://kovailakshmi.in/agri-machineries/">Agri Machineries</a></li>
-              <!-- Domestic Equipment: page not created yet – add its URL in href -->
-              <li><a href="">Domestic Equipment</a></li>
+              <!-- Domestic Equipment: online shop on its own subdomain (being set up) -->
+              <li><a href="https://shopping.kovailakshmi.in/">Domestic Equipment</a></li>
             </ul>
           </li>
           <li><a href="https://kovailakshmi.in/gallery/">Gallery</a></li>
@@ -264,17 +274,12 @@
     </div>
   </section>
 
+  <!--
+    Generated automatically by the website admin from resources/admin/templates/gallery.html.
+    Add, edit or delete photos in the website admin (Gallery menu) – do not edit this page by hand.
+  -->
   <main class="gallery-section">
     <div class="container">
-      <!--
-        ADD GALLERY PHOTOS HERE
-        1. Upload the photo to the GALLERY/ folder of the website (create the folder once).
-        2. Copy one line below for each photo, change the file name and the description (alt).
-           Use %20 for spaces in file names.
-
-        <figure class="gallery-item"><img src="https://kovailakshmi.in/GALLERY/photo-name.jpg" alt="Short description of the photo" loading="lazy"></figure>
-      -->
-      <div class="gallery-grid" id="galleryGrid"></div>
       <p class="gallery-empty">Photos will be added soon.</p>
     </div>
   </main>
@@ -282,6 +287,7 @@
   <!-- Full-screen photo viewer -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
     <div class="lightbox-frame">
+      <p class="lightbox-count" aria-live="polite"></p>
       <img src="" alt="">
       <p class="lightbox-caption"></p>
       <button type="button" class="lb-btn lb-close" aria-label="Close">&times;</button>
@@ -316,8 +322,8 @@
             <li><a href="https://kovailakshmi.in/hotel-equipment/">Hotel &amp; Kitchen Equipment</a></li>
             <li><a href="https://kovailakshmi.in/bakery-equipment/">Bakery Equipment</a></li>
             <li><a href="https://kovailakshmi.in/agri-machineries/">Agri Machineries</a></li>
-            <!-- Domestic Equipment: page not created yet – add its URL in href -->
-            <li><a href="">Domestic Equipment</a></li>
+            <!-- Domestic Equipment: online shop on its own subdomain (being set up) -->
+            <li><a href="https://shopping.kovailakshmi.in/">Domestic Equipment</a></li>
           </ul>
         </div>
         <div>
@@ -369,38 +375,37 @@
 
   <script src="https://kovailakshmi.in/assets/js/site.js"></script>
   <script>
-    /* ── GALLERY VIEWER ── */
+    /* ── PHOTO VIEWER: every [data-viewer] group opens its own photos ── */
     (function () {
-      var grid = document.getElementById('galleryGrid');
       var box = document.getElementById('lightbox');
-      if (!grid || !box) return;
+      if (!box) return;
       var img = box.querySelector('img');
       var caption = box.querySelector('.lightbox-caption');
-      var items = [];
-      var current = 0;
-      var lastFocus = null;
+      var count = box.querySelector('.lightbox-count');
+      var items = [], current = 0, lastFocus = null;
 
-      /* Wrap every gallery image in a button so it opens with click, tap or keyboard */
-      Array.prototype.forEach.call(grid.querySelectorAll('.gallery-item img'), function (pic, i) {
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.setAttribute('aria-label', 'Open photo: ' + (pic.alt || ('photo ' + (i + 1))));
-        pic.parentNode.insertBefore(btn, pic);
-        btn.appendChild(pic);
-        btn.addEventListener('click', function () { open(i); });
-        items.push({ src: pic.getAttribute('data-full') || pic.currentSrc || pic.src, alt: pic.alt || '' });
+      document.querySelectorAll('[data-viewer]').forEach(function (group) {
+        var list = [];
+        group.querySelectorAll('button[data-photo]').forEach(function (btn, i) {
+          var pic = btn.querySelector('img');
+          if (!pic) return;
+          list.push({ src: pic.getAttribute('src'), alt: pic.alt || '', caption: btn.getAttribute('data-caption') || pic.alt || '' });
+          btn.addEventListener('click', function () { open(list, i); });
+        });
       });
-      box.classList.toggle('single', items.length < 2);
 
       function show(i) {
         if (!items.length) return;
         current = (i + items.length) % items.length;
         img.src = items[current].src;
         img.alt = items[current].alt;
-        caption.textContent = items[current].alt;
+        caption.textContent = items[current].caption;
+        count.textContent = (current + 1) + ' / ' + items.length;
       }
-      function open(i) {
+      function open(list, i) {
+        items = list;
         lastFocus = document.activeElement;
+        box.classList.toggle('single', items.length < 2);
         show(i);
         box.classList.add('open');
         box.setAttribute('aria-hidden', 'false');

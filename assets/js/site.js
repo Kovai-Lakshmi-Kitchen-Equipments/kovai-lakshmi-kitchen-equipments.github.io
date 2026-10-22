@@ -13,7 +13,7 @@
   ────────────────────────────────────────────────────────── */
 
   // PASTE YOUR APPS SCRIPT EXEC URL HERE
-  KL.EXEC_URL = 'https://script.google.com/macros/s/AKfycbzxjurOZCF1dSoXB-hNuUBPWRiAutibVyhjooedImsW-dEU23_BR-fFfaeV5rO2UB35/exec';
+  KL.EXEC_URL = '';
 
   KL.BASE = 'https://kovailakshmi.in/';
   KL.SEARCH_DATA_URL = KL.BASE + 'search-index.json';

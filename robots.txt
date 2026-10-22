@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /resources/admin/
+Disallow: /admin/
 
 Sitemap: https://kovailakshmi.in/sitemap.xml
