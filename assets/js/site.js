@@ -1,5 +1,5 @@
 /* ============================================================
-   Kovai Lakshmi Grinders – shared scripts (every page)
+   Kovai Lakshmi Grinders - shared scripts (every page)
    Menu, Products dropdown, collapsible search, live search
    suggestions, current-page highlight and form sending.
 ============================================================ */
@@ -12,7 +12,7 @@
      SETTINGS
   ────────────────────────────────────────────────────────── */
 
-  // PASTE YOUR APPS SCRIPT EXEC URL HERE
+  // Apps Script web app address (contact form, Request A Call, admin). Set by the site builder (config.py EXEC_URL).
   KL.EXEC_URL = 'https://script.google.com/macros/s/AKfycbzxjurOZCF1dSoXB-hNuUBPWRiAutibVyhjooedImsW-dEU23_BR-fFfaeV5rO2UB35/exec';
 
   KL.BASE = 'https://kovailakshmi.in/';
@@ -95,7 +95,7 @@
         } else if (e.key === 'ArrowDown') {
           e.preventDefault();
           setDropdown(true);
-          /* wait one moment: the list fades in, and hidden items cannot take focus yet */
+          /* wait one moment: the list fades in and hidden items cannot take focus yet */
           window.setTimeout(function () {
             var first = dropdown.querySelector('.dropdown-content a');
             if (first) first.focus();
@@ -446,7 +446,21 @@
   /* ──────────────────────────────────────────────────────────
      START
   ────────────────────────────────────────────────────────── */
+  /* ──────────────────────────────────────────────────────────
+     IMAGE PROTECTION: no right-click menu and no dragging on pictures
+     (text, links and phone numbers can still be copied; search engines are not affected)
+  ────────────────────────────────────────────────────────── */
+  function initImageProtection() {
+    document.addEventListener('contextmenu', function (e) {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+    document.addEventListener('dragstart', function (e) {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+  }
+
   function start() {
+    initImageProtection();
     initMenu();
     initActiveLink();
     initCollapsibleSearch();

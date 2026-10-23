@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://kovailakshmi.in/assets/css/site.css">
 <style>
 /* ============================================================
-   ADMIN PANEL (owner only – not indexed, no analytics)
+   ADMIN PANEL (owner only - not indexed, no analytics)
 ============================================================ */
 body { background: var(--bg); min-height: 100vh; }
 .adm-top { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.09); position: sticky; top: 0; z-index: 50; }
@@ -266,7 +266,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
   <header class="adm-top">
     <div class="container bar">
       <div class="adm-brand">
-        <img src="https://kovailakshmi.in/LOGO/KOVAI%20LAKSHMI%20GRINDERS%20LOGO.png" alt="Kovai Lakshmi Grinders">
+        <img draggable="false" src="https://kovailakshmi.in/LOGO/KOVAI%20LAKSHMI%20GRINDERS%20LOGO.png" alt="Kovai Lakshmi Grinders">
         <span>Website Admin</span>
       </div>
       <nav class="adm-nav" id="admNav" hidden>
@@ -286,7 +286,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       <section class="view" id="view-login">
         <div class="login-wrap">
           <form class="card login-card" id="loginForm" autocomplete="on">
-            <h1 class="adm-title">Welcome back</h1>
+            <h1 class="adm-title">Welcome Back</h1>
             <p class="adm-sub">Log in to manage your posts and gallery photos.</p>
             <div class="msg error" id="loginMsg" role="alert"></div>
             <div class="field">
@@ -322,7 +322,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       <section class="view" id="view-editor" hidden>
         <div class="toolbar-row">
           <div>
-            <h1 class="adm-title" id="edHeading">New post</h1>
+            <h1 class="adm-title" id="edHeading">New Post</h1>
             <span class="save-state" id="saveState" aria-live="polite"></span>
           </div>
           <div class="btn-row">
@@ -348,10 +348,10 @@ textarea.inp { min-height: 90px; resize: vertical; }
             </div>
 
             <div class="card">
-              <h2>Cover image</h2>
+              <h2>Cover Image</h2>
               <div class="cover-box">
-                <img id="coverPreview" src="" alt="" hidden>
-                <p class="hint" id="coverHint">The cover must be exactly <strong>1200 × 630 px</strong>, <strong>1 MB or smaller</strong>, and a JPG, PNG or WebP file. It is also used when the post is shared on WhatsApp or Facebook.</p>
+                <img draggable="false" id="coverPreview" src="" alt="" hidden>
+                <p class="hint" id="coverHint">The cover must be exactly <strong>1200 × 630 px</strong>, <strong>1 MB or smaller</strong> and a JPG, PNG or WebP file. It is also used when the post is shared on WhatsApp or Facebook.</p>
                 <div class="msg" id="coverMsg"></div>
                 <label class="b light" for="coverFile" style="margin-top:8px">Choose cover image</label>
                 <input type="file" id="coverFile" accept="image/jpeg,image/png,image/webp" hidden>
@@ -359,19 +359,19 @@ textarea.inp { min-height: 90px; resize: vertical; }
               <div class="field" style="margin-top:14px;margin-bottom:0">
                 <label for="edCoverAlt">Describe the cover image (image alt text)</label>
                 <input class="inp" id="edCoverAlt" placeholder="e.g. Tilting wet grinder in a hotel kitchen">
-                <p class="hint">A short description for people who cannot see the image, and for Google.</p>
+                <p class="hint">A short description for people who cannot see the image and for Google.</p>
               </div>
             </div>
 
             <div class="card">
-              <h2>Choose a layout</h2>
+              <h2>Choose A Layout</h2>
               <p class="hint" style="margin-bottom:12px">A layout gives you ready-made sections to fill in. You can still add, move, copy or delete sections afterwards.</p>
               <div class="preset-pick" id="presetPick" role="group" aria-label="Post layouts"></div>
             </div>
 
             <div class="card">
               <div class="sec-head">
-                <h2>Sections of your post</h2>
+                <h2>Sections Of Your Post</h2>
                 <label class="toc-toggle" title="Show a table of contents built from your headings"><input type="checkbox" id="edToc"> Show a contents list</label>
               </div>
               <p class="hint">Each numbered box is one part of your post, shown on the website in this order. A picture added inside a box appears next to that box's own text.</p>
@@ -412,7 +412,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
           <!-- SEO side panel -->
           <aside class="editor-side">
             <div class="card">
-              <h2>Google &amp; sharing</h2>
+              <h2>Google &amp; Sharing</h2>
               <p class="hint" style="margin-bottom:12px">Empty boxes fill in automatically from your title and first paragraph. You can change them.</p>
               <div class="field">
                 <span class="label">How it may look on Google</span>
@@ -495,7 +495,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       <section class="view" id="view-group" hidden>
         <div class="toolbar-row">
           <div>
-            <h1 class="adm-title" id="grHeading">Photo group</h1>
+            <h1 class="adm-title" id="grHeading">Photo Group</h1>
             <span class="save-state" id="grState" aria-live="polite"></span>
           </div>
           <div class="btn-row">
@@ -519,7 +519,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
         </div>
         <div class="card">
           <h2>Photos <span class="count-pill" id="grCount">0</span></h2>
-          <p class="hint" style="margin-bottom:12px">Photos appear on the website in this order – use ← → to move them. Describe each photo in a few words; it helps Google and people who cannot see the picture.</p>
+          <p class="hint" style="margin-bottom:12px">Photos appear on the website in this order - use ← → to move them. Describe each photo in a few words; it helps Google and people who cannot see the picture.</p>
           <div id="groupPhotos"></div>
           <div class="drop" id="grDrop" style="margin-top:12px">
             <p><strong>Drag photos here</strong> or</p>
@@ -535,7 +535,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
         <h1 class="adm-title">Categories</h1>
         <p class="adm-sub">Categories appear as filter buttons on the Resources page.</p>
         <div class="card">
-          <h2>Add a category</h2>
+          <h2>Add A Category</h2>
           <form class="btn-row" id="catAddForm">
             <input class="inp" id="catNew" placeholder="e.g. Recipes" style="flex:1;min-width:200px" maxlength="40" required>
             <button class="b red" type="submit">Add</button>
@@ -543,14 +543,14 @@ textarea.inp { min-height: 90px; resize: vertical; }
           <div class="msg" id="catMsg"></div>
         </div>
         <div class="card">
-          <h2>Your categories</h2>
+          <h2>Your Categories</h2>
           <div id="catList"></div>
         </div>
       </section>
 
       <!-- ═══════════ PASSWORD ═══════════ -->
       <section class="view" id="view-password" hidden>
-        <h1 class="adm-title">Change password</h1>
+        <h1 class="adm-title">Change Password</h1>
         <form class="card" id="pwForm">
           <div class="msg" id="pwMsg" role="alert"></div>
           <div class="field"><label for="pwOld">Current password</label><input class="inp" id="pwOld" type="password" autocomplete="current-password" required></div>
@@ -566,7 +566,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
   <!-- ═══════════ MODALS ═══════════ -->
   <div class="modal" id="confirmModal" hidden role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
     <div class="modal-card">
-      <h2 id="confirmTitle">Are you sure?</h2>
+      <h2 id="confirmTitle">Are You Sure?</h2>
       <p id="confirmText" style="margin-bottom:18px"></p>
       <div class="btn-row" style="justify-content:flex-end">
         <button type="button" class="b light" data-close>Cancel</button>
@@ -577,7 +577,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
 
   <div class="modal" id="linkModal" hidden role="dialog" aria-modal="true" aria-labelledby="linkTitle">
     <form class="modal-card" id="linkForm">
-      <h2 id="linkTitle">Add a link</h2>
+      <h2 id="linkTitle">Add A Link</h2>
       <div class="field"><label for="linkText">Text to show</label><input class="inp" id="linkText"></div>
       <div class="field"><label for="linkUrl">Web address</label><input class="inp" id="linkUrl" placeholder="https://…" required></div>
       <div class="btn-row" style="justify-content:flex-end">
@@ -589,7 +589,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
 
   <div class="modal" id="tableModal" hidden role="dialog" aria-modal="true" aria-labelledby="tableTitle">
     <form class="modal-card" id="tableForm">
-      <h2 id="tableTitle">Insert a table</h2>
+      <h2 id="tableTitle">Insert A Table</h2>
       <div class="btn-row">
         <div class="field" style="flex:1"><label for="tblRows">Rows</label><input class="inp" id="tblRows" type="number" min="1" max="30" value="3"></div>
         <div class="field" style="flex:1"><label for="tblCols">Columns</label><input class="inp" id="tblCols" type="number" min="1" max="8" value="3"></div>
@@ -604,7 +604,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
 
   <div class="modal" id="cropModal" hidden role="dialog" aria-modal="true" aria-labelledby="cropTitle">
     <div class="modal-card wide">
-      <h2 id="cropTitle">Adjust your image</h2>
+      <h2 id="cropTitle">Adjust Your Image</h2>
       <p class="hint" style="margin-bottom:10px">Choose a shape, drag the picture to choose what shows and use the slider to zoom. It is saved up to 1200 px wide and 1 MB.</p>
       <div class="aspect-pick" id="cropAspect" role="group" aria-label="Picture shape">
         <button type="button" data-a="16:9">Wide 16:9</button>
@@ -630,7 +630,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
 
   <div class="modal" id="addModal" hidden role="dialog" aria-modal="true" aria-labelledby="addTitle">
     <div class="modal-card wide">
-      <h2 id="addTitle">Add a section</h2>
+      <h2 id="addTitle">Add A Section</h2>
       <div class="section-pick" id="sectionPick"></div>
       <div class="btn-row" style="justify-content:flex-end;margin-top:16px">
         <button type="button" class="b light" data-close>Cancel</button>
@@ -640,7 +640,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
 
   <div class="modal" id="groupNewModal" hidden role="dialog" aria-modal="true" aria-labelledby="groupNewTitle">
     <form class="modal-card" id="groupNewForm">
-      <h2 id="groupNewTitle">New photo group</h2>
+      <h2 id="groupNewTitle">New Photo Group</h2>
       <div class="field"><label for="gnTitle">Group heading</label><input class="inp" id="gnTitle" maxlength="100" placeholder="e.g. Our showroom" required></div>
       <div class="field"><label for="gnDesc">Short note (optional)</label><textarea class="inp" id="gnDesc" maxlength="500"></textarea></div>
       <div class="msg" id="gnMsg"></div>
@@ -829,7 +829,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       else if (act === 'preview') {
         busy(true, 'Preparing preview…');
         api('getPost', { id: id }).then(function (res) { return api('previewPost', { post: res.post }); })
-          .then(function (res) { openPreview(res.html, 'Preview of "' + (post.title || 'Untitled') + '"' + (post.status === 'published' && !post.dirty ? '' : ' – not live yet')); })
+          .then(function (res) { openPreview(res.html, 'Preview of "' + (post.title || 'Untitled') + '"' + (post.status === 'published' && !post.dirty ? '' : ' - not live yet')); })
           .catch(function (err) { msg('dashMsg', err.message); }).then(function () { busy(false); });
       } else if (act === 'delete') {
         confirmBox('Delete this post?', '"' + (post.title || 'Untitled') + '" will be removed' + (post.status === 'published' ? ' from the website' : '') + ', together with its images. This cannot be undone.', 'Delete', function () {
@@ -844,7 +844,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       confirmBox('Rebuild all posts?', 'Every published post and the Resources page will be updated with the latest menu, footer and design. This can take up to a minute.', 'Rebuild', function () {
         busy(true, 'Rebuilding all posts… please keep this page open.');
         api('rebuildAll').then(function (res) {
-          msg('dashMsg', 'Done! ' + res.count + ' post' + (res.count === 1 ? '' : 's') + ' rebuilt. The website will update in about 1–2 minutes.', 'ok');
+          msg('dashMsg', 'Done! ' + res.count + ' post' + (res.count === 1 ? '' : 's') + ' rebuilt. The website will update in about 1 - 2 minutes.', 'ok');
         }).catch(function (err) { msg('dashMsg', err.message); }).then(function () { busy(false); });
       });
     });
@@ -1055,7 +1055,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       switch (b.type) {
         case 'text': return headIn() + rte('Write your text here…');
         case 'imageText':
-          return '<div class="pb-split img-' + side + ' size-' + b.size + '"><div class="slot-wrap"><p class="pb-note">Picture for this paragraph – shown on the ' + side.toUpperCase() +
+          return '<div class="pb-split img-' + side + ' size-' + b.size + '"><div class="slot-wrap"><p class="pb-note">Picture for this paragraph - shown on the ' + side.toUpperCase() +
             (b.side === 'auto' ? ' (automatic zig-zag)' : '') + '</p>' + slotHtml(b.image, 'Add the picture for this paragraph') + '</div>' +
             '<div class="pb-text-side">' + headIn() + rte('Write the paragraph that goes with this picture…') + '</div></div>';
         case 'image': return slotHtml(b.image, 'Add a big picture');
@@ -1459,7 +1459,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
           return preparePhoto(f).then(function (p) { batch.push(p); size += p.data.length * 0.75; return prep(); });
         }
         return prep().then(function () {
-          busy(true, 'Uploading photos ' + (out.length + 1) + '–' + (out.length + batch.length) + ' of ' + total + '… please keep this page open.');
+          busy(true, 'Uploading photos ' + (out.length + 1) + ' - ' + (out.length + batch.length) + ' of ' + total + '… please keep this page open.');
           var payload = batch.map(function (p, n) {
             var m = /^data:([^;]+);base64,(.*)$/.exec(p.data);
             return { name: 'photo-' + stamp() + '-' + n, contentType: m[1], data: m[2] };
@@ -1469,7 +1469,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
           return api('uploadImages', req).then(function (res) {
             res.urls.forEach(function (url, n) {
               localImages[url] = batch[n].data;
-              out.push({ url: url, alt: altBase ? altBase + ' – photo ' + (out.length + 1) : '', caption: '', w: batch[n].w, h: batch[n].h });
+              out.push({ url: url, alt: altBase ? altBase + ' - photo ' + (out.length + 1) : '', caption: '', w: batch[n].w, h: batch[n].h });
             });
             return nextBatch();
           });
@@ -1491,7 +1491,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
         b.images = b.images.concat(list);
         after(i);
         toast(list.length + ' photo' + (list.length === 1 ? '' : 's') + ' added. Please check each description.');
-        if (fileList.length > room) toast('Only ' + room + ' photos were added – a gallery section holds up to 40.');
+        if (fileList.length > room) toast('Only ' + room + ' photos were added - a gallery section holds up to 40.');
       }).catch(function (err) {
         if (err.partial && err.partial.length) { b.images = b.images.concat(err.partial); after(i); }
         msg('edMsg', err.message);
@@ -1725,7 +1725,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
         var min = +c.getAttribute('data-min'), max = +c.getAttribute('data-max');
         var good = len >= min && len <= max;
         c.className = 'counter ' + (good ? 'good' : 'bad');
-        c.textContent = len + ' characters · best ' + min + '–' + max + (good ? ' ✓' : '');
+        c.textContent = len + ' characters · best ' + min + ' - ' + max + (good ? ' ✓' : '');
       });
     }
 
@@ -1904,7 +1904,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
           state.dirty = false;
           $('publishBtn').textContent = 'Update live post';
           setSaveState('Published ✓', true);
-          msg('edMsg', 'Published! Your post will be live in about 1–2 minutes at ' + res.url, 'ok');
+          msg('edMsg', 'Published! Your post will be live in about 1 - 2 minutes at ' + res.url, 'ok');
           window.scrollTo(0, 0);
         }).catch(function (err) { msg('edMsg', err.message); }).then(function () { busy(false); });
       });
@@ -1951,7 +1951,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       var data = collect();
       if (!data.title) { msg('edMsg', 'Please type a title first.'); return; }
       busy(true, 'Preparing preview…');
-      api('previewPost', { post: data }).then(function (res) { openPreview(res.html, 'Preview of "' + data.title + '" – not live yet'); })
+      api('previewPost', { post: data }).then(function (res) { openPreview(res.html, 'Preview of "' + data.title + '" - not live yet'); })
         .catch(function (err) { msg('edMsg', err.message); }).then(function () { busy(false); });
     });
 
@@ -2011,7 +2011,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
         api('moveGallery', { id: id, dir: act === 'up' ? -1 : 1 }).then(function (res) {
           state.groups = res.groups;
           renderGroups();
-          if (g.status === 'published') msg('galMsg', 'Order changed. The Gallery page will update in about 1–2 minutes.', 'ok');
+          if (g.status === 'published') msg('galMsg', 'Order changed. The Gallery page will update in about 1 - 2 minutes.', 'ok');
         }).catch(function (err) { msg('galMsg', err.message); }).then(function () { busy(false); });
       } else if (act === 'delete') {
         confirmBox('Delete this photo group?', '"' + g.title + '" and its ' + g.photos.length + ' photo' + (g.photos.length === 1 ? '' : 's') + ' will be removed' + (g.status === 'published' ? ' from the website' : '') + '. This cannot be undone.', 'Delete', function () {
@@ -2049,7 +2049,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       msg('grMsg', '');
       renderGroupPhotos();
       state.dirty = false;
-      setGroupState(g.status === 'published' ? (g.dirty ? 'Saved – not on the website yet' : 'On the website') : 'Draft – saved', true);
+      setGroupState(g.status === 'published' ? (g.dirty ? 'Saved - not on the website yet' : 'On the website') : 'Draft - saved', true);
       show('group');
     }
 
@@ -2098,7 +2098,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
         renderGroupPhotos();
         markDirty();
         return saveGroup(true).then(function () {
-          msg('grMsg', list.length + ' photo' + (list.length === 1 ? '' : 's') + ' added and saved. Check each description, then Publish.' + (skipped > 0 ? ' ' + skipped + ' photo(s) were not added – the limit is ' + MAX_GROUP_PHOTOS + '.' : ''), 'ok');
+          msg('grMsg', list.length + ' photo' + (list.length === 1 ? '' : 's') + ' added and saved. Check each description, then Publish.' + (skipped > 0 ? ' ' + skipped + ' photo(s) were not added - the limit is ' + MAX_GROUP_PHOTOS + '.' : ''), 'ok');
         });
       }).catch(function (err) {
         if (err.partial && err.partial.length) { state.group.photos = state.group.photos.concat(err.partial); renderGroupPhotos(); markDirty(); saveGroup(true); }
@@ -2131,7 +2131,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       var data = collectGroup();
       if (!data.title) { msg('grMsg', 'Please type a heading first.'); return; }
       busy(true, 'Preparing preview…');
-      api('previewGallery', { group: data }).then(function (res) { openPreview(res.html, 'Gallery preview – "' + data.title + '" is not live yet'); })
+      api('previewGallery', { group: data }).then(function (res) { openPreview(res.html, 'Gallery preview - "' + data.title + '" is not live yet'); })
         .catch(function (err) { msg('grMsg', err.message); }).then(function () { busy(false); });
     });
     $('grPublish').addEventListener('click', function () {
@@ -2151,7 +2151,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
           state.dirty = false;
           $('grPublish').textContent = 'Update live group';
           setGroupState('On the website ✓', true);
-          msg('grMsg', 'Published! The Gallery page will update in about 1–2 minutes: ' + res.url, 'ok');
+          msg('grMsg', 'Published! The Gallery page will update in about 1 - 2 minutes: ' + res.url, 'ok');
           window.scrollTo(0, 0);
         }).catch(function (err) { msg('grMsg', err.message); }).then(function () { busy(false); });
       });
@@ -2184,7 +2184,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
         state.categories = res.categories;
         $('catNew').value = '';
         renderCategories();
-        msg('catMsg', 'Category added. It will appear on the Resources page in about 1–2 minutes.', 'ok');
+        msg('catMsg', 'Category added. It will appear on the Resources page in about 1 - 2 minutes.', 'ok');
       }).catch(function (err) { msg('catMsg', err.message); }).then(function () { busy(false); });
     });
     $('catList').addEventListener('click', function (e) {
@@ -2200,7 +2200,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
         api('renameCategory', { slug: slug, name: name }).then(function (res) {
           state.categories = res.categories;
           renderCategories();
-          msg('catMsg', 'Category renamed. The website will update in about 1–2 minutes.', 'ok');
+          msg('catMsg', 'Category renamed. The website will update in about 1 - 2 minutes.', 'ok');
         }).catch(function (err) { msg('catMsg', err.message); }).then(function () { busy(false); });
       } else {
         if (cat.count > 0) {
