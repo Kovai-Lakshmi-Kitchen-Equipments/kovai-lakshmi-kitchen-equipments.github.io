@@ -189,9 +189,9 @@ a.product-card { display: block; }
   .footer-logo img { height: 150px; }
   .footer-about { font-size: 15px; }
 }
-/* Footer mobile: shops one under another, categories and links side by side */
+/* Footer mobile: everything one under another */
 @media (max-width: 600px) {
-  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "brand brand" "cbe cbe" "che che" "sal sal" "cats links" "social social"; gap: 26px 18px; }
+  .footer-grid { grid-template-columns: 1fr; grid-template-areas: "brand" "cbe" "che" "sal" "cats" "links" "social"; gap: 26px; }
   .footer-logo img { height: 120px; }
   .footer-about { font-size: 13px; }
 }
