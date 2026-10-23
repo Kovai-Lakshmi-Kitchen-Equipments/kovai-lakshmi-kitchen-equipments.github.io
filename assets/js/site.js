@@ -177,8 +177,11 @@
     nav.querySelectorAll('a[href]').forEach(function (a) {
       var href = a.getAttribute('href');
       if (!href || href === '#' || a.classList.contains('dropdown-toggle')) return;
-      var linkPath;
-      try { linkPath = new URL(href, KL.BASE).pathname; } catch (err) { return; }
+      var link;
+      try { link = new URL(href, KL.BASE); } catch (err) { return; }
+      /* links to other sites (e.g. the Domestic shop at shopping.kovailakshmi.in) are never "current" */
+      if (link.host !== new URL(KL.BASE).host) return;
+      var linkPath = link.pathname;
       /* Home matches only "/"; other links also match their sub-pages (e.g. a resource post) */
       var match = linkPath === '/' ? path === '/' : path.indexOf(linkPath) === 0;
       if (match) {
