@@ -17,7 +17,7 @@
 
   KL.BASE = 'https://kovailakshmi.in/';
   KL.SEARCH_DATA_URL = KL.BASE + 'search-index.json';
-  KL.MOBILE_MAX = 768;   /* matches the CSS mobile menu breakpoint */
+  KL.MOBILE_MAX = 767;   /* matches the CSS mobile menu breakpoint */
   KL.TABLET_MAX = 1024;  /* matches the CSS collapsible search breakpoint */
 
   /* ──────────────────────────────────────────────────────────
