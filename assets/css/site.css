@@ -164,7 +164,16 @@ a.product-card { display: block; }
    4. FOOTER
 ============================================================ */
 .footer { background: #ffffff; color: #aab0c0; padding: clamp(44px, 7vw, 72px) 0 0; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 44px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; grid-template-areas: "brand cbe che sal" "social cats links ."; gap: 36px; margin-bottom: 44px; }
+.f-brand { grid-area: brand; }
+.f-cbe { grid-area: cbe; }
+.f-che { grid-area: che; }
+.f-sal { grid-area: sal; }
+.f-cats { grid-area: cats; }
+.f-links { grid-area: links; }
+.f-social { grid-area: social; }
+.footer h4 a { color: inherit; }
+.footer h4 a:hover { color: var(--red); }
 .footer-logo { margin-bottom: 18px; }
 .footer-logo img { height: 200px; width: auto; max-width: 400px; object-fit: contain; filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff); }
 .footer-about { font-size: 18px; line-height: 1.75; color: #000000; font-family: Georgia, 'Times New Roman', Times, serif; }
@@ -174,28 +183,35 @@ a.product-card { display: block; }
 .footer ul li a:hover { color: var(--red); }
 .copyright { text-align: center; padding: 18px 0; font-family: Georgia, 'Times New Roman', Times, serif; border-top: 1px solid rgba(255,255,255,.08); font-size: 13px; color: #666e82; }
 
-/* Footer tablet */
-@media (max-width: 900px) {
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-  .footer-about { font-size: 14px; }
+/* Footer tablet: logo on top, the three shops side by side, then categories, links and social */
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-areas: "brand brand brand" "cbe che sal" "cats links social"; gap: 30px 24px; }
+  .footer-logo img { height: 150px; }
+  .footer-about { font-size: 15px; }
 }
-/* Footer mobile: single column */
-@media (max-width: 480px) {
-  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+/* Footer mobile: shops one under another, categories and links side by side */
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "brand brand" "cbe cbe" "che che" "sal sal" "cats links" "social social"; gap: 26px 18px; }
   .footer-logo img { height: 120px; }
-  .footer-about { font-size: 10px; }
+  .footer-about { font-size: 13px; }
 }
 .social-list { display: flex; flex-wrap: wrap; gap: 12px; padding: 0; margin: 10px 0 0; }
 .social-list li { list-style: none; }
 .social-icon { width: 50px; height: 50px; object-fit: contain; display: block; transition: opacity .25s, transform .25s; }
 .social-icon:hover { transform: scale(1.1); }
+@media (max-width: 600px) {
+  .social-list { gap: 10px; }
+}
+@media (max-width: 400px) {
+  .social-icon { width: 44px; height: 44px; }
+}
+@media (max-width: 340px) {
+  .social-icon { width: 37px; height: 37px; }
+}
 
 /* ── Footer legal links (below the copyright line) ── */
 .legal-links { margin-top: 8px; font-size: 13px; font-family: Georgia, 'Times New Roman', Times, serif; color: #666e82; }
 .legal-links a { color: #666e82; transition: color .25s; }
-/* footer branch addresses */
-.footer ul li.footer-branch { margin-top: 22px; }
-.footer-branch b a { color: inherit; }
 .legal-links a:hover, .legal-links a:focus-visible { color: var(--primary); text-decoration: none; }
 .legal-links .sep { margin: 0 6px; }
 
