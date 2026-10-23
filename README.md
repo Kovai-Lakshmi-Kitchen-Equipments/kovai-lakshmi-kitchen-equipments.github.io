@@ -36,8 +36,13 @@ GitHub Pages publishes it automatically, usually within 1–2 minutes.
 │   ├── css/site.css                Shared styles: header, footer, WhatsApp button, common parts
 │   └── js/site.js                  Shared scripts: menu, dropdown, search, suggestions
 │                                   + the Apps Script address (EXEC_URL) in ONE place
+│                                   + no right-click / dragging on images
 ├── about-us.html, gallery.html, …  Forwarding pages: old addresses send visitors to the new ones
-├── LOGO/, SLIDES/, CUSTOMERS/, CERTIFICATES/, KITCHENPRODUCTS/, SOCIAL MEDIAS/   existing images (unchanged)
+├── KITCHENPRODUCTS/*.jpg            Web copies of the product photos (1080 x 1080, faint logo, ~100-200 KB)
+│                                   made from your PNGs by site-builder/tools/make_photos.py
+├── LOGO/LOGO-share.jpg             1080 x 1080 logo picture for WhatsApp / Facebook link previews
+├── SLIDES/SLIDE1.jpeg … SLIDE3.jpeg  Home page slider photos – upload with exactly these names (see section 6)
+├── LOGO/, SLIDES/, CUSTOMERS/, CERTIFICATES/, KITCHENPRODUCTS/*.png, SOCIAL MEDIAS/   your images (unchanged)
 ├── search-index.json               Search data (products, pages and posts)
 ├── sitemap.xml                     For Google (posts are added automatically)
 ├── robots.txt
@@ -72,9 +77,9 @@ Excel file by the **site builder** (the `site-builder` folder delivered next to 
 3. Upload the changed folders and files from `site-builder/site/` to GitHub: the new product folder, the
    category page, `index.html` if Popular Products changed, `search-index.json` and `sitemap.xml`.
 
-> Upload the generated `search-index.json` and `sitemap.xml` only **after** downloading the latest copies from
-> GitHub if posts were published in the meantime – the admin also updates these two files. The simplest way:
-> after uploading, open the admin and click **Rebuild all posts**; it adds every post back into both files.
+> The admin also writes `search-index.json`, `sitemap.xml`, `resources/index.html` and `gallery/index.html`.
+> If posts or photo groups were published, do not overwrite these with the builder's copies – or, right after
+> uploading, open the admin and click **Rebuild all posts**: it puts every post and photo group back.
 
 ## 3. Adding a new product category
 
@@ -193,3 +198,36 @@ Gallery page match.
 
 **Password** – change it any time from the **Password** menu. Forgot it? See the setup guide
 ("Reset the admin password").
+
+
+---
+
+## 6. Home page slider photos
+
+The slider in the "Welcome to Kovai Lakshmi Grinders" section shows up to 3 photos. Upload them to the
+**`SLIDES`** folder with exactly these names (capital letters and the `.jpeg` ending matter):
+
+| Slide | File |
+|---|---|
+| 1 | `SLIDES/SLIDE1.jpeg` |
+| 2 | `SLIDES/SLIDE2.jpeg` |
+| 3 | `SLIDES/SLIDE3.jpeg` |
+
+Best size: **1600 × 1200 px** (4:3), under **300 KB** each. A slide shows by itself as soon as its photo is
+uploaded; slides without a photo are skipped, and the slider is hidden while none exist.
+
+## 7. Adding or changing a product photo
+
+1. Upload the new photo as a PNG to `KITCHENPRODUCTS/` (square looks best).
+2. Run `python3 site-builder/tools/make_photos.py <repository folder> site-builder/gen/asset-overrides` – it makes the
+   1080 × 1080 web copy with the faint logo (about 100–200 KB, same name, `.jpg`).
+3. Put `https://kovailakshmi.in/KITCHENPRODUCTS/<name>.jpg` in the Excel's *Image Source* column and rebuild.
+
+## 8. Writing rules used everywhere on the site
+
+- Titles, menus and headings use **Initial Capital Case** (every word starts with a capital; short codes like SS,
+  HP, GEM stay in capitals). To keep small words such as "and", "of", "to" in small letters instead, set
+  `TITLE_SMALL_WORDS_LOWER = True` in `site-builder/gen/config.py`.
+- No "–" or "—": a normal hyphen with a space on each side (" - ") is used instead.
+- No comma before "and".
+- These rules are applied automatically by the site builder and by the website admin.
