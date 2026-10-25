@@ -234,7 +234,17 @@ textarea.inp { min-height: 90px; resize: vertical; }
 @media (max-width: 600px) {
   .cta-row { grid-template-columns: 1fr; }
 }
-.yt-prev { width: 100%; max-width: 360px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; }
+.vids-ed { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.vid-ed { display: flex; flex-direction: column; gap: 8px; padding: 10px; border: 1px solid #e8e8e8; border-radius: 10px; background: #fcfcfc; min-width: 0; }
+.vid-ed .vid-src { resize: vertical; font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; word-break: break-all; }
+.vids-ed .slot { min-height: 140px; }
+.vid-fit { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; }
+.vid-fit select { flex: 1; min-width: 0; }
+.yt-prev-wrap { border-radius: 8px; overflow: hidden; background: #000; margin: 0 auto; }
+.yt-prev-wrap.is-landscape { width: 100%; aspect-ratio: 16 / 9; }
+.yt-prev-wrap.is-vertical { width: 46%; max-width: 160px; aspect-ratio: 9 / 16; }
+.yt-prev { display: block; width: 100%; height: 100%; object-fit: cover; }
+.yt-info { margin: 6px 0 0; font-size: 12.5px; color: #1e7b34; line-height: 1.4; }
 .pb-hr { border: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--red), transparent); margin: 14px 0; }
 .aspect-pick { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 .aspect-pick button { padding: 6px 12px; border: 1.5px solid #ddd; border-radius: 999px; background: #fff; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
@@ -888,7 +898,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
         svg: icon(R(4, 6, 19, 17, PIC) + R(26.5, 6, 19, 17, PIC) + R(49, 6, 19, 17, PIC) + R(4, 26, 19, 17, PIC) + R(26.5, 26, 19, 17, PIC) + R(49, 26, 19, 17, PIC)) },
       cards: { name: 'Cards with pictures', desc: 'Small cards, each with a picture, title, text and an optional link.',
         svg: icon(R(4, 5, 19, 38, '#fff', ' stroke="#ccc"') + R(26.5, 5, 19, 38, '#fff', ' stroke="#ccc"') + R(49, 5, 19, 38, '#fff', ' stroke="#ccc"') + R(4, 5, 19, 14, PIC) + R(26.5, 5, 19, 14, PIC) + R(49, 5, 19, 14, PIC) + L(7, 24, 13, '#333') + L(29.5, 24, 13, '#333') + L(52, 24, 13, '#333') + L(7, 32, 13) + L(29.5, 32, 13) + L(52, 32, 13)) },
-      video: { name: 'YouTube video', desc: 'Paste a YouTube link to show the video.',
+      video: { name: 'YouTube video', desc: 'Up to 3 YouTube videos or Shorts. Paste the link or the embed code.',
         svg: icon(R(4, 5, 64, 38, '#222') + '<path d="M30 15 46 24 30 33Z" fill="#f00"/>') },
       quote: { name: 'Customer quote', desc: 'A customer review or quote, with who said it.',
         svg: icon(R(4, 5, 64, 38, '#f4f6f9') + '<text x="8" y="31" font-size="28" font-family="Georgia,serif" fill="#ff0000">“</text>' + L(24, 15, 40, '#999') + L(24, 23, 36, '#999') + L(24, 33, 20, '#333')) },
@@ -901,6 +911,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
     };
 
     function newCard() { return { image: null, title: '', text: '', link: '', linkText: '' }; }
+    function newVideo() { return { src: '', fit: 'auto' }; }
     function newBlock(type, extra) {
       var defs = {
         text: { heading: '', html: '', bg: 'none' },
@@ -908,7 +919,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
         image: { image: null, width: 'wide' },
         gallery: { heading: '', images: [], cols: '3', bg: 'none' },
         cards: { heading: '', cards: [newCard(), newCard(), newCard()], cols: '3', style: 'shadow', bg: 'none' },
-        video: { heading: '', video: '', caption: '', bg: 'none' },
+        video: { heading: '', videos: [newVideo()], caption: '', size: 'wide', bg: 'none' },
         quote: { text: '', by: '' },
         callout: { heading: '', html: '', tone: 'note' },
         cta: { heading: '', text: '', label: '', link: '' },
@@ -958,6 +969,36 @@ textarea.inp { min-height: 90px; resize: vertical; }
       if (m) return m[1];
       return /^[A-Za-z0-9_-]{11}$/.test(v) ? v : '';
     }
+    /* Everything we can read from a pasted YouTube link or embed code (same rules as the server) */
+    function ytInfo(raw) {
+      raw = String(raw || '').trim();
+      var id = ytId(raw), start = 0, vertical = null;
+      var t = /[?&#;](?:t|start)=(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s?)?(?![\w])/.exec(raw);
+      if (t) start = (+(t[1] || 0)) * 3600 + (+(t[2] || 0)) * 60 + (+(t[3] || 0));
+      var shorts = /youtube\.com\/shorts\//i.test(raw);
+      if (shorts) vertical = true;
+      else {
+        var w = /\bwidth=["']?(\d+)/i.exec(raw), h = /\bheight=["']?(\d+)/i.exec(raw);
+        if (w && h && +w[1] && +h[1]) vertical = +h[1] > +w[1];
+      }
+      return { id: id, start: start > 0 && start < 86400 ? start : 0, vertical: vertical, shorts: shorts };
+    }
+    function vidShape(v) {
+      if (v.fit === 'landscape' || v.fit === 'vertical') return v.fit;
+      var inf = ytInfo(v.src);
+      if (inf.vertical === true) return 'vertical';
+      if (inf.vertical === null && v.shape === 'vertical') return 'vertical';
+      return 'landscape';
+    }
+    function clock(sec) { var m = Math.floor(sec / 60), s2 = sec % 60; return (m >= 60 ? Math.floor(m / 60) + ':' + ('0' + (m % 60)).slice(-2) : m) + ':' + ('0' + s2).slice(-2); }
+    /* Video sections keep a list of videos (older posts had just one) */
+    function vidsOf(b) {
+      if (b.type !== 'video') return [];
+      if (!Array.isArray(b.videos)) { b.videos = [{ src: b.video || '', fit: 'auto' }]; delete b.video; }
+      if (!b.videos.length) b.videos.push(newVideo());
+      if (!b.size) b.size = 'wide';
+      return b.videos;
+    }
     function imagesOf(b) {
       var out = [];
       if (b.image) out.push(b.image);
@@ -972,7 +1013,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
       (b.cards || []).forEach(function (c) { parts.push(c.title, c.text); });
       return parts.join(' ').replace(/\s+/g, ' ').trim();
     }
-    function hasContent(b) { return !!(textOf(b) || imagesOf(b).length || (b.type === 'video' && b.video)); }
+    function hasContent(b) { return !!(textOf(b) || imagesOf(b).length || vidsOf(b).some(function (v) { return String(v.src || '').trim(); })); }
 
     /* Same rule as the website: "automatic" pictures alternate left, right, left… */
     function sidesOf(blocks) {
@@ -998,6 +1039,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
             opt('valign', 'Text', b.valign, [['center', 'Middle of picture'], ['top', 'Top of picture']]));
           break;
         case 'image': o.push(opt('width', 'Width', b.width, [['wide', 'Text width'], ['full', 'Edge to edge'], ['medium', 'Medium, centred']])); break;
+        case 'video': o.push(opt('size', 'Landscape video size', b.size, [['wide', 'Text width'], ['medium', 'Medium, centred']])); break;
         case 'gallery': o.push(opt('cols', 'Photos per row', b.cols, [['2', '2'], ['3', '3'], ['4', '4']])); break;
         case 'cards':
           o.push(opt('cols', 'Cards per row', b.cols, [['2', '2'], ['3', '3'], ['4', '4']]),
@@ -1044,9 +1086,26 @@ textarea.inp { min-height: 90px; resize: vertical; }
     }
 
     function ytPreview(v) {
-      var id = ytId(v);
-      if (id) return '<img class="yt-prev" src="https://i.ytimg.com/vi/' + id + '/hqdefault.jpg" alt="Video thumbnail">';
-      return v && v.trim() ? '<p class="msg error">This does not look like a YouTube link. Copy the address from YouTube\'s Share button.</p>' : '';
+      var src = String(v.src || '').trim(), inf = ytInfo(src);
+      if (!src) return '<p class="hint" style="margin:0">The video\'s picture appears here when the link is pasted.</p>';
+      if (!inf.id) return '<p class="msg error">This does not look like a YouTube link or embed code. On YouTube press Share, then Copy (or Embed, then Copy).</p>';
+      var shape = vidShape(v), up = shape === 'vertical';
+      return '<div class="yt-prev-wrap ' + (up ? 'is-vertical' : 'is-landscape') + '"><img class="yt-prev" src="https://i.ytimg.com/vi/' + inf.id + '/hqdefault.jpg" alt="Video thumbnail"></div>' +
+        '<p class="yt-info">✓ ' + (up ? 'Upright video (YouTube Short), shown tall 9:16' : 'Landscape video, shown wide 16:9') +
+        (v.fit === 'auto' ? (up ? ' - found automatically' : '') : ' - your choice') + (inf.start ? ' · starts at ' + clock(inf.start) : '') + '</p>';
+    }
+
+    function vidHtml(v, j, n) {
+      return '<div class="vid-ed" data-j="' + j + '"><div class="card-ed-head"><strong>Video ' + (j + 1) + '</strong><span>' +
+        (n > 1 ? '<button type="button" class="mini light" data-act="vid-left" aria-label="Move video ' + (j + 1) + ' earlier"' + (j === 0 ? ' disabled' : '') + '>←</button>' +
+          '<button type="button" class="mini light" data-act="vid-right" aria-label="Move video ' + (j + 1) + ' later"' + (j === n - 1 ? ' disabled' : '') + '>→</button>' +
+          '<button type="button" class="mini light" data-act="vid-rm" aria-label="Remove video ' + (j + 1) + '">×</button>' : '') + '</span></div>' +
+        '<textarea class="inp sm vid-src" data-vf="src" rows="2" spellcheck="false" aria-label="YouTube link or embed code of video ' + (j + 1) + '" placeholder="Paste the YouTube link or the embed code">' + esc(v.src || '') + '</textarea>' +
+        '<div class="yt-box">' + ytPreview(v) + '</div>' +
+        '<label class="vid-fit">Shape <select data-vf="fit" aria-label="Shape of video ' + (j + 1) + '">' +
+        [['auto', 'Automatic'], ['landscape', 'Landscape (wide 16:9)'], ['vertical', 'Upright - Shorts (tall 9:16)']].map(function (c) {
+          return '<option value="' + c[0] + '"' + ((v.fit || 'auto') === c[0] ? ' selected' : '') + '>' + c[1] + '</option>';
+        }).join('') + '</select></label></div>';
     }
 
     function bodyHtml(b, i, side) {
@@ -1067,9 +1126,11 @@ textarea.inp { min-height: 90px; resize: vertical; }
           return headIn('Heading above the cards (optional)') + '<div class="cards-ed">' + b.cards.map(function (c, j) { return cardHtml(c, j, b.cards.length); }).join('') +
             (b.cards.length < 12 ? '<button type="button" class="slot" data-act="card-add"><span class="slot-ic">+</span><strong>Add a card</strong><small>Up to 12 cards</small></button>' : '') + '</div>';
         case 'video':
-          return headIn() + '<label class="sub-label">YouTube link<input class="inp" data-f="video" style="margin-top:6px" placeholder="https://www.youtube.com/watch?v=…" value="' + esc(b.video || '') + '"></label>' +
-            '<div class="yt-box">' + ytPreview(b.video) + '</div>' +
-            '<input class="inp sm" data-f="caption" maxlength="200" aria-label="Line under the video" placeholder="Short line under the video (optional)" value="' + esc(b.caption || '') + '">';
+          var vids = vidsOf(b);
+          return headIn() + '<p class="hint" style="margin:0">On YouTube press <strong>Share</strong>, then <strong>Copy</strong> (the link) - or <strong>Share → Embed → Copy</strong> (the embed code). Both work. Shorts are found automatically and shown tall; a start time in the link is kept.</p>' +
+            '<div class="vids-ed">' + vids.map(function (v, j) { return vidHtml(v, j, vids.length); }).join('') +
+            (vids.length < 3 ? '<button type="button" class="slot" data-act="vid-add"><span class="slot-ic">+</span><strong>Add another video</strong><small>Up to 3, shown side by side - good for Shorts</small></button>' : '') + '</div>' +
+            '<input class="inp sm" data-f="caption" maxlength="200" aria-label="Line under the videos" placeholder="Short line under the video' + (vids.length > 1 ? 's' : '') + ' (optional)" value="' + esc(b.caption || '') + '">';
         case 'quote':
           return '<textarea class="inp" data-f="text" rows="3" maxlength="800" aria-label="Quote" placeholder="The customer\'s words…">' + esc(b.text || '') + '</textarea>' +
             '<input class="inp sm" data-f="by" maxlength="120" aria-label="Who said it" placeholder="Who said it, e.g. Owner, Hotel name, Coimbatore" value="' + esc(b.by || '') + '">';
@@ -1108,6 +1169,7 @@ textarea.inp { min-height: 90px; resize: vertical; }
 
     function renderSections() {
       var list = state.post.blocks;
+      list.forEach(vidsOf);
       var sides = sidesOf(list);
       blocksEl.innerHTML = (list.length ? '' : '<div class="empty-box">No sections yet. Choose a layout above, or add your first section.</div>') +
         list.map(function (b, i) { return (i ? addHere(i) : '') + blockHtml(b, i, list.length, sides[i]); }).join('') + addHere(list.length, true);
@@ -1193,7 +1255,11 @@ textarea.inp { min-height: 90px; resize: vertical; }
         b.html = fromEditorHtml(t);
       } else if (f) {
         b[f] = t.value;
-        if (f === 'video') t.closest('.pb-body').querySelector('.yt-box').innerHTML = ytPreview(t.value);
+      } else if (t.getAttribute('data-vf')) {
+        var vv = vidsOf(b)[jAt(t)];
+        if (!vv) return;
+        vv[t.getAttribute('data-vf')] = t.value;
+        t.closest('.vid-ed').querySelector('.yt-box').innerHTML = ytPreview(vv);
       } else if (im) {
         var h = holder(b, jAt(t)), o = h.obj[h.key];
         if (!o) return;
@@ -1263,6 +1329,13 @@ textarea.inp { min-height: 90px; resize: vertical; }
           if (c.image || c.title || c.text) confirmBox('Remove card ' + (j + 1) + '?', 'Its picture and text will be removed from this post.', 'Remove', dropCard); else dropCard();
           break;
         case 'quick': b.link = quickLink(btn.getAttribute('data-v')); after(i); break;
+        case 'vid-add': if (vidsOf(b).length < 3) { b.videos.push(newVideo()); after(i); var nv = blocksEl.querySelectorAll('[data-i="' + i + '"] .vid-src'); if (nv.length) nv[nv.length - 1].focus({ preventScroll: true }); } break;
+        case 'vid-left': moveIn(vidsOf(b), j, -1); after(i); break;
+        case 'vid-right': moveIn(vidsOf(b), j, 1); after(i); break;
+        case 'vid-rm':
+          var dropVid = function () { b.videos.splice(j, 1); after(i); };
+          if (String(b.videos[j].src || '').trim()) confirmBox('Remove video ' + (j + 1) + '?', 'It will be removed from this section.', 'Remove', dropVid); else dropVid();
+          break;
       }
     });
 
@@ -1876,12 +1949,15 @@ textarea.inp { min-height: 90px; resize: vertical; }
       d.blocks.forEach(function (b, i) {
         imagesOf(b).forEach(function (im) { if (!String(im.alt || '').trim()) noAlt.push(i + 1); });
         if ((b.type === 'image' && !b.image) || (b.type === 'gallery' && !b.images.length)) noPic.push(i + 1);
-        if (b.type === 'video' && !ytId(b.video)) badVideo.push(i + 1);
+        if (b.type === 'video') {
+          var vs = vidsOf(b).filter(function (v) { return String(v.src || '').trim(); });
+          if (!vs.length || vs.some(function (v) { return !ytId(v.src); })) badVideo.push(i + 1);
+        }
         if (b.type === 'cta' && b.label && !b.link) noLink.push(i + 1);
       });
       if (noAlt.length) problems.push('a description for every picture (section ' + uniq(noAlt).join(', ') + ')');
       if (noPic.length) problems.push('the pictures for section ' + noPic.join(', ') + ' (or delete those sections)');
-      if (badVideo.length) problems.push('a correct YouTube link in section ' + badVideo.join(', '));
+      if (badVideo.length) problems.push('a correct YouTube link or embed code in section ' + badVideo.join(', ') + ' (or remove the empty video)');
       if (noLink.length) problems.push('a link for the button in section ' + noLink.join(', '));
       if (!d.slug) problems.push('a web address');
       if (state.posts.some(function (p) { return p.slug === d.slug && p.id !== d.id; })) problems.push('a web address that no other post uses');
