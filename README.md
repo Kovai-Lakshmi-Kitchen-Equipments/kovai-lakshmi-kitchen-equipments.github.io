@@ -139,7 +139,7 @@ You stay logged in while you work; you are logged out after 2 hours without acti
    | Big picture | One picture, description, caption | Text width / edge to edge / medium |
    | Photo gallery | Heading and many photos at once (each with a description and caption); visitors open them full screen | 2, 3 or 4 per row · background |
    | Cards with pictures | Up to 12 cards: picture, title, text, optional link (e.g. to a product page) | 2, 3 or 4 per row · shadow, outline or light-red cards · background |
-   | YouTube video | Paste the YouTube link; the thumbnail shows so you know it is right | Background |
+   | YouTube video | 1 to 3 videos. For each, paste the YouTube **link** (Share → Copy) **or the embed code** (Share → Embed → Copy); Shorts are found automatically and shown upright 9:16, other videos wide 16:9; a start time in the link is kept. The picture and shape show so you know it is right | Shape per video (automatic / landscape / upright) · landscape size: text width or medium · background |
    | Customer quote | The words and who said them | – |
    | Highlight box | Heading and text | Note, Tip, Important, Problem, Solution, Result (each has its own colour) |
    | Call-to-action | Heading, one line, button text and link – or click **WhatsApp**, **Call** or **Contact page** | – |
