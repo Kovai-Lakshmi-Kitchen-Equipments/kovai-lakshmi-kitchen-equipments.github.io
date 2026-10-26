@@ -229,5 +229,14 @@ uploaded; slides without a photo are skipped, and the slider is hidden while non
   HP, GEM stay in capitals). To keep small words such as "and", "of", "to" in small letters instead, set
   `TITLE_SMALL_WORDS_LOWER = True` in `site-builder/gen/config.py`.
 - No "–" or "—": a normal hyphen with a space on each side (" - ") is used instead.
-- No comma before "and".
+- No comma before "and", and none before "or" at the end of a list ("chop, slice or dice").
+- Address lines that sit on their own line (footer, contact cards) do not end with a comma: Google joins lines with ";" and would show ",;".
 - These rules are applied automatically by the site builder and by the website admin.
+
+## llms.txt (summary for AI assistants)
+
+`https://kovailakshmi.in/llms.txt` describes the business, every product (page, key specifications, demo video),
+the company and legal pages, contact details and social links, in the standard llms.txt format (https://llmstxt.org).
+It is written by `gen/build_llms.py` from the same data as the pages, so rebuilding the site keeps it accurate.
+The part between `<!-- RESOURCES:START` and `<!-- RESOURCES:END -->` lists the published posts; the website admin
+rewrites it whenever a post is published, updated or deleted. `robots.txt` points to the file.

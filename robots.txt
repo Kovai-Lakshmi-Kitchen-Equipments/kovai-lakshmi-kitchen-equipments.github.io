@@ -4,3 +4,5 @@ Disallow: /resources/admin/
 Disallow: /admin/
 
 Sitemap: https://kovailakshmi.in/sitemap.xml
+
+# Plain summary of this website for AI assistants: https://kovailakshmi.in/llms.txt
