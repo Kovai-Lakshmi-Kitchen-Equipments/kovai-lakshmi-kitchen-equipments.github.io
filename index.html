@@ -489,6 +489,9 @@ TRUST STATS SECTION (With Icons & 2x2 Mobile Grid)
 .carousel-slide.is-missing, .dot.is-missing { display: none; }
 .about-grid.no-slides { grid-template-columns: 1fr; }
 
+/* About slider: one shape on every screen (4:3), so a 1600 x 1200 photo fills the frame with no empty bands */
+.carousel-slide img { aspect-ratio: 4 / 3; object-fit: cover; }
+
 /* Hidden bot-trap field for the Request A Call form */
 .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 </style>
@@ -631,16 +634,16 @@ TRUST STATS SECTION (With Icons & 2x2 Mobile Grid)
         <div class="about-img carousel-container" id="aboutCarousel">
           <div class="carousel-slides">
             <div class="carousel-slide active">
-              <!-- Slide 1: upload the photo as SLIDES/SLIDE1.jpeg (best 1600 x 1200 px, under 300 KB) and it shows automatically -->
-              <img draggable="false" src="https://kovailakshmi.in/SLIDES/SLIDE1.jpeg" onerror="this.parentNode.classList.add('is-missing')" alt="Kovai Lakshmi Showroom 1" loading="lazy">
+              <!-- Slide 1: upload the photo as SLIDES/SLIDE1.png or SLIDE1.PNG (4:3, best 1600 x 1200 px, compressed to under 500 KB) and it shows automatically -->
+              <img draggable="false" src="https://kovailakshmi.in/SLIDES/SLIDE1.png" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=this.src.replace(/\.png$/,'.PNG');}else{this.parentNode.classList.add('is-missing');}" alt="Kovai Lakshmi Showroom 1" loading="lazy">
             </div>
             <div class="carousel-slide">
-              <!-- Slide 2: upload the photo as SLIDES/SLIDE2.jpeg (best 1600 x 1200 px, under 300 KB) and it shows automatically -->
-              <img draggable="false" src="https://kovailakshmi.in/SLIDES/SLIDE2.jpeg" onerror="this.parentNode.classList.add('is-missing')" alt="Kovai Lakshmi Showroom 2" loading="lazy">
+              <!-- Slide 2: upload the photo as SLIDES/SLIDE2.png or SLIDE2.PNG (4:3, best 1600 x 1200 px, compressed to under 500 KB) and it shows automatically -->
+              <img draggable="false" src="https://kovailakshmi.in/SLIDES/SLIDE2.png" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=this.src.replace(/\.png$/,'.PNG');}else{this.parentNode.classList.add('is-missing');}" alt="Kovai Lakshmi Showroom 2" loading="lazy">
             </div>
             <div class="carousel-slide">
-              <!-- Slide 3: upload the photo as SLIDES/SLIDE3.jpeg (best 1600 x 1200 px, under 300 KB) and it shows automatically -->
-              <img draggable="false" src="https://kovailakshmi.in/SLIDES/SLIDE3.jpeg" onerror="this.parentNode.classList.add('is-missing')" alt="Kovai Lakshmi Showroom 3" loading="lazy">
+              <!-- Slide 3: upload the photo as SLIDES/SLIDE3.png or SLIDE3.PNG (4:3, best 1600 x 1200 px, compressed to under 500 KB) and it shows automatically -->
+              <img draggable="false" src="https://kovailakshmi.in/SLIDES/SLIDE3.png" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=this.src.replace(/\.png$/,'.PNG');}else{this.parentNode.classList.add('is-missing');}" alt="Kovai Lakshmi Showroom 3" loading="lazy">
             </div>
           </div>
           
@@ -1102,7 +1105,8 @@ TRUST STATS SECTION (With Icons & 2x2 Mobile Grid)
       slides.forEach(function(slide, i) {
         if (slide.classList.contains('is-missing')) { missing(i); return; }
         var img = slide.querySelector('img');
-        if (img) img.addEventListener('error', function () { missing(i); });
+        /* .png not found → the photo first tries .PNG (capital letters); the slide is missing only if both fail */
+        if (img) img.addEventListener('error', function () { if (slide.classList.contains('is-missing')) missing(i); });
       });
 
       function startTimer() { timer = setInterval(nextSlide, 5000); }
