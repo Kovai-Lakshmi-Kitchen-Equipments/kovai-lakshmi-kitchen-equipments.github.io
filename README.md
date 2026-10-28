@@ -41,7 +41,7 @@ GitHub Pages publishes it automatically, usually within 1–2 minutes.
 ├── KITCHENPRODUCTS/*.jpg            Web copies of the product photos (1080 x 1080, faint logo, ~100-200 KB)
 │                                   made from your PNGs by site-builder/tools/make_photos.py
 ├── LOGO/LOGO-share.jpg             1080 x 1080 logo picture for WhatsApp / Facebook link previews
-├── SLIDES/SLIDE1.jpeg … SLIDE3.jpeg  Home page slider photos – upload with exactly these names (see section 6)
+├── SLIDES/SLIDE1.png … SLIDE3.png    Home page slider photos – upload with exactly these names (see section 6)
 ├── LOGO/, SLIDES/, CUSTOMERS/, CERTIFICATES/, KITCHENPRODUCTS/*.png, SOCIAL MEDIAS/   your images (unchanged)
 ├── search-index.json               Search data (products, pages and posts)
 ├── sitemap.xml                     For Google (posts are added automatically)
@@ -205,15 +205,15 @@ Gallery page match.
 ## 6. Home page slider photos
 
 The slider in the "Welcome to Kovai Lakshmi Grinders" section shows up to 3 photos. Upload them to the
-**`SLIDES`** folder with exactly these names (capital letters and the `.jpeg` ending matter):
+**`SLIDES`** folder with exactly these names. `SLIDE` must be in capital letters; the ending can be `.png` or `.PNG` (both work):
 
 | Slide | File |
 |---|---|
-| 1 | `SLIDES/SLIDE1.jpeg` |
-| 2 | `SLIDES/SLIDE2.jpeg` |
-| 3 | `SLIDES/SLIDE3.jpeg` |
+| 1 | `SLIDES/SLIDE1.png` |
+| 2 | `SLIDES/SLIDE2.png` |
+| 3 | `SLIDES/SLIDE3.png` |
 
-Best size: **1600 × 1200 px** (4:3), under **300 KB** each. A slide shows by itself as soon as its photo is
+Best size: **1600 × 1200 px** (4:3, the same shape on computers, tablets and phones), **PNG**, compressed to under **500 KB** each (a photo saved as PNG is often 2 - 3 MB, so run it through a free compressor such as tinypng.com first). A photo of another shape is trimmed evenly at the edges to fill the frame, so keep the main subject in the middle. A slide shows by itself as soon as its photo is
 uploaded; slides without a photo are skipped, and the slider is hidden while none exist.
 
 ## 7. Adding or changing a product photo
