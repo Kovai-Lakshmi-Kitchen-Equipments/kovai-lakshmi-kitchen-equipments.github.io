@@ -103,7 +103,7 @@ Each product page has the full technical specifications, product information, ho
 ## Latest Resources
 
 <!-- RESOURCES:START (filled by the website admin when posts are published) -->
-New articles, blogs and case studies are coming soon.
+- [Highlights of - Murukku Machine](https://kovailakshmi.in/resources/highlights-of-murukku-machine/): Crunchy, golden murukku is one of South India's most loved snacks, enjoyed at festivals,weddings and teatime alike. But pressing murukku by hand is slow,… (Blog, 12 Nov 2026)
 <!-- RESOURCES:END -->
 
 ## Legal
