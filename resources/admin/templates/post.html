@@ -235,6 +235,8 @@ body { background: var(--bg); }
 .post { background: #ffffff; border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
 .post-cover { margin: 0; background: #ffffff; padding: clamp(16px, 3vw, 32px) 0; }
 .post-cover img { display: block; margin: 0 auto; width: 70%; height: auto; max-height: 70vh; object-fit: contain; }
+@media (min-width: 768px) and (max-width: 1024px) { .post-cover img { width: 86%; } }
+@media (max-width: 767px) { .post-cover img { width: 90vw; max-width: 100%; } }
 .post-header h1 { font-size: clamp(26px, 4.5vw, 42px); line-height: 1.2; font-family: Georgia, 'Times New Roman', Times, serif; color: var(--dark); margin-bottom: 14px; }
 .post-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; font-size: 14px; color: var(--muted); margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
 .post-meta .post-cat { font-size: 12px; font-weight: 700; color: #fff; background: var(--primary); text-transform: uppercase; letter-spacing: .8px; padding: 4px 10px; border-radius: 999px; }
